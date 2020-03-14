@@ -1,3 +1,54 @@
+<?php
+		$seed = "AZER153AFDQV89645132ZFAZEF986451GJO7313QDPKAZF?VQ";
+		$url = "";
+
+if(isset($_GET['token'])){
+	$token= $_GET['token'];
+	//print_r($_POST);
+	if(isset($_POST['submit'])){
+		$date = date("d");
+		$newtoken = $_POST['mj'] . $seed . $date;
+		$crypted =md5($newtoken);
+		if($token === $crypted){
+			$content = '**Type** ' .$_POST['type']. '\n'. 
+					':calendar:  **Date** Le ' . $_POST['date']. '\n' .
+					':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' . 
+					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
+					':d10:  **Système** ' . $_POST['system'] . '\n' .
+					':timer:  **Durée moyen du scénario ** ' . $_POST['selectorTime'] . '\n' .
+					':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
+			if ($_POST['desc'] !== ""){
+				$content .= ':grey_question:  **Détails**' . $_POST['desc'] . '\n';
+			}
+			$content .= '**Participe** :white_check_mark: / **Ne participe pas** :x:';
+			$payload = '{ "embeds":[
+					{ "thumbnail": { "url":"https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png" },
+						"title":"Nouveau jeu de rôle !",
+						"description":"'.$content.'",
+						"color": 16711680
+				} ] }';
+			$curl = curl_init("$url");
+			curl_setopt($curl, CURLOPT_HTTPHEADER, array('content-type: application/json'));
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+			//préparation des data en json
+			curl_setopt($curl, CURLOPT_POSTFIELDS,$payload);
+			//désasctivation du ssl
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+			//récupération du contenu pour debug
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($curl);
+			if($result === FALSE) {
+				echo "ERREUR : <br>";
+				die(curl_error($curl));
+			}
+		}else{
+			echo "failed";
+		}
+
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -6,22 +57,23 @@
     <link rel="stylesheet" href="css/uikit.css">
     <link rel="stylesheet" href="css/master.css">
     <script src="js/uikit.js" charset="utf-8"></script>
-    <script src="js/timeinc.js" charset="utf-8"></script>
     <script src="js/uikit-icons.js" charset="utf-8"></script>
     <script src="js/uikit-icons.min.js" charset="utf-8"></script>
-    <script src="js/jquery-3.4.1.min.js"harset="utf-8"></script>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="js/timeinc.js" charset="utf-8"></script>
+
   </head>
-  <body>
+  <body onload="feed()"> <!--Quand la page se charge, appeler feed()-->
 
     <div class="container">
       <div class="box">
-        <form>
+        <form method=post action=# id="URform">
         <table>
           <tr>
             <th>Type</th>
             <td>
-              <select class="uk-select" id="type" required>
-                <option value="" disabled hidden selected></option>
+              <select class="uk-select" name="type" id="type" required>
+                <option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
                 <option>Initiation</option>
                 <option>One shoot</option>
                 <option>Scénario</option>
@@ -30,9 +82,9 @@
             </td>
           </tr>
           <tr>
-            <th>Date 📆</th>
+            <th>Date </th>
              <td>
-              <input class="uk-input" type="date" name="date" id="date" value=""  required> 
+              <input class="uk-input" type="date" name="date" id="date" value=""  required> <!--L'attribut required force un champ à être rempli-->
             </td>
           </tr>
 
@@ -40,56 +92,8 @@
             <th>Heure ⌚</th>
 
             <td>
-              <select class="uk-select" id="selectorHour" required>
+              <select class="uk-select" name="selectorHour" id="selectorHour" required>
                 <option value="" disabled hidden selected></option>
-                <option>00h00</option>
-                <option>00h30</option>
-                <option>01h00</option>
-                <option value="90">01h30</option>
-                <option value="120">02h00</option>
-                <option value="150">02h30</option>
-                <option value="180">03h00</option>
-                <option value="210">03h30</option>
-                <option value="240">04h00</option>
-                <option value="270">04h30</option>
-                <option value="300">05h00</option>
-                <option value="330">05h30</option>
-                <option value="360">06h00</option>
-                <option value="390">06h30</option>
-                <option value="420">07h00</option>
-                <option value="450">07h30</option>
-                <option value="480">08h00</option>
-                <option value="510">08h30</option>
-                <option value="540">09h00</option>
-                <option value="570">09h30</option>
-                <option value="600">10h00</option>
-                <option value="630">10h30</option>
-                <option value="660">11h00</option>
-                <option value="690">11h30</option>
-                <option value="720">12h00</option>
-                <option value="750">12h30</option>
-                <option value="780">13h00</option>
-                <option value="810">13h30</option>
-                <option value="840">14h00</option>
-                <option value="870">14h30</option>
-                <option value="900">15h00</option>
-                <option value="930">15h30</option>
-                <option value="960">16h00</option>
-                <option value="990">16h30</option>
-                <option value="1020">17h00</option>
-                <option value="1050">17h30</option>
-                <option value="1080">18h00</option>
-                <option value="1110">18h30</option>
-                <option value="1140">19h00</option>
-                <option value="1170">19h30</option>
-                <option value="1200">20h00</option>
-                <option value="1230">20h30</option>
-                <option value="1260">21h00</option>
-                <option value="1290">21h30</option>
-                <option value="1320">22h00</option>
-                <option value="1350">22h30</option>
-                <option value="1380">23h00</option>
-                <option value="1410">23h30</option>
               </select>
             </td>
           </tr>
@@ -97,18 +101,9 @@
           <tr>
             <th>Durée ⏱</th><td>
 
-            <select class="uk-select" id="selectorTime" required>
+            <select class="uk-select" name="selectorTime" id="selectorTime" required>
               <option value="" disabled hidden selected></option>
-              <option>30m</option>
-              <option >1h</option>
-              <option>1h30</option>
-              <option>2h</option>
-              <option>2h30</option>
-              <option>3h</option>
-              <option>3h30</option>
-              <option>4h</option>
-              <option>4h30</option>
-              <option>5h</option>
+              
             </select>
 
           </td>
@@ -118,13 +113,13 @@
           <tr>
             <th>Maître du jeu 👑</th>
             <td>
-              <input type="text" class="uk-input" placeholder="ABCD#1234" onchange="Onchange()"id="mj" maxlength="37" required>
+              <input type="text" class="uk-input" placeholder="ABCD#1234" onchange="Onchange()" name="mj" id="mj" maxlength="37" required> <!--Ici, en plus de se servir de required, on utlise une fonction pour savoir si le pseudo entré peut correspondre à un pseudo discord-->
             </td>
           </tr>
 
           <tr>
             <th>Système 🎲</th><td>
-            <select class="uk-select" id="system" required>
+            <select class="uk-select" name ="system" id="system" required>
               <option hidden diasabled selected value="">Liste des JdR proposés</option>
                 <optgroup label="JdR Générique">
                     <option>Brigandyne</option>
@@ -207,11 +202,13 @@
           <tr>
             <th>Outils 🛠</th>
             <td>
-              <select class="uk-select" name="outils" id="outils"  required>
+              <select class="uk-select" name="outils" id="outils" required>
                 <option hidden disabled selected value=""></option>
-                <option>Discord</option>
-                <option>Discord + Roll20</option>
+                <option value="Discord">Discord</option>
+                <option >Discord + Roll20 </option>
                 <option>Discord + Rolistream</option>
+                <label><input class="uk-checkbox" name="diffusion" type="checkbox"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label>
+                <label><input class="uk-checkbox" name="diffusion" type="checkbox"> Partie diffusée sur Roll20 <img src="img/iconroll20.png"></label>
               </select>
             </td>
           </tr>
@@ -228,14 +225,13 @@
           <tr>
             <th>Description (optionnelle) 📄</th>
             <td>
-              <textarea class="uk-textarea"  maxlength="500" rows="5" value=""></textarea>
+              <textarea class="uk-textarea"  maxlength="500" rows="5" name ="desc" id="desc"></textarea>
             </td>
           </tr>
 
           <tr>
             <th></th>
-            <td><button type="button" class="uk-button uk-button-default" id="submit" onclick="post();">Valider ✔</button></button></td>
-            <button hidden type="submit" id="submit"></button>
+            <td><button type="submit" class="uk-button uk-button-default" name="submit" id="submit">Valider ✔</button></td>
           </tr>
           </table>
         </form>
@@ -244,6 +240,11 @@
 
 
     </div>
-
   </body>
 </html>
+<?php
+}else{
+	echo 'ERREUR : veuillez venir accompagné d\'un token s\'il vous plaît!';
+}
+?>
+
