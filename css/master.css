@@ -16,7 +16,7 @@ body
 }
 
 .box{
-  height: 67vh;
+  height: 68vh;
   width: 55vw;
   background-color: #2C2F33;
   display: flex;
@@ -67,4 +67,12 @@ button {
 
 input[type="radio"]{
   margin: 0 0px 0 10px;
+}
+
+.uk-select{
+  background-color:#2C2F33;
+  color:white;
+}
+.uk-textarea{
+  background-color:#2C2F33;
 }

@@ -1438,7 +1438,7 @@ button.uk-icon:not(:disabled) {
   /* 4 */
   padding: 0 10px;
   background: #fff;
-  color: #666;
+  color: #421;
   border: 1px solid #e5e5e5;
   transition: 0.2s ease-in-out;
   transition-property: color, background-color, border;
