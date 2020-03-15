@@ -1,37 +1,71 @@
 <?php
-		$seed = "AZER153AFDQV89645132ZFAZEF986451GJO7313QDPKAZF?VQ";
-		$url = "";
-
 if(isset($_GET['token'])){
 	$token= $_GET['token'];
 	//print_r($_POST);
 	if(isset($_POST['submit'])){
+		$seed = "";
 		$date = date("d");
 		$newtoken = $_POST['mj'] . $seed . $date;
+		//echo "<br/>";
 		$crypted =md5($newtoken);
+		//echo $crypted;
+		//echo "<br/>";
+		//echo $token;
+		//echo "<br/>";
 		if($token === $crypted){
+		
+			$url = "https://discordapp.com/api/webhooks/XXXXXXXXXX";
 			$content = '**Type** ' .$_POST['type']. '\n'. 
 					':calendar:  **Date** Le ' . $_POST['date']. '\n' .
 					':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' . 
-					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
-					':d10:  **Système** ' . $_POST['system'] . '\n' .
 					':timer:  **Durée moyen du scénario ** ' . $_POST['selectorTime'] . '\n' .
+					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
+					'<:custom_emoji_name:688535298325348407>  **Système** ' . $_POST['system'] . '\n' .
 					':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
+			if ($_POST['diffusion1'] !== ""){
+				$plateform .= ' <:custom_emoji_name:688725870948646921> ';
+			}
+			if ($_POST['diffusion2'] !== ""){
+				$plateform .= ' <:custom_emoji_name:688725871716073474> ';
+			}
+			if ($_POST['diffusion3'] !== ""){
+				$plateform .= ' <:custom_emoji_name:688725870998716447> ';
+			}
+			if ($_POST['diffusion4'] !== ""){
+				$plateform .= ' :space_invader: ';
+			}
+			if ($plateform !== ""){
+				$content .= ':star2: **Plateforme** ' .$plateform. '\n';
+
+			}
 			if ($_POST['desc'] !== ""){
-				$content .= ':grey_question:  **Détails**' . $_POST['desc'] . '\n';
+				$desc=addcslashes($_POST['desc'],"\n\r");
+				$desc=preg_replace("/@/","",$desc);
+				$content .= ':grey_question:  **Détails**' . $desc . '\n';
 			}
 			$content .= '**Participe** :white_check_mark: / **Ne participe pas** :x:';
-			$payload = '{ "embeds":[
-					{ "thumbnail": { "url":"https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png" },
+			$payload = '{
+				"embeds":[
+				{
+					"thumbnail":
+					{
+						"url":"https://cdn.discordapp.com/attachments/688340383117082733/688732386820620351/UR-logo2.png"
+					},
 						"title":"Nouveau jeu de rôle !",
 						"description":"'.$content.'",
-						"color": 16711680
-				} ] }';
+						"color": "16711680"
+				}
+				]
+			}';
+			//$data = array('embeds' => $content );
 			$curl = curl_init("$url");
+			//echo "<br>".$content;
+			//echo "<br>".$payload;
+			//print_r($payload);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array('content-type: application/json'));
 			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 			//préparation des data en json
-			curl_setopt($curl, CURLOPT_POSTFIELDS,$payload);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
 			//désasctivation du ssl
 			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -42,6 +76,8 @@ if(isset($_GET['token'])){
 				echo "ERREUR : <br>";
 				die(curl_error($curl));
 			}
+			//echo $result;
+			echo "<BR> Votre partie a bien été envoyée sur le serveur discord";
 		}else{
 			echo "failed";
 		}
@@ -207,8 +243,10 @@ if(isset($_GET['token'])){
                 <option value="Discord">Discord</option>
                 <option >Discord + Roll20 </option>
                 <option>Discord + Rolistream</option>
-                <label><input class="uk-checkbox" name="diffusion" type="checkbox"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label>
-                <label><input class="uk-checkbox" name="diffusion" type="checkbox"> Partie diffusée sur Roll20 <img src="img/iconroll20.png"></label>
+                <label><input class="uk-checkbox" name="diffusion1" type="checkbox"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
+                <label><input class="uk-checkbox" name="diffusion2" type="checkbox"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
+                <label><input class="uk-checkbox" name="diffusion3" type="checkbox"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
+                <label><input class="uk-checkbox" name="diffusion4" type="checkbox"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>
               </select>
             </td>
           </tr>
