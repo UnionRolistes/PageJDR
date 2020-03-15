@@ -53,6 +53,30 @@ function feed()//Cette fonction permet de remplir les deux select, allégeant le
 	}
 	
 }
+function chgMode()
+{
+	if (document.getElementById("mode").innerHTML == "Clair ☀")
+	{
+		document.getElementById("mode").innerHTML = "Sombre 🌙";
+		var oldlink = document.getElementsByTagName("link").item(1);
+    	var newlink = document.createElement("link");
+    	newlink.setAttribute("rel", "stylesheet");
+    	newlink.setAttribute("href", "css/dark.css");
+    	document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+
+	}
+	else
+	{
+		document.getElementById("mode").innerHTML = "Clair ☀";
+		var oldlink = document.getElementsByTagName("link").item(1);
+    	var newlink = document.createElement("link");
+    	newlink.setAttribute("rel", "stylesheet");
+    	newlink.setAttribute("href", "css/uikit.css");
+    	document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+
+		
+	}
+}
 function post33()
 {
 	try

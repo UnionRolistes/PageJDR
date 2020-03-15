@@ -94,7 +94,7 @@ if(isset($_GET['token'])){
     <meta charset="utf-8">
     <title>Le formulaire</title>
     <link rel="stylesheet" href="css/uikit.css">
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/dark.css">
     <script src="js/uikit.js" charset="utf-8"></script>
     <script src="js/uikit-icons.js" charset="utf-8"></script>
     <script src="js/uikit-icons.min.js" charset="utf-8"></script>
@@ -102,13 +102,17 @@ if(isset($_GET['token'])){
     <script src="js/timeinc.js" charset="utf-8"></script>
 
   </head>
-  <body onload="feed()"> <!--Quand la page se charge, appeler feed()-->
+  <body onload="feed()" id="body"> <!--Quand la page se charge, appeler feed()-->
 
     <div class="container">
       <div class="box">
-        <form method=post action=# id="URform">
         <table>
           <tr>
+            <th></th>
+            <td><button class="uk-button uk-button-default" id="mode" onclick="chgMode()">Sombre 🌙</button></td>
+          </tr>
+          <tr>
+            <form method=post action=# id="URform">
             <th>Type</th>
             <td>
               <select class="uk-select" name="type" id="type" required>
@@ -242,16 +246,10 @@ if(isset($_GET['token'])){
           <tr>
             <th>Outils 🛠</th>
             <td>
-              <select class="uk-select" name="outils" id="outils" required>
-                <option hidden disabled selected value=""></option>
-                <option value="Discord">Discord</option>
-                <option >Discord + Roll20 </option>
-                <option>Discord + Rolistream</option>
                 <label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
                 <label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
                 <label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
                 <label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>
-              </select>
             </td>
           </tr>
           <tr>
