@@ -1,9 +1,12 @@
 <?php
 if(isset($_GET['token'])){
+	//Config
+	$url = "https://discordapp.com/api/webhooks/XXXXXXXXXX";
+	$seed = "";
 	$token= $_GET['token'];
 	//print_r($_POST);
 	if(isset($_POST['submit'])){
-		$seed = "";
+		
 		$date = date("d");
 		$newtoken = $_POST['mj'] . $seed . $date;
 		//echo "<br/>";
@@ -14,7 +17,7 @@ if(isset($_GET['token'])){
 		//echo "<br/>";
 		if($token === $crypted){
 		
-			$url = "https://discordapp.com/api/webhooks/XXXXXXXXXX";
+			
 			$content = '**Type** ' .$_POST['type']. '\n'. 
 					':calendar:  **Date** Le ' . $_POST['date']. '\n' .
 					':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' . 
@@ -22,16 +25,16 @@ if(isset($_GET['token'])){
 					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
 					'<:custom_emoji_name:688535298325348407>  **Système** ' . $_POST['system'] . '\n' .
 					':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
-			if ($_POST['diffusion1'] !== ""){
+			if ($_POST['diffusion1'] == "twitch"){
 				$plateform .= ' <:custom_emoji_name:688725870948646921> ';
 			}
-			if ($_POST['diffusion2'] !== ""){
+			if ($_POST['diffusion2'] == "roll20"){
 				$plateform .= ' <:custom_emoji_name:688725871716073474> ';
 			}
-			if ($_POST['diffusion3'] !== ""){
+			if ($_POST['diffusion3'] == "discord"){
 				$plateform .= ' <:custom_emoji_name:688725870998716447> ';
 			}
-			if ($_POST['diffusion4'] !== ""){
+			if ($_POST['diffusion4'] == "autre"){
 				$plateform .= ' :space_invader: ';
 			}
 			if ($plateform !== ""){
@@ -244,10 +247,10 @@ if(isset($_GET['token'])){
                 <option value="Discord">Discord</option>
                 <option >Discord + Roll20 </option>
                 <option>Discord + Rolistream</option>
-                <label><input class="uk-checkbox" name="diffusion1" type="checkbox"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
-                <label><input class="uk-checkbox" name="diffusion2" type="checkbox"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
-                <label><input class="uk-checkbox" name="diffusion3" type="checkbox"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
-                <label><input class="uk-checkbox" name="diffusion4" type="checkbox"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>
+                <label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
+                <label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
+                <label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
+                <label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>
               </select>
             </td>
           </tr>
