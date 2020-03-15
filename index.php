@@ -165,6 +165,7 @@ if(isset($_GET['token'])){
                     <option>PbtA</option>
                     <option>SavageWolrd</option>
                     <option>Tiny</option>
+					<option>Trash</option>
                 </optgroup>
                 <optgroup label="JdR Médiéval Fantastique / épic">
                     <option>Agone</option>
