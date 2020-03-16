@@ -21,18 +21,18 @@ if(isset($_GET['token'])){
 			$content = '**Type** ' .$_POST['type']. '\n'. 
 					':calendar:  **Date** Le ' . $_POST['date']. '\n' .
 					':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' . 
-					':timer:  **DurÃ©e moyen du scÃ©nario ** ' . $_POST['selectorTime'] . '\n' .
+					':timer:  **Durée moyen du scénario ** ' . $_POST['selectorTime'] . '\n' .
 					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
-					'<:custom_emoji_name:688535298325348407>  **SystÃ¨me** ' . $_POST['system'] . '\n' .
+					'<:custom_emoji_name:434358038342664194>  **Système** ' . $_POST['system'] . '\n' .
 					':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
 			if ($_POST['diffusion1'] == "twitch"){
-				$plateform .= ' <:custom_emoji_name:688725870948646921> ';
+				$plateform .= ' <:custom_emoji_name:434370263518412820> ';
 			}
 			if ($_POST['diffusion2'] == "roll20"){
-				$plateform .= ' <:custom_emoji_name:688725871716073474> ';
+				$plateform .= ' <:custom_emoji_name:493783713243725844> ';
 			}
 			if ($_POST['diffusion3'] == "discord"){
-				$plateform .= ' <:custom_emoji_name:688725870998716447> ';
+				$plateform .= ' <:custom_emoji_name:434370093627998208> ';
 			}
 			if ($_POST['diffusion4'] == "autre"){
 				$plateform .= ' :space_invader: ';
