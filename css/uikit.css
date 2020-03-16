@@ -12488,8 +12488,8 @@ input[type="radio"]{
   margin: 0 0px 0 10px;
 }
 
-.uk-select, input[type="date"], .uk-checkbox, .uk-textarea,.uk-radio{
-  border: 1px solid black;
+.uk-select, input[type="date"], .uk-checkbox, .uk-textarea,.uk-radio, .uk-input, .uk-button, input[type="text"], button {
+  border: 1px solid black !important;
 }
 
 .uk-input
