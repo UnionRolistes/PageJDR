@@ -278,12 +278,9 @@ if(isset($_GET['token'])){
             <td><button type="submit" class="uk-button uk-button-default" name="submit" id="submit">Valider ✔</button></td>
           </tr>
           </table>
+	  <span class="note">attention cet outil est en beta-test, merci de copier coller votre description avant de poster</span>
         </form>
 
-      </div>
-
-
-    </div>
   </body>
 </html>
 </html>
