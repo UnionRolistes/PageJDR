@@ -109,7 +109,11 @@ if(isset($_GET['token'])){
         <table>
           <tr>
             <th></th>
-            <td><button class="uk-button uk-button-default" id="mode" onclick="chgMode()">Sombre 🌙</button></td>
+            <td>
+              <label class="switch">
+              <input type="checkbox" onclick="chgMode()">
+              <span class="slider round"></span>
+              </label><span id="mode">Sombre 🌙</span></td><!--<button class="uk-button uk-button-default" id="mode" onclick="chgMode()">Sombre 🌙</button></td>-->
           </tr>
           <tr>
             <form method=post action=# id="URform">
@@ -172,7 +176,7 @@ if(isset($_GET['token'])){
                     <option>PbtA</option>
                     <option>SavageWolrd</option>
                     <option>Tiny</option>
-					<option>Trash</option>
+          <option>Trash</option>
                 </optgroup>
                 <optgroup label="JdR Médiéval Fantastique / épic">
                     <option>Agone</option>
@@ -281,6 +285,7 @@ if(isset($_GET['token'])){
 
     </div>
   </body>
+</html>
 </html>
 <?php
 }else{
