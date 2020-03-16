@@ -56,7 +56,7 @@ if(isset($_GET['token'])){
 					},
 						"title":"Nouveau jeu de rôle !",
 						"description":"'.$content.'",
-						"color": "8400430"
+						"color": "11053224"
 				}
 				]
 			}';
