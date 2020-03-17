@@ -10,8 +10,14 @@ function Onchange()
 		document.getElementById("mj").setCustomValidity("");
 	}
 }
+
+function save()
+{
+	sessionStorage.setItem("text", document.getElementById("desc").value);
+}
 function feed()//Cette fonction permet de remplir les deux select, allégeant le code HTML
 {
+	document.getElementById("desc").value = sessionStorage.getItem("text");
 	time = document.getElementById("selectorTime");
 	hour = document.getElementById("selectorHour"); 
 	t = 0;
