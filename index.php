@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['token'])){
 	//Config
-	$url = "https://discordapp.com/api/webhooks/XXXXXXXXXX";
+	$url = "https://discordapp.com/api/webhooks/";
 	$seed = "";
 	$token= $_GET['token'];
 	//print_r($_POST);
@@ -21,9 +21,9 @@ if(isset($_GET['token'])){
 			$content = '**Type** ' .$_POST['type']. '\n'. 
 					':calendar:  **Date** Le ' . $_POST['date']. '\n' .
 					':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' . 
-					':timer:  **Dur�e moyen du sc�nario ** ' . $_POST['selectorTime'] . '\n' .
+					':timer:  **Durée moyen du scénario ** ' . $_POST['selectorTime'] . '\n' .
 					':crown:  **MJ** @' . $_POST['mj'] . '\n' . 
-					'<:custom_emoji_name:434358038342664194>  **Syst�me** ' . $_POST['system'] . '\n' .
+					'<:custom_emoji_name:434358038342664194>  **Système** ' . $_POST['system'] . '\n' .
 					':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
 			if ($_POST['diffusion1'] == "twitch"){
 				$plateform .= ' <:custom_emoji_name:434370263518412820> ';
@@ -176,7 +176,7 @@ if(isset($_GET['token'])){
                     <option>PbtA</option>
                     <option>SavageWolrd</option>
                     <option>Tiny</option>
-          <option>Trash</option>
+					<option>Trash</option>
                 </optgroup>
                 <optgroup label="JdR Médiéval Fantastique / épic">
                     <option>Agone</option>
@@ -281,6 +281,10 @@ if(isset($_GET['token'])){
 	  <span style="text-align:center;margin-top:5vh;">attention cet outil est en beta-test, merci de copier coller votre description avant de poster</span>
         </form>
 
+      </div>
+
+
+    </div>
   </body>
 </html>
 </html>
