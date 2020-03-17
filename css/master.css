@@ -76,3 +76,8 @@ input[type="radio"]{
 .uk-textarea{
   background-color:#2C2F33;
 }
+
+.note{
+	text-align:center;
+	color:red;
+}
