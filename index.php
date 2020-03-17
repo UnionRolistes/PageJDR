@@ -269,7 +269,7 @@ if(isset($_GET['token'])){
           <tr>
             <th>Description (optionnelle) 📄</th>
             <td>
-              <textarea class="uk-textarea"  maxlength="500" rows="5" name ="desc" id="desc"></textarea>
+              <textarea class="uk-textarea"  maxlength="500" rows="5" name ="desc" id="desc" oninput="save()"></textarea>
             </td>
           </tr>
 
@@ -278,7 +278,7 @@ if(isset($_GET['token'])){
             <td><button type="submit" class="uk-button uk-button-default" name="submit" id="submit">Valider ✔</button></td>
           </tr>
           </table>
-	  <span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test, merci de copier coller votre description avant de poster<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5"></a></span>
+	  <span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5"></a></span>
         </form>
 
       </div>
