@@ -95,6 +95,7 @@ if(isset($_GET['token'])){
     <title>Le formulaire</title>
     <link rel="stylesheet" href="css/uikit.css">
     <link rel="stylesheet" href="css/dark.css">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
     <script src="js/uikit.js" charset="utf-8"></script>
     <script src="js/uikit-icons.js" charset="utf-8"></script>
     <script src="js/uikit-icons.min.js" charset="utf-8"></script>
