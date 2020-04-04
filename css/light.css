@@ -2,132 +2,132 @@
 		document.getElementById("body").style["background-color"]="white";
 		document.getElementsByClassName("box")[0].style["background-color"]="#FEFEE2";*/
 
-/* ---------------------- BODY ------------------- */
-	body
-	{
-		background-color: white;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		color: white;
-	}
+body
+{
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+}
 
-	.container{
-		width: 100vw;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-	.box{
-		height: 95vh;
-		width: 55vw;
-		background-color: #4F5660;
-		display: flex;
-		flex-direction: column;
-		box-shadow: 5px 10px 8px black;
-		border-radius: 5px;
-		overflow-y: auto;
-	}
+.box{
+  height: 95vh;
+  width: 55vw;
+  background-color: #4F5660;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 10px 8px black;
+  border-radius: 5px;
+  overflow-y: auto;
 
-/* ---------------------- TABLEAU ------------------- */
-	table {
-		padding: 10px;
-	}
+}
+table {
+  padding: 10px;
+}
 
-	table th{
-		width: 50%;
-		text-align: left;
-	}
-	table td{
-		width: 50%;
-		height: 50px;
-	}
+table th{
+  width: 50%;
+  text-align: left;
+}
+table td{
+  width: 50%;
+  height: 50px;
+}
 
-/* ---------------------- BOUTON ------------------- */
-	input[type="text"], select {
-		width: 100%;
-		border: 3px solid white;
-		background-color: #2C2F33;
-		border-radius: 5px;
-		color: white;
-		-webkit-appearance: none;
-		text-align: center;
-	}
-	input[type="range"]{
-		border: none;
-	}
-	input[type="range"]{
-		border: none;
-	}
-	button {
-		width: 100%;
-		height: 100%;
-		color: white !important;
-		border: 3px solid white !important;
-		border-radius: 5px !important;
-	}
-	#hourShow{
-		float: right;
-	}
+input[type="text"], select {
+  width: 100%;
+  border: 3px solid white;
+  background-color: #2C2F33;
+  border-radius: 5px;
+  color: white;
+  -webkit-appearance: none;
+  text-align: center;
+}
+input[type="range"]{
+  border: none;
+}
+input[type="range"]{
+  border: none;
+}
+button {
+  width: 100%;
+  height: 100%;
+  color: white !important;
+  border: 3px solid white !important;
+  border-radius: 5px !important;
+}
+#hourShow{
+  float: right;
+}
 
-	input[type="radio"]{
-		margin: 0 0px 0 10px;
-	}
+input[type="radio"]{
+  margin: 0 0px 0 10px;
+}
 
-	.uk-select{
-		background-color:#2C2F33;
-		color:white;
-	}
-	.uk-textarea{
-		background-color:#2C2F33;
-		color:white;
-	}
+.uk-select{
+  background-color:#2C2F33;
+  color:white;
+  ;
+}
+.uk-textarea{
+  background-color:#2C2F33;
+  color:white;
+}
 
-	.uk-select:focus{
-		background-color:#2C2F33;
-		color:white;
-	}
+.uk-select:focus{
+  background-color:#2C2F33;
+  color:white;
+}
 
-	.uk-textarea:focus{
-		background-color:#2C2F33;
-		color:white;
-	}
+.uk-textarea:focus{
+  background-color:#2C2F33;
+  color:white;
+}
 
-	.uk-select:focus option{
-		color:white;
-	}
+.uk-select:focus option{
+  color:white;
+}
 
-	.uk-select optgroup {
-		font: inherit;
-		font-weight: bold;
-		background-color:#23272A;
-	}
+.uk-select optgroup {
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  font-weight: bold;
+  background-color:#23272A;
+}
 
-	.options{
-		color:#FFFFFF;
-	}
+.options{
+  color:#FFFFFF;
+}
 
 
-	select option{
-		color:#FFFFFF;
-	}
+select option{
+  color:#FFFFFF;
+}
 
-	.uk-select option{
-		background-color:#23272A;
-		color:#FFFFFF;
-	}
+.uk-select option{
+  background-color:#23272A;
+  color:#FFFFFF;
+}
 
-	.uk-textarea:focus{
-		background-color:#2C2F33;
-		color:white;
-	}
+.uk-textarea:focus{
+  background-color:#2C2F33;
+  color:white;
+}
 
-	.uk-input:focus{
-		background-color:#2C2F33;
-	}
-	.uk-input[type="date"]{
-		background-color:#2C2F33;
-		color:#FFFFFF;
-	}
+.uk-input:focus{
+  background-color:#2C2F33;
+}
+.uk-input[type="date"]{
+  background-color:#2C2F33;
+  color:#FFFFFF;
+}
