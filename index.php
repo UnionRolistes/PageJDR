@@ -223,6 +223,7 @@ if(isset($_POST['submit'])){
                                     <option>Défis Fantastiques</option>
                                     <option>DiscWorld</option>
                                     <option>DragonAge</option>
+									<option>gobelin qui s'en dédit</option>
                                     <option>GoT</option>
                                     <option>L5R</option>
                                     <option>MyLittlePony</option>
