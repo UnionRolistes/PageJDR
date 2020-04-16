@@ -88,19 +88,21 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+
     <!DOCTYPE html>
     <html lang="fr" dir="ltr">
     <head>
         <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Le formulaire</title>
-        <link rel="stylesheet" href="css/uikit.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/dark.css">
         <link rel="stylesheet" href="css/nouislider.css">
         <link type="text/css" rel="stylesheet" href="css/tail.datetime-default.css">
         <link rel="stylesheet" href="css/tail.datetime-harx-dark.min.css">
         <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
-        <script src="js/uikit.min.js" ></script>
-        <script src="js/uikit-icons.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js" ></script>
         <script src="js/script.js"></script>
         <script src="js/nouislider.js"></script>
         <script src="js/tail.datetime.js"></script>
@@ -108,221 +110,228 @@ if(isset($_POST['submit'])){
 
     </head>
     <body onload="feed();" id="body"> <!--Quand la page se charge, appeler feed()-->
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+			<div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">			            
+						<form method=post action=# id="URform">
+							<div class="form-group row">
+								<label id="mode" class="col-sm-5 col-form-label">Sombre 🌙</label>
+								<div class="col-sm-3">
+									<label class="switch">
+									<input type="checkbox" onclick="chgMode()">
+									<span class="slider round"></span>
+									</label>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Nombre de joueur</label>
+								<div class="col-sm-7">
+									<div id="range" style="color:black !important" aria-describedby="nbTxt">
+											<script>
+												var range = document.getElementById('range');
 
-    <div class="container">
-        <div class="box">
-            <table>
-                <form method=post action=# id="URform">
+												noUiSlider.create(range, {
+													start: [4, 15],
+													step:1,
+													range: {
+														'min': 1,
+														'max': 41
+													},
+													padding:[1,1],
+													connect:true
 
-                    <tr>
-                        <th>
-                            <label class="switch">
-                                <input type="checkbox" onclick="chgMode()">
-                                <span class="slider round"></span>
-                            </label><span id="mode">Sombre 🌙</span></th><td></td><!--<button class="uk-button uk-button-default" id="mode" onclick="chgMode()">Sombre 🌙</button></td>-->
-                    </tr>
-                    <tr>
-                        <th>Nombre de joueur</th>
-                        <td><div id="range" style="color:black !important">
-                                <script>
-                                    var range = document.getElementById('range');
+												});
+											</script>
+										</div>
+								</div>
+								<small id="nbTxt" class="form-text text-muted">Moins de 25 joueurs.</small>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Type</label>
+								<div class="col-sm-7">
+									<select class="uk-select" name="type" id="type" required>
+										<option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
+										<option>Initiation</option>
+										<option>One shoot</option>
+										<option>Scénario</option>
+										<option>Campagne</option>
+									</select>
+									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Date 📅 et heure ⌚</label>
+								<div class="col-sm-7">
+									<input id="date" type="text" class="tail-datetime-field" required style="border-radius: 0px !important; height:40px; width:100%"/>
 
-                                    noUiSlider.create(range, {
-                                        start: [4, 15],
-                                        step:1,
-                                        range: {
-                                            'min': 1,
-                                            'max': 41
-                                        },
-                                        padding:[1,1],
-                                        connect:true
+										<script type="text/javascript">
+											document.addEventListener("DOMContentLoaded", function(){
+												tail.DateTime(".tail-datetime-field", { dateFormat:"dd/mm/YYYY",
+													timeFormat:"HH:ii",
+													locale:"fr",
+													timeSeconds:false,
+													viewDecades:false,
+													dateStart:new Date().toISOString().slice(0, 10)});
+											});
+										</script> <!--L'attribut required force un champ à être rempli-->
+									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Durée ⏱</label>
+								<div class="col-sm-7">
+									<select class="uk-select" name="selectorTime" id="selectorTime" required>
+											<option value="" disabled hidden selected></option>
 
-                                    });
-                                </script>
+									</select>									
+								</div>
+							</div>
+							
+							<div id="alert"></div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Maître du jeu 👑</label>
+								<div class="col-sm-7">
+									<input type="text" class="uk-input" placeholder="ABCD#1234" name="mj" id="mj" max="37" pattern="^[^@#]{2,32}#[0-9]{4}" required> <!--Ici, en plus de se servir de required, on utlise une fonction pour savoir si le pseudo entré peut correspondre à un pseudo discord-->									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Système 🎲</label>
+								<div class="col-sm-7">
+									<select class="uk-select" name ="system" id="system" required>
+											<option hidden diasabled selected value="">Liste des JdR proposés</option>
+											<optgroup label="JdR Générique">
+												<option>Brigandyne</option>
+												<option>HomeBrew</option>
+												<option>D-Critique</option>
+												<option>GURPS</option>
+												<option>PbtA</option>
+												<option>SavageWolrd</option>
+												<option>Tiny</option>
+												<option>Trash</option>
+											</optgroup>
+											<optgroup label="JdR Médiéval Fantastique / épic">
+												<option>Agone</option>
+												<option>Anima</option>
+												<option>Ciels_Cuivre</option>
+												<option>D&D (d&d, Ad&d, chronique, pathfinder)</option>
+												<option>Ad&d</option>
+												<option>Chronique oublier</option>
+												<option>Pathfinder</option>
+												<option>Défis Fantastiques</option>
+												<option>DiscWorld</option>
+												<option>DragonAge</option>
+												<option>gobelin qui s'en dédit</option>
+												<option>GoT</option>
+												<option>L5R</option>
+												<option>MyLittlePony</option>
+												<option>Naheulbeuk</option>
+												<option>Rêve de Dragon</option>
+												<option>Ryuutama</option>
+												<option>Tolkien</option>
+												<option>Shaan</option>
+												<option>Yggdrasil</option>
+												<option>WarHammer</option>
+											</optgroup>
+											<optgroup label="JdR Pirate / renaissance">
+												<option>7e-mer</option>
+												<option>Pavillion Noir</option>
+												<option>Cardinal (Les lames Du)</option>
+											</optgroup>
+											<optgroup label="JdR Western">
+												<option>DeadLands</option>
+											</optgroup>
+											<optgroup label="JdR Contemporain">
+												<option>Cats</option>
+												<option>Heroes (super et mutant Xmen)</option>
+												<option>HP</option>
+												<option>Tiny</option>
+												<option>Nephilim</option>
+											</optgroup>
+											<optgroup label="JdR Futuriste / post apo">
+												<option>COPS</option>
+												<option>Cyberpunk</option>
+												<option>Dégénésis</option>
+												<option>Eclipse phase</option>
+												<option>FallOut</option>
+												<option>Knight</option>
+												<option>Metal Adv</option>
+												<option>Numenéra</option>
+												<option>Polaris</option>
+												<option>Starwars</option>
+												<option>Terra X</option>
+												<option>Zombie</option>
+											</optgroup>
+											<optgroup label="JdR Dark / sexe / drogue / rock'n roll">
+												<option>BloodLust</option>
+												<option>Cthulhu</option>
+												<option>w40k-DarkHeresy</option>
+												<option>INSMV</option>
+												<option>Féals (Chronique des</option>
+												<option>Ombres d'Esteren</option>
+												<option>Patient 13</option>
+												<option>Paranoïa</option>
+												<option>Vampire</option>
+												<option>Scion</option>
+												<option>Sombre</option>
+												<option>Tales from the loop</option>
+											</optgroup>
+										</select>			
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Outils 🛠</label>
+								<div class="col-sm-7">
+									<label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
+									<label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
+									<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
+									<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>	
+								</div>
+							</div>
 
-                            </div>
-                            <p id="nbTxt">Moins de 25 joueurs</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Type</th>
-                        <td>
-                            <select class="uk-select" name="type" id="type" required>
-                                <option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
-                                <option>Initiation</option>
-                                <option>One shoot</option>
-                                <option>Scénario</option>
-                                <option>Campagne</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Date 📅 et heure ⌚</th>
-                        <td id="date">
-                            <input type="text" class="tail-datetime-field" required style="border-radius: 0px !important; height:40px; width:100%"/>
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">PJ mineur 👶</label>
+								<div class="col-sm-7">
+									<label><input class="uk-radio" type="radio" name="pj" id="pj" value="Oui">&nbspOui</label>
+									<label><input class="uk-radio" type="radio" name="pj" id="pj" value="Non préférable">&nbspNon préférable</label>
+									<label><input class="uk-radio" type="radio" name="pj" id="pj" value="Non recommandé">&nbspNon recommandé</label>	
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Description (optionnelle) 📄</label>
+								<div class="col-sm-7">
+									<textarea class="uk-textarea"  maxlength="500" rows="5" name ="desc" id="desc" oninput="save()"></textarea>	
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label"></label>
+								<div class="col-sm-7">
+									<button type="reset" class="uk-button uk-button-default" onclick="document.getElementById('range').noUiSlider.set([4,15]);">Réinitialiser 🔄</button>	
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label"></label>
+								<div class="col-sm-7">
+									<button type="submit" class="uk-button uk-button-default" name="submit" id="submit" onclick="Alert()/*UIkit.notification({ message: 'Votre formulaire a été pris en compte',status: 'success',timeout: 5000});*/">Valider ✔</button>	
+								</div>
+							</div>
 
-                            <script type="text/javascript">
-                                document.addEventListener("DOMContentLoaded", function(){
-                                    tail.DateTime(".tail-datetime-field", { dateFormat:"dd/mm/YYYY",
-                                        timeFormat:"HH:ii",
-                                        locale:"fr",
-                                        timeSeconds:false,
-                                        viewDecades:false,
-                                        dateStart:new Date().toISOString().slice(0, 10)});
-                                });
-                            </script> <!--L'attribut required force un champ à être rempli-->
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>Durée ⏱</th><td>
-
-                            <select class="uk-select" name="selectorTime" id="selectorTime" required>
-                                <option value="" disabled hidden selected></option>
-
-                            </select>
-
-                        </td>
-                    </tr>
-                    <div id="alert"></div>
-
-                    <!--<div class="uk-alert-success" uk-alert>
-                        <a class="uk-alert-close" uk-close></a>
-                        <p>Votre formulaire a bien été pris en compte.</p>
-                    </div>-->
-
-                    <tr>
-                        <th>Maître du jeu 👑</th>
-                        <td>
-                            <input type="text" class="uk-input" placeholder="ABCD#1234" name="mj" id="mj" max="37" pattern="^[^@#]{2,32}#[0-9]{4}" required> <!--Ici, en plus de se servir de required, on utlise une fonction pour savoir si le pseudo entré peut correspondre à un pseudo discord-->
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>Système 🎲</th><td>
-                            <select class="uk-select" name ="system" id="system" required>
-                                <option hidden diasabled selected value="">Liste des JdR proposés</option>
-                                <optgroup label="JdR Générique">
-                                    <option>Brigandyne</option>
-                                    <option>HomeBrew</option>
-                                    <option>D-Critique</option>
-                                    <option>GURPS</option>
-                                    <option>PbtA</option>
-                                    <option>SavageWolrd</option>
-                                    <option>Tiny</option>
-                                    <option>Trash</option>
-                                </optgroup>
-                                <optgroup label="JdR Médiéval Fantastique / épic">
-                                    <option>Agone</option>
-                                    <option>Anima</option>
-                                    <option>Ciels_Cuivre</option>
-                                    <option>D&D (d&d, Ad&d, chronique, pathfinder)</option>
-                                    <option>Ad&d</option>
-                                    <option>Chronique oublier</option>
-                                    <option>Pathfinder</option>
-                                    <option>Défis Fantastiques</option>
-                                    <option>DiscWorld</option>
-                                    <option>DragonAge</option>
-									<option>gobelin qui s'en dédit</option>
-                                    <option>GoT</option>
-                                    <option>L5R</option>
-                                    <option>MyLittlePony</option>
-                                    <option>Naheulbeuk</option>
-                                    <option>Rêve de Dragon</option>
-                                    <option>Ryuutama</option>
-                                    <option>Tolkien</option>
-                                    <option>Shaan</option>
-                                    <option>Yggdrasil</option>
-                                    <option>WarHammer</option>
-                                </optgroup>
-                                <optgroup label="JdR Pirate / renaissance">
-                                    <option>7e-mer</option>
-                                    <option>Pavillion Noir</option>
-                                    <option>Cardinal (Les lames Du)</option>
-                                </optgroup>
-                                <optgroup label="JdR Western">
-                                    <option>DeadLands</option>
-                                </optgroup>
-                                <optgroup label="JdR Contemporain">
-                                    <option>Cats</option>
-                                    <option>Heroes (super et mutant Xmen)</option>
-                                    <option>HP</option>
-                                    <option>Tiny</option>
-                                    <option>Nephilim</option>
-                                </optgroup>
-                                <optgroup label="JdR Futuriste / post apo">
-                                    <option>COPS</option>
-                                    <option>Cyberpunk</option>
-                                    <option>Dégénésis</option>
-                                    <option>Eclipse phase</option>
-                                    <option>FallOut</option>
-                                    <option>Knight</option>
-                                    <option>Metal Adv</option>
-                                    <option>Numenéra</option>
-                                    <option>Polaris</option>
-                                    <option>Starwars</option>
-                                    <option>Terra X</option>
-                                    <option>Zombie</option>
-                                </optgroup>
-                                <optgroup label="JdR Dark / sexe / drogue / rock'n roll">
-                                    <option>BloodLust</option>
-                                    <option>Cthulhu</option>
-                                    <option>w40k-DarkHeresy</option>
-                                    <option>INSMV</option>
-                                    <option>Féals (Chronique des</option>
-                                    <option>Ombres d'Esteren</option>
-                                    <option>Patient 13</option>
-                                    <option>Paranoïa</option>
-                                    <option>Vampire</option>
-                                    <option>Scion</option>
-                                    <option>Sombre</option>
-                                    <option>Tales from the loop</option>
-                                </optgroup>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>Outils 🛠</th>
-                        <td>
-                            <label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
-                            <label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
-                            <label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
-                            <label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>PJ mineur 👶</th>
-                        <td>
-                            <label><input class="uk-radio" type="radio" name="pj" id="pj" value="Oui">&nbspOui</label>
-                            <label><input class="uk-radio" type="radio" name="pj" id="pj" value="Non préférable">&nbspNon préférable</label>
-                            <label><input class="uk-radio" type="radio" name="pj" id="pj" value="Non recommandé">&nbspNon recommandé</label>
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <th>Description (optionnelle) 📄</th>
-                        <td>
-                            <textarea class="uk-textarea"  maxlength="500" rows="5" name ="desc" id="desc" oninput="save()"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td><button type="reset" class="uk-button uk-button-default" onclick="document.getElementById('range').noUiSlider.set([4,15]);">Réinitialiser 🔄</button></td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td><button type="submit" class="uk-button uk-button-default" name="submit" id="submit" onclick="Alert()/*UIkit.notification({ message: 'Votre formulaire a été pris en compte',status: 'success',timeout: 5000});*/">Valider ✔</button></td>
-                    </tr>
-            </table>
-            <span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5"></a></span>
-            </form>
-
-        </div>
-
-
-    </div>
+							<span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5"></a></span>
+						</form>
+			</div>
+			<div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+		</div>
+		</div>
     </body>
     </html>
     <?php

@@ -93,7 +93,7 @@ function chgMode()
 		var newlink1 =  document.createElement("link");
 		var newlink2 =  document.createElement("link");
 		newlink1.setAttribute("rel", "stylesheet");
-		newlink1.setAttribute("href", "css/uikit.css");
+		newlink1.setAttribute("href", "css/light.css");
 		newlink2.setAttribute("rel", "stylesheet");
 		newlink2.setAttribute("href", "css/tail.datetime-harx-light.min.css");
 		document.getElementsByTagName("head").item(0).replaceChild(newlink1, oldlink1);
