@@ -44,16 +44,25 @@ input[type="radio"]{
   margin: 0 0px 0 10px;
 }
 
+.box{
+    background-color: #2C2F33;
+    box-shadow: 5px 10px 8px black;
+    border-radius: 5px;
+}
+
 .uk-select{
   background-color:#2C2F33;
   color:white;
   border: 2px solid white;
-  ;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
 .uk-textarea{
   background-color:#2C2F33;
   color:white;
-  width:100%
+  width:100%;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
 
 .uk-select:focus{
@@ -96,7 +105,10 @@ input[type="radio"]{
   background-color:#2C2F33;
   color:white;
 }
-
+.uk-input{
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+}
 .uk-input:focus{
   background-color:#2C2F33;
   color:white;
@@ -107,6 +119,8 @@ input[type="radio"]{
 }
 .uk-select, input[type="date"], .uk-checkbox, .uk-textarea,.uk-radio, .uk-input, .uk-button, input[type="text"], button {
   border: 1px solid white !important;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
  /* Switch et slider */
 .switch {
@@ -115,8 +129,14 @@ input[type="radio"]{
   width: 60px;
   height: 34px;
   margin-right: 20px;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
 
+.tail-datetime-field{
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+}
 
 .switch input {
   opacity: 0;

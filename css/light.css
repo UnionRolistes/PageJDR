@@ -54,14 +54,22 @@ input[type="radio"]{
   margin: 0 0px 0 10px;
 }
 
+.box{
+    box-shadow: 5px 10px 8px black;
+    border-radius: 5px;
+}
 .uk-select{
   background-color:#fff;
   color:#666;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
 .uk-textarea{
   background-color:#fff;
   color:#666;
-  width:100%
+  width:100%;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
 
 .uk-select:focus{
@@ -105,6 +113,11 @@ select option{
   color:#666;
 }
 
+.uk-input{
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+}
+
 .uk-input:focus{
   background-color:#fff;
 }
@@ -115,6 +128,8 @@ select option{
 
 .uk-select, input[type="date"], .uk-checkbox, .uk-textarea,.uk-radio, .uk-input, .uk-button, input[type="text"], button {
   border: 1px solid black !important;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
  /* Switch et slider */
 .switch {
@@ -123,7 +138,15 @@ select option{
   width: 60px;
   height: 34px;
   margin-right: 20px;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
 }
+
+.tail-datetime-field{
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+}
+
 
 
 .switch input {

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if(isset($_GET['token'])){
 //Config
 $url = "https://discordapp.com/api/webhooks/";
@@ -16,73 +16,103 @@ if(isset($_POST['submit'])){
     //echo $token;
     //echo "<br/>";
     if($token === $crypted){
+		//Vérification du formulaire
+		$validation_Formulaire=1;
+		
+		if($_POST['system2']!="")
+		{
+			$system=$_POST['system2'];
+		}
+		elseif($_POST['system']!=""){
+			$system=$_POST['system2'];
+		}
+		else{
+			$validation_Formulaire=0;
+			$messageErreur="Veuillez sélectionner un jeu dans le menu déroulant ou indiquer un jeu hors liste";
+		}
+		
+		if($_POST['titre']=="")
+		{
+			$validation_Formulaire=0;
+			$messageErreur="Veuillez indiquez un titre pour votre partie";
+		}
+		
+		//soumission du formulaire
+		if($validation_Formulaire)
+		{
+			$content = '**Type** ' .$_POST['type']. '\n'.
+				':calendar:  **Date** Le ' . $_POST['date']. '\n' .
+				//':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' .
+				':clapper:  **Titre** ' . $_POST['titre'] . '\n' .
+				':timer:  **Durée moyenne du scénario ** ' . $_POST['selectorTime'] . '\n' .
+				':crown:  **MJ** @' . $_POST['mj'] . '\n' .
+				'<:custom_emoji_name:434358038342664194>  **Système** ' . $system . '\n' .
+				':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
+			if ($_POST['diffusion1'] == "twitch"){
+				$plateform .= ' <:custom_emoji_name:434370263518412820> ';
+			}
+			if ($_POST['diffusion2'] == "roll20"){
+				$plateform .= ' <:custom_emoji_name:493783713243725844> ';
+			}
+			if ($_POST['diffusion3'] == "discord"){
+				$plateform .= ' <:custom_emoji_name:434370093627998208> ';
+			}
+			if ($_POST['diffusion5'] == "teamspeak"){
+				$plateform .= ' :speaking_head: ';
+			}
+			if ($_POST['diffusion4'] == "autre"){
+				$plateform .= ' :space_invader: ';
+			}
+			if ($plateform !== ""){
+				$content .= ':star2: **Plateforme** ' .$plateform. '\n';
 
-
-        $content = '**Type** ' .$_POST['type']. '\n'.
-            ':calendar:  **Date** Le ' . $_POST['date']. '\n' .
-            ':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' .
-            ':timer:  **Durée moyen du scénario ** ' . $_POST['selectorTime'] . '\n' .
-            ':crown:  **MJ** @' . $_POST['mj'] . '\n' .
-            '<:custom_emoji_name:434358038342664194>  **Système** ' . $_POST['system'] . '\n' .
-            ':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
-        if ($_POST['diffusion1'] == "twitch"){
-            $plateform .= ' <:custom_emoji_name:434370263518412820> ';
-        }
-        if ($_POST['diffusion2'] == "roll20"){
-            $plateform .= ' <:custom_emoji_name:493783713243725844> ';
-        }
-        if ($_POST['diffusion3'] == "discord"){
-            $plateform .= ' <:custom_emoji_name:434370093627998208> ';
-        }
-        if ($_POST['diffusion4'] == "autre"){
-            $plateform .= ' :space_invader: ';
-        }
-        if ($plateform !== ""){
-            $content .= ':star2: **Plateforme** ' .$plateform. '\n';
-
-        }
-        if ($_POST['desc'] !== ""){
-            $desc=addcslashes($_POST['desc'],"\n\r");
-            $desc=preg_replace("/@/","",$desc);
-            $content .= ':grey_question:  **Détails**' . $desc . '\n';
-        }
-        $content .= '**Participe** :white_check_mark: / **Ne participe pas** :x:';
-        $payload = '{
-				"embeds":[
-				{
-					"thumbnail":
+			}
+			if ($_POST['desc'] !== ""){
+				$desc=addcslashes($_POST['desc'],"\n\r");
+				$desc=preg_replace("/@/","",$desc);
+				$content .= ':grey_question:  **Détails**' . $desc . '\n';
+			}
+			$content .= '**Participe** :white_check_mark: / **Ne participe pas** :x:';
+			$payload = '{
+					"embeds":[
 					{
-						"url":"https://cdn.discordapp.com/attachments/688340383117082733/688732386820620351/UR-logo2.png"
-					},
-						"title":"Nouveau jeu de rôle !",
-						"description":"'.$content.'",
-						"color": "11053224"
-				}
-				]
-			}';
-        //$data = array('embeds' => $content );
-        $curl = curl_init("$url");
-        //echo "<br>".$content;
-        //echo "<br>".$payload;
-        //print_r($payload);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('content-type: application/json'));
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        //préparation des data en json
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-        //désasctivation du ssl
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        //récupération du contenu pour debug
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($curl);
-        if($result === FALSE) {
-            echo "ERREUR : <br>";
-            die(curl_error($curl));
-        }
-        //echo $result;
-        echo "<BR> Votre partie a bien été envoyée sur le serveur discord";
+						"thumbnail":
+						{
+							"url":"https://cdn.discordapp.com/attachments/688340383117082733/688732386820620351/UR-logo2.png"
+						},
+							"title":"Nouveau jeu de rôle !",
+							"description":"'.$content.'",
+							"color": "11053224"
+					}
+					]
+				}';
+			//$data = array('embeds' => $content );
+			$curl = curl_init("$url");
+			//echo "<br>".$content;
+			//echo "<br>".$payload;
+			//print_r($payload);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, array('content-type: application/json'));
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+			//préparation des data en json
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+			//désasctivation du ssl
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+			//récupération du contenu pour debug
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($curl);
+			if($result === FALSE) {
+				echo "ERREUR : <br>";
+				die(curl_error($curl));
+			}
+			//echo $result;
+			echo "<BR> Votre partie a bien été envoyée sur le serveur discord";
+		}
+		else{
+			echo $messageErreur;
+		}
     }else{
-        echo "failed";
+        echo "Votre pseudo est incorrecte";
     }
 
 }
@@ -113,7 +143,7 @@ if(isset($_POST['submit'])){
 		<div class="container-fluid">
 		<div class="row">
 			<div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
-			<div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">			            
+			<div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 box">			            
 						<form method=post action=# id="URform">
 							<div class="form-group row">
 								<label id="mode" class="col-sm-5 col-form-label">Sombre 🌙</label>
@@ -126,18 +156,18 @@ if(isset($_POST['submit'])){
 							</div>
 							
 							<div class="form-group row">
-								<label class="col-sm-5 col-form-label">Nombre de joueur</label>
+								<label class="col-sm-5 col-form-label">Nombre de joueurs</label>
 								<div class="col-sm-7">
 									<div id="range" style="color:black !important" aria-describedby="nbTxt">
 											<script>
 												var range = document.getElementById('range');
 
 												noUiSlider.create(range, {
-													start: [4, 15],
+													start: [1, 5],
 													step:1,
 													range: {
-														'min': 1,
-														'max': 41
+														'min': 0,
+														'max': 16
 													},
 													padding:[1,1],
 													connect:true
@@ -166,7 +196,7 @@ if(isset($_POST['submit'])){
 							<div class="form-group row">
 								<label class="col-sm-5 col-form-label">Date 📅 et heure ⌚</label>
 								<div class="col-sm-7">
-									<input id="date" type="text" class="tail-datetime-field" required style="border-radius: 0px !important; height:40px; width:100%"/>
+									<input id="date" name="date" type="text" class="tail-datetime-field" required style="border-radius: 0px !important; height:40px; width:100%"/>
 
 										<script type="text/javascript">
 											document.addEventListener("DOMContentLoaded", function(){
@@ -179,6 +209,13 @@ if(isset($_POST['submit'])){
 											});
 										</script> <!--L'attribut required force un champ à être rempli-->
 									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">Titre :</label>
+								<div class="col-sm-7">
+									<input type="text" class="uk-input" placeholder="nom de la campagne ou du scenario" name="titre" id="titre" max="50"> 									
 								</div>
 							</div>
 							
@@ -202,9 +239,9 @@ if(isset($_POST['submit'])){
 							</div>
 							
 							<div class="form-group row">
-								<label class="col-sm-5 col-form-label">Système 🎲</label>
+								<label class="col-sm-5 col-form-label">JDR 🎲</label>
 								<div class="col-sm-7">
-									<select class="uk-select" name ="system" id="system" required>
+									<select class="uk-select" name ="system" id="system">
 											<option hidden diasabled selected value="">Liste des JdR proposés</option>
 											<optgroup label="JdR Générique">
 												<option>Brigandyne</option>
@@ -219,6 +256,7 @@ if(isset($_POST['submit'])){
 											<optgroup label="JdR Médiéval Fantastique / épic">
 												<option>Agone</option>
 												<option>Anima</option>
+												<option>Antika</option>
 												<option>Ciels_Cuivre</option>
 												<option>D&D (d&d, Ad&d, chronique, pathfinder)</option>
 												<option>Ad&d</option>
@@ -229,6 +267,7 @@ if(isset($_POST['submit'])){
 												<option>DragonAge</option>
 												<option>gobelin qui s'en dédit</option>
 												<option>GoT</option>
+												<option>Impertor</option>
 												<option>L5R</option>
 												<option>MyLittlePony</option>
 												<option>Naheulbeuk</option>
@@ -287,12 +326,20 @@ if(isset($_POST['submit'])){
 							</div>
 							
 							<div class="form-group row">
+								<label class="col-sm-5 col-form-label">JDR Hors liste 🎲</label>
+								<div class="col-sm-7">
+									<input type="text" class="uk-input" placeholder="nom du jeu si hors liste" name="system2" id="system2" max="37"> 									
+								</div>
+							</div>
+							
+							<div class="form-group row">
 								<label class="col-sm-5 col-form-label">Outils 🛠</label>
 								<div class="col-sm-7">
 									<label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
-									<label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie diffusée sur Roll20 <img src="img/iconRoll20.png"></label><br>
-									<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie diffusée sur Discord <img src="img/iconDiscord.png"></label><br>
-									<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie diffusée sur Autre <img src="img/iconAutre.png"></label><br>	
+									<label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie jouée sur Roll20 <img src="img/iconRoll20.png"></label><br>
+									<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie jouée sur Discord <img src="img/iconDiscord.png"></label><br>
+									<label><input class="uk-checkbox" name="diffusion5" type="checkbox" value="teamspeak"> Partie jouée sur Teamspeak <img src="img/iconTeamspeak.png"></label><br>
+									<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie jouée sur Autre <img src="img/iconAutre.png"></label><br>	
 								</div>
 							</div>
 
@@ -326,7 +373,7 @@ if(isset($_POST['submit'])){
 								</div>
 							</div>
 
-							<span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5"></a></span>
+							<span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 						</form>
 			</div>
 			<div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
