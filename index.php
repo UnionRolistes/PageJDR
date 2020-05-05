@@ -1,8 +1,15 @@
 ﻿<?php
 if(isset($_GET['token'])){
 //Config
-$url = "https://discordapp.com/api/webhooks/";
+$url = "https://discordapp.com/api/webhooks/xxx";
 $seed = "";
+//mettre les emot à '' pour désactiver
+$emot_twitch = ' <:custom_emoji_name:434370263518412820> ';
+$emot_roll20 = ' <:custom_emoji_name:493783713243725844> ';
+$emot_discord = ' <:custom_emoji_name:434370093627998208> ';
+$emot_teamspeak = ' :speaking_head: ';
+$emot_autre = ' :space_invader: ';
+
 $token= $_GET['token'];
 //print_r($_POST);
 if(isset($_POST['submit'])){
@@ -24,7 +31,7 @@ if(isset($_POST['submit'])){
 			$system=$_POST['system2'];
 		}
 		elseif($_POST['system']!=""){
-			$system=$_POST['system2'];
+			$system=$_POST['system'];
 		}
 		else{
 			$validation_Formulaire=0;
@@ -48,20 +55,20 @@ if(isset($_POST['submit'])){
 				':crown:  **MJ** @' . $_POST['mj'] . '\n' .
 				'<:custom_emoji_name:434358038342664194>  **Système** ' . $system . '\n' .
 				':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
-			if ($_POST['diffusion1'] == "twitch"){
-				$plateform .= ' <:custom_emoji_name:434370263518412820> ';
+			if ($_POST['diffusion1'] == "twitch" && $emot_twitch != '') {
+				$plateform .= $emot_twitch;
 			}
-			if ($_POST['diffusion2'] == "roll20"){
-				$plateform .= ' <:custom_emoji_name:493783713243725844> ';
+			if ($_POST['diffusion2'] == "roll20" && $emot_roll20 != ''){
+				$plateform .= $emot_roll20;
 			}
-			if ($_POST['diffusion3'] == "discord"){
-				$plateform .= ' <:custom_emoji_name:434370093627998208> ';
+			if ($_POST['diffusion3'] == "discord" && $emot_discord != ''){
+				$plateform .= $emot_discord;
 			}
-			if ($_POST['diffusion5'] == "teamspeak"){
-				$plateform .= ' :speaking_head: ';
+			if ($_POST['diffusion4'] == "teamspeak" && $emot_teamspeak != ''){
+				$plateform .= $emot_teamspeak;
 			}
-			if ($_POST['diffusion4'] == "autre"){
-				$plateform .= ' :space_invader: ';
+			if ($_POST['diffusion5'] == "autre" && $emot_autre != ''){
+				$plateform .= $emot_autre;
 			}
 			if ($plateform !== ""){
 				$content .= ':star2: **Plateforme** ' .$plateform. '\n';
@@ -335,11 +342,21 @@ if(isset($_POST['submit'])){
 							<div class="form-group row">
 								<label class="col-sm-5 col-form-label">Outils 🛠</label>
 								<div class="col-sm-7">
-									<label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"> &nbsp&nbsp&nbsp</label><br>
-									<label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie jouée sur Roll20 <img src="img/iconRoll20.png"></label><br>
-									<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie jouée sur Discord <img src="img/iconDiscord.png"></label><br>
-									<label><input class="uk-checkbox" name="diffusion5" type="checkbox" value="teamspeak"> Partie jouée sur Teamspeak <img src="img/iconTeamspeak.png"></label><br>
-									<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="autre"> Partie jouée sur Autre <img src="img/iconAutre.png"></label><br>	
+									<?php if ($emot_twitch != ''): ?>
+										<label><input class="uk-checkbox" name="diffusion1" type="checkbox" value="twitch"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"></label><br>
+									<?php endif ?>
+									<?php if ($emot_roll20 != ''): ?>
+										<label><input class="uk-checkbox" name="diffusion2" type="checkbox" value="roll20"> Partie jouée sur Roll20 <img src="img/iconRoll20.png"></label><br>
+									<?php endif ?>
+									<?php if ($emot_discord != ''): ?>
+										<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie jouée sur Discord <img src="img/iconDiscord.png"></label><br>
+									<?php endif ?>
+									<?php if ($emot_teamspeak != ''): ?>
+										<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="teamspeak"> Partie jouée sur Teamspeak <img src="img/iconTeamspeak.png"></label><br>
+									<?php endif ?>
+									<?php if ($emot_autre != ''): ?>
+										<label><input class="uk-checkbox" name="diffusion5" type="checkbox" value="autre"> Partie jouée sur Autre <img src="img/iconAutre.png"></label><br>	
+									<?php endif ?>
 								</div>
 							</div>
 
