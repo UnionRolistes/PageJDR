@@ -212,7 +212,7 @@ if(isset($_POST['submit'])){
 													step:1,
 													range: {
 														'min': 0,
-														'max': 16
+														'max': 8
 													},
 													padding:[1,1],
 													connect:true
