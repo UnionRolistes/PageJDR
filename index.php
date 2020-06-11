@@ -1,8 +1,58 @@
 ﻿<?php
-if(isset($_GET['token'])){
+session_start();
+
+define("CLIENT_ID", "");
+define("CLIENT_SECRET", "");
+define("REDIRECT_URI", "");
+define("WEBHOOK_URI", "");
+
+if(isset($_GET['action']) && $_GET['action'] === "login"){
+
+	$params = array(
+		'response_type' => 'code',
+		'client_id' => CLIENT_ID,
+		'redirect_uri' => REDIRECT_URI,
+		'scope' => 'identify'
+	);
+	header('Location: https://discordapp.com/api/oauth2/authorize?' . http_build_query($params));
+	die();	
+
+}
+
+if(isset($_GET['code'])){
+	$post = array(
+		"grant_type" => "authorization_code",
+		"client_id" => CLIENT_ID,
+		"client_secret" => CLIENT_SECRET,
+		"redirect_uri" => REDIRECT_URI,
+		"code" => $_GET['code']
+	);
+	$ch = curl_init("https://discord.com/api/oauth2/token");
+	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+
+	$response = json_decode(curl_exec($ch));
+	print_r($response);
+	$token = $response->access_token;
+	$_SESSION['access_token'] = $token;
+	header('Location: ' . $_SERVER['PHP_SELF']);
+}
+
+if(isset($_SESSION['access_token'])){
+	$header[] = 'Authorization: Bearer ' . $_SESSION['access_token'];
+	$ch = curl_init("https://discord.com/api/users/@me");
+	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+	$response = json_decode(curl_exec($ch));
+	$pseudo = $response->username . '#' . $response->discriminator;
+	$avatar_url = 'https://cdn.discordapp.com/avatars/' . $response->id . '/' . $response->avatar . '.png' . '?size=32';
+
+}
+
 //Config
-$url = "https://discordapp.com/api/webhooks/xxx";
-$seed = "";
 //mettre les emot à '' pour désactiver
 $emot_twitch = ' <:custom_emoji_name:434370263518412820> ';
 $emot_roll20 = ' <:custom_emoji_name:493783713243725844> ';
@@ -10,20 +60,8 @@ $emot_discord = ' <:custom_emoji_name:434370093627998208> ';
 $emot_teamspeak = ' :speaking_head: ';
 $emot_autre = ' :space_invader: ';
 
-$token= $_GET['token'];
-//print_r($_POST);
 if(isset($_POST['submit'])){
 
-    $date = date("d");
-    $newtoken = $_POST['mj'] . $seed . $date;
-    //echo "<br/>";
-    $crypted =md5($newtoken);
-    //echo $crypted;
-    //echo "<br/>";
-    //echo $token;
-    //echo "<br/>";
-    if($token === $crypted){
-		//Vérification du formulaire
 		$validation_Formulaire=1;
 		
 		if($_POST['system2']!="")
@@ -43,31 +81,38 @@ if(isset($_POST['submit'])){
 			$validation_Formulaire=0;
 			$messageErreur="Veuillez indiquez un titre pour votre partie";
 		}
+
+		if(!isset($pseudo))
+		{
+			$validation_Formulaire=0;
+			$messageErreur="Veuillez vous identifier";
+		}
 		
 		//soumission du formulaire
 		if($validation_Formulaire)
 		{
+			$plateform = "";
 			$content = '**Type** ' .$_POST['type']. '\n'.
 				':calendar:  **Date** Le ' . $_POST['date']. '\n' .
 				//':clock2:  **Heure** A partir de ' . $_POST['selectorHour'] . '\n' .
 				':clapper:  **Titre** ' . $_POST['titre'] . '\n' .
 				':timer:  **Durée moyenne du scénario ** ' . $_POST['selectorTime'] . '\n' .
-				':crown:  **MJ** @' . $_POST['mj'] . '\n' .
+				':crown:  **MJ** @' . $pseudo . '\n' .
 				'<:custom_emoji_name:434358038342664194>  **Système** ' . $system . '\n' .
 				':baby:  **PJ Mineur** ' . $_POST['pj'] . '\n';
-			if ($_POST['diffusion1'] == "twitch" && $emot_twitch != '') {
+			if (isset($_POST['diffusion1']) && $emot_twitch != '') {
 				$plateform .= $emot_twitch;
 			}
-			if ($_POST['diffusion2'] == "roll20" && $emot_roll20 != ''){
+			if (isset($_POST['diffusion2']) && $emot_roll20 != ''){
 				$plateform .= $emot_roll20;
 			}
-			if ($_POST['diffusion3'] == "discord" && $emot_discord != ''){
+			if (isset($_POST['diffusion3']) && $emot_discord != ''){
 				$plateform .= $emot_discord;
 			}
-			if ($_POST['diffusion4'] == "teamspeak" && $emot_teamspeak != ''){
+			if (isset($_POST['diffusion4']) && $emot_teamspeak != ''){
 				$plateform .= $emot_teamspeak;
 			}
-			if ($_POST['diffusion5'] == "autre" && $emot_autre != ''){
+			if (isset($_POST['diffusion5']) && $emot_autre != ''){
 				$plateform .= $emot_autre;
 			}
 			if ($plateform !== ""){
@@ -94,10 +139,7 @@ if(isset($_POST['submit'])){
 					]
 				}';
 			//$data = array('embeds' => $content );
-			$curl = curl_init("$url");
-			//echo "<br>".$content;
-			//echo "<br>".$payload;
-			//print_r($payload);
+			$curl = curl_init(WEBHOOK_URI);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array('content-type: application/json'));
 			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 			//préparation des data en json
@@ -118,10 +160,6 @@ if(isset($_POST['submit'])){
 		else{
 			echo $messageErreur;
 		}
-    }else{
-        echo "Votre pseudo est incorrecte";
-    }
-
 }
 
 ?>
@@ -241,7 +279,13 @@ if(isset($_POST['submit'])){
 							<div class="form-group row">
 								<label class="col-sm-5 col-form-label">Maître du jeu 👑</label>
 								<div class="col-sm-7">
-									<input type="text" class="uk-input" placeholder="ABCD#1234" name="mj" id="mj" max="37" pattern="^[^@#]{2,32}#[0-9]{4}" required> <!--Ici, en plus de se servir de required, on utlise une fonction pour savoir si le pseudo entré peut correspondre à un pseudo discord-->									
+<?php
+if(isset($_SESSION['access_token'])){
+								echo "<img src='$avatar_url'/>";
+								echo $pseudo;
+}else{ ?>
+									<input type="button" value="Connect" style="border-radius:10px;" onclick="window.location.href='<?php echo REDIRECT_URI . '?action=login'; ?>'"/>
+<?php } ?>
 								</div>
 							</div>
 							
@@ -398,8 +442,3 @@ if(isset($_POST['submit'])){
 		</div>
     </body>
     </html>
-    <?php
-}else{
-    echo 'ERREUR : veuillez venir accompagné d\'un token s\'il vous plaît!';
-}
-?>
