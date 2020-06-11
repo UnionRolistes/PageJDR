@@ -57,7 +57,6 @@ if(isset($_SESSION['access_token'])){
 $emot_twitch = ' <:custom_emoji_name:434370263518412820> ';
 $emot_roll20 = ' <:custom_emoji_name:493783713243725844> ';
 $emot_discord = ' <:custom_emoji_name:434370093627998208> ';
-$emot_teamspeak = ' :speaking_head: ';
 $emot_autre = ' :space_invader: ';
 
 if(isset($_POST['submit'])){
@@ -108,9 +107,6 @@ if(isset($_POST['submit'])){
 			}
 			if (isset($_POST['diffusion3']) && $emot_discord != ''){
 				$plateform .= $emot_discord;
-			}
-			if (isset($_POST['diffusion4']) && $emot_teamspeak != ''){
-				$plateform .= $emot_teamspeak;
 			}
 			if (isset($_POST['diffusion5']) && $emot_autre != ''){
 				$plateform .= $emot_autre;
@@ -395,9 +391,6 @@ if(isset($_SESSION['access_token'])){
 									<?php if ($emot_discord != ''): ?>
 										<label><input class="uk-checkbox" name="diffusion3" type="checkbox" value="discord"> Partie jouée sur Discord <img src="img/iconDiscord.png"></label><br>
 									<?php endif ?>
-									<?php if ($emot_teamspeak != ''): ?>
-										<label><input class="uk-checkbox" name="diffusion4" type="checkbox" value="teamspeak"> Partie jouée sur Teamspeak <img src="img/iconTeamspeak.png"></label><br>
-									<?php endif ?>
 									<?php if ($emot_autre != ''): ?>
 										<label><input class="uk-checkbox" name="diffusion5" type="checkbox" value="autre"> Partie jouée sur Autre <img src="img/iconAutre.png"></label><br>	
 									<?php endif ?>
@@ -430,11 +423,11 @@ if(isset($_SESSION['access_token'])){
 							<div class="form-group row">
 								<label class="col-sm-5 col-form-label"></label>
 								<div class="col-sm-7">
-									<button type="submit" class="uk-button uk-button-default" name="submit" id="submit" onclick="Alert()/*UIkit.notification({ message: 'Votre formulaire a été pris en compte',status: 'success',timeout: 5000});*/">Valider ✔</button>	
+									<button type="submit" class="uk-button uk-button-default" style="backgroudn-color:rgba(000,255,000,0.5);" name="submit" id="submit" onclick="Alert()/*UIkit.notification({ message: 'Votre formulaire a été pris en compte',status: 'success',timeout: 5000});*/"><b>Valider ✔</b></button>	
 								</div>
 							</div>
 
-							<span style="text-align:center;margin-top:5vh;font-size:12px">Attention cet outil est en beta-test<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
+							<span style="text-align:center;margin-top:5vh;font-size:14px;color:#990000;font-family:mono;"><b>Attention cette outils est en beta-test</b>, merci de copier collé votre description avant de poster<br><a href="https://github.com/Bot-a-JDR/PageJDR" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 						</form>
 			</div>
 			<div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
