@@ -1,10 +1,10 @@
 ﻿<?php
 session_start();
 
-define("CLIENT_ID", "");
-define("CLIENT_SECRET", "");
-define("REDIRECT_URI", "");
-define("WEBHOOK_URI", "");
+if(!file_exists("config.php")){
+	copy("config.php.temp", "config.php");
+}
+include("config.php");
 
 if(isset($_GET['action']) && $_GET['action'] === "login"){
 
