@@ -56,6 +56,8 @@ Commits on May 5, 2020
 Commits on May 4, 2020
 
     multiple corrections 
+    ajout du champs titre
+    validation formulaire
 
 @dryasredrock
 dryasredrock committed on 4 May 2020
@@ -63,6 +65,7 @@ dryasredrock committed on 4 May 2020
 Commits on Apr 16, 2020
 
     UIKIT -> BOOTTRAP 
+    Table -> responsive grid
 
 @dryasredrock
 dryasredrock committed on 16 Apr 2020
@@ -72,20 +75,29 @@ ajout jdr gobelin qui s'en dedit
 dryasredrock committed on 16 Apr 2020
 
 Commits on Apr 4, 2020
+Changements : 
+- Les options sont désormais en blanc
+- Ajout d'un double slider pour le nombre de joueur min et max
+- Ajout d'un calendrier pour sélectionner la date et l'heure 
+- Compatibilité avec Chrome, IE 11, Opera, Edge et Firefox
+- Bouton réinitialiser
+- Notification de succès
 
     Add files via upload 
-
-@Suxene
-Suxene committed on 4 Apr 2020
 
 Commits on Mar 26, 2020
 
     Corrigé et incrémenté 
 
+l'incrémentation c'est bien !
+
 @Daebis
 Daebis committed on 26 Mar 2020
 
 corrgié et indenté
+
+l’indentation c'est bien, mangez en
+
 @Daebis
 Daebis committed on 26 Mar 2020
 
@@ -110,6 +122,9 @@ Adding a function to save user's input
 Suxene committed on 17 Mar 2020
 
 Update index.php
+
+Adding a link to the repo
+
 @Suxene
 Suxene committed on 17 Mar 2020
 
@@ -118,12 +133,17 @@ correction bugs et encodage unicode
 dryasredrock committed on 17 Mar 2020
 
 Merge pull request #4 from Bot-a-JDR/note
+
+adding note on footer
+
 @dryasredrock
 dryasredrock committed on 17 Mar 2020
 
 Commits on Mar 16, 2020
 
     changing style to index.php to avoir conflict between light and dark … 
+
+…theme (pos)
 
 @tonitch
 tonitch committed on 16 Mar 2020
@@ -133,6 +153,9 @@ adding note on footer
 tonitch committed on 16 Mar 2020
 
 Merge pull request #3 from Bot-a-JDR/Switch-dark-/-light
+
+Switch dark / light
+
 @tonitch
 tonitch committed on 16 Mar 2020
 
@@ -160,6 +183,8 @@ Commits on Mar 15, 2020
 
     Add files via upload 
 
+Adding light / dark mode
+
 @Suxene
 Suxene committed on 15 Mar 2020
 
@@ -169,4 +194,4 @@ dryasredrock committed on 15 Mar 2020
 
 Merge branch 'master' of https://github.com/Bot-a-JDR/PageJDR
 @dryasredrock
-dryasredrock committed on 15 Mar 2020
+dryasredrock committed on 15 Mar 2020 
