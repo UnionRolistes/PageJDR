@@ -1,0 +1,7 @@
+
+- Changelog for v1.1.47 (2021-06-21)
+  
+    * Create changelog.txt
+    * Renamed project folder
+    
+    
