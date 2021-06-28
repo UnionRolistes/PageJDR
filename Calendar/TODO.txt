@@ -1,0 +1,2 @@
+-   après un clic pour changer de semaine, curseur en mode chargement jusqu'à réception de la
+    nouvelle semaine
