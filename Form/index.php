@@ -2,6 +2,12 @@
 if (session_status() != PHP_SESSION_ACTIVE)
     session_start();
 
+# this is not to leak authotification information
+# stored in config.php when pushing to github
+if(!file_exists("config.php")){
+    copy("config.php.default", "config.php");
+}
+
 require("php/config.php");
 
 
