@@ -11,10 +11,10 @@ function feed()//Cette fonction permet de remplir les deux select, allégeant le
 {
 	range.noUiSlider.on("update", function(values, handle){
 		txt=document.getElementById("nbTxt");
-		console.log(values);
+		//console.log(values);
 		values[0] = parseInt(values[0], 10);
 		values[1] = parseInt(values[1], 10);
-		console.log(values);
+		//console.log(values);
 		if (values[0]==values[1])
 		{
 			txt.innerHTML=values[0] + " joueurs";
@@ -34,7 +34,7 @@ function feed()//Cette fonction permet de remplir les deux select, allégeant le
 	catch(e)
 	{
 	}
-	console.log("Valeur : ", document.cookie);
+	//console.log("Valeur : ", document.cookie);
 	time = document.getElementById("selectorTime");
 	hour = document.getElementById("selectorHour"); 
 	t = 0;
