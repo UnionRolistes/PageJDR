@@ -4,8 +4,8 @@ if (session_status() != PHP_SESSION_ACTIVE)
 
 # this is not to leak authotification information
 # stored in config.php when pushing to github
-if(!file_exists("config.php")){
-    copy("config.php.default", "config.php");
+if(!file_exists("php/config.php")){
+    copy("php/config.php.default", "php/config.php");
 }
 
 require("php/config.php");
@@ -216,7 +216,7 @@ $emot_autre = ' :space_invader: ';
                     <?php } ?>
                 </div>
             </div>
-            <input type=hidden name="webhook_url" value="<?= $_SESSION['webhook'] ?>">
+            <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
             <?php
                 if (isset($user_id))
                         echo '<input type=hidden name="user_id" value="' . $user_id .'">';
