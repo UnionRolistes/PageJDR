@@ -1,0 +1,43 @@
+body {
+  background-color: #23272A;
+  color: white;
+}
+#URform {
+  background: #2C2F33;
+}
+
+
+/*inputs et boutons : */
+
+input, button {
+  border: 1px solid white !important;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+}
+
+input[type="text"] {
+  width: 100%;
+  border: 3px solid white;
+  background-color: #2C2F33;
+  color: white;
+  -webkit-appearance: none;
+  text-align: center;
+}
+input[type="number"]{ /*Pour l'age. On veut une disposition permettant de caser la checkbox à côté */
+  background-color: #2C2F33;
+  color: white;
+}
+
+button {
+  color: white !important;
+}
+
+option {
+  color:white !important;
+}
+select{
+  width: 102%;
+  border: 1px solid white;
+  background-color: #2C2F33;
+  color: white;
+}

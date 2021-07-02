@@ -1,0 +1,7 @@
+Bugs :
+- Nb de joueurs qui ne s'envoit pas
+- Calendrier qui sélectionne minuit par défaut
+
+
+Ajouts potentiels :
+- Griser le bouton Valider tant que ce qu'il faut n'est pas rempli

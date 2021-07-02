@@ -1,0 +1,138 @@
+
+body{
+  background-color: #23272A;
+  margin: 0;
+  padding: 0;
+ /* overflow: hidden;*/
+  color: white; 
+}
+.flex-horizontal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.titleCenter{
+  text-align: center;
+}
+
+
+
+/*Pour les boutons :*/
+
+.switch-container{
+  margin-left: auto; 
+  margin-right: 0;
+}
+
+
+.btn-container{
+  margin: 0 auto;
+  width: 15%; 
+}
+
+
+
+
+
+/*Pour la grille :*/
+
+li{
+  list-style: none;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+.calendar-container{ 
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: auto;
+  gap: 1px 1px;
+  grid-template-areas: 
+  ". header"
+  "timeslots-container main"; /*Definit les areas*/
+
+}
+
+.weekDays,
+.dayNumbers-container{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekDays{
+  background: #7289DA;
+}
+
+.header{
+  background: #23272A;
+  grid-area: header;
+  margin-left: 3%;
+}
+
+.timeslots-container{
+  background: lightgray;
+  grid-area: timeslots-container;
+  justify-content: left;
+}
+
+.timeslots{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.timeslots li{
+  min-height: 60px;
+}
+
+.dayNumbers-container li{
+  min-height: 2 em;
+}
+
+.hidden{
+  display: none;
+}
+
+
+/* Pour faire les lignes de grille :
+.timeslots li::after{
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 100%;
+  height: 1px;
+  background: lightgray;
+  z-index: 1;
+}*/
+
+
+/*Pour les events (non fonctionnel)*/
+
+.event-container{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(36, 1fr);
+  grid-area: main; /*Associe à l'area main*/
+  position: relative;
+}
+
+.slot{
+  position:absolute;
+  background: #7289DA;
+  border-radius: 5px;
+  z-index: 5;
+  font-size: 12px;
+}
+
+.slot-1{
+  height: 60px;
+  grid-row: 17;
+  grid-column: 1;
+}
+
+
+
