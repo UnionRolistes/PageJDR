@@ -1,3 +1,7 @@
+- Changelog for v0.2.2 (2021-07-05)
+    * JDR form now prevents sending if the user is not connected to Discord
+
+
 - Changelog for v0.2.1 (2021-07-02)
     * Added the custom CSS from the presentation page
 

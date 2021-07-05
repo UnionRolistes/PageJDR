@@ -107,7 +107,7 @@ $emot_autre = ' :space_invader: ';
     <script src="js/saveDescription.js"></script>
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>
-    <script src="js/modeSwitch.js"></script>
+    <script src="js/colorModeSwitch.js"></script>
 
     <!--On utilise un script externe pour le slider et le calendrier de choix de date et durée-->
     <script src="js/nouislider.js"></script> <!--Pour le slider du nombre de joueurs-->
@@ -124,7 +124,7 @@ $emot_autre = ' :space_invader: ';
     
 <h1 class="titleCenter">Création de partie</h2>
 
-    <form method=post action="cgi-bin/create_post.py" id="URform">
+    <form method=post action="cgi-bin/create_post.py" id="URform" onsubmit="alert('Votre partie a bien été créée')">
 
         <!-- Connexion discord -->              
         <label>Maître du jeu 👑</label>
@@ -169,7 +169,7 @@ $emot_autre = ' :space_invader: ';
 
 
             
-        <label> Type </label>             
+        <label>Type <span class="rouge">*</span></label>             
         <select name="jdr_type" id="type" required>
             <option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
             <option> Initiation </option>
@@ -180,9 +180,9 @@ $emot_autre = ' :space_invader: ';
                  
 
             
-        <label>Date 📅 et heure ⌚</label>
+        <label>Date 📅 et heure ⌚ <span class="rouge">*</span></label>
                 
-        <input autocomplete="off" id="date" name="jdr_date" type="text" class="tail-datetime-field" required style="border-radius: 0px !important; height:40px; width:100%"/>
+        <input autocomplete="off" id="date" name="jdr_date" type="text" class="tail-datetime-field" style="border-radius: 0px !important; height:40px; width:100%" required/>
 
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function(){
@@ -199,12 +199,12 @@ $emot_autre = ' :space_invader: ';
            
             
         <!-- Nom campagne -->         
-        <label> Titre : </label>
-        <input type="text" placeholder="nom de la campagne ou du scenario" autocomplete="off" name="jdr_title" id="titre" max="50"> 									
+        <label> Titre : <span class="rouge">*</span></label>
+        <input type="text" placeholder="nom de la campagne ou du scenario" autocomplete="off" name="jdr_title" id="titre" max="50" required> 									
                 
 
         <!-- Durée -->       
-        <label> Durée ⏱ </label>      
+        <label> Durée ⏱ <span class="rouge">*</span></label>      
         <select name="jdr_length" id="selectorTime" required>
             <option value="" disabled hidden selected></option>
         </select>									
@@ -240,17 +240,18 @@ $emot_autre = ' :space_invader: ';
         <div class="right">
             <input name="platform" type="checkbox" value="<?=$emot_twitch?>"> Partie diffusée sur Twitch <img src="img/iconTwitch.png"><br>
             <input name="platform" type="checkbox" value="<?=$emot_roll20?>"> Partie jouée sur Roll20 <img src="img/iconRoll20.png"><br>
-            <input name="platform" type="checkbox" value="<?=$emot_discord?>" checked> Partie jouée sur Discord <img src="img/iconDiscord.png"><br>
+            <input name="platform" type="checkbox" value="<?=$emot_discord?>"> Partie jouée sur Discord <img src="img/iconDiscord.png"><br> <!--checked-->
             <input name="platform" type="checkbox" value=":space_invader:"> Partie jouée sur Autre <img src="img/iconAutre.png"><br>	
         </div>
 
         <!-- PJ mineurs -->       
         <label>PJ mineur 👶</label>
         <div class="right">
-            <input type="radio" name="jdr_pj"  value="0" checked> &nbspOui
-            <input type="radio" name="jdr_pj"  value="1"> &nbspNon préférable 
-          <!--  <input type="radio" name="jdr_pj"  value="2"> &nbspPréférable  -->
-            <input type="radio" name="jdr_pj"  value="3"> &nbspNon recommandé
+            <input type="radio" name="jdr_pj" required value="0" > &nbspOui <!--checked-->
+            <input type="radio" name="jdr_pj" value="1"> &nbspNon préférable 
+          <!--  <input type="radio" name="jdr_pj" value="2"> &nbspPréférable  -->
+          <!-- Demander à Dae si il veut les choix "non" et "préférable" séparément-->
+            <input type="radio" name="jdr_pj" value="3"> &nbspNon recommandé
         </div>
             
         <!-- Description -->
@@ -262,7 +263,8 @@ $emot_autre = ' :space_invader: ';
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
             <br><br>			
-            <button type="submit" style="background-color:#169719;" name="submit" id="submit" onclick="alert('Votre formulaire a bien été pris en compte')"><b>Valider ✔</b></button>					
+            <button type="submit" name="submit" id="submit" <?php if (!isset($_SESSION['avatar_url']) and !isset($_SESSION['username'])){echo 'disabled ><b>Veuillez vous connecter';}else{ echo 'style="background-color:#169719;"'?>><b>Valider ✔<?php }?></b></button>					
+        <!--Bloque le bouton si on s'est pas connecté-->
         </div>
 
         

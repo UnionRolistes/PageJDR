@@ -4,4 +4,3 @@ Bugs :
 
 
 Ajouts potentiels :
-- Griser le bouton Valider tant que ce qu'il faut n'est pas rempli
