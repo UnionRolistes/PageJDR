@@ -1,0 +1,210 @@
+- Changelog for v0.2.2 (2021-07-05)
+    * JDR form now prevents sending if the user is not connected to Discord
+
+
+- Changelog for v0.2.1 (2021-07-02)
+    * Added the custom CSS from the presentation page
+
+- Changelog for v0.2.0 (2021-06-25)
+    * Added the calendar page prototype
+  
+- Changelog for v0.1.47 (2021-06-24)
+  
+    * Create changelog.txt for the calendar page
+    
+- Changelog for v1.1.47 (2021-06-21)
+  
+    * Create changelog.txt
+    * Renamed project folder
+    
+    
+
+
+Update README.md
+@Daebis
+Daebis committed 16 minutes ago
+
+Update README.md
+@Daebis
+Daebis committed 19 minutes ago
+
+Commits on Jun 13, 2020
+
+    adding config file
+    @tonitch
+    tonitch committed on 13 Jun 2020
+
+Commits on Jun 11, 2020
+
+    Correction#2
+    @tonitch
+    tonitch committed on 11 Jun 2020
+
+Correction#1
+@tonitch
+tonitch committed on 11 Jun 2020
+
+Merge branch 'oauth2' of github.com:Bot-a-JDR/PageJDR into oauth2
+@tonitch
+tonitch committed on 11 Jun 2020
+
+modification dae
+@tonitch
+tonitch committed on 11 Jun 2020
+
+Modification bandeau joueurs
+@tonitch
+tonitch committed on 11 Jun 2020
+
+adding Oauth2
+@tonitch
+tonitch committed on 11 Jun 2020
+
+Commits on May 5, 2020
+
+    modif mineur et correction bug system
+    @dryasredrock
+    dryasredrock committed on 5 May 2020
+
+Commits on May 4, 2020
+
+    multiple corrections 
+    ajout du champs titre
+    validation formulaire
+
+@dryasredrock
+dryasredrock committed on 4 May 2020
+
+Commits on Apr 16, 2020
+
+    UIKIT -> BOOTTRAP 
+    Table -> responsive grid
+
+@dryasredrock
+dryasredrock committed on 16 Apr 2020
+
+ajout jdr gobelin qui s'en dedit
+@dryasredrock
+dryasredrock committed on 16 Apr 2020
+
+Commits on Apr 4, 2020
+Changements : 
+- Les options sont désormais en blanc
+- Ajout d'un double slider pour le nombre de joueur min et max
+- Ajout d'un calendrier pour sélectionner la date et l'heure 
+- Compatibilité avec Chrome, IE 11, Opera, Edge et Firefox
+- Bouton réinitialiser
+- Notification de succès
+
+    Add files via upload 
+
+Commits on Mar 26, 2020
+
+    Corrigé et incrémenté 
+
+l'incrémentation c'est bien !
+
+@Daebis
+Daebis committed on 26 Mar 2020
+
+corrgié et indenté
+
+l’indentation c'est bien, mangez en
+
+@Daebis
+Daebis committed on 26 Mar 2020
+
+HTML
+@Daebis
+Daebis committed on 26 Mar 2020
+
+Commits on Mar 18, 2020
+
+    Adding an icon
+    @Suxene
+    Suxene committed on 18 Mar 2020
+
+Commits on Mar 17, 2020
+
+    Adding the functionnality to save user's input
+    @Suxene
+    Suxene committed on 17 Mar 2020
+
+Adding a function to save user's input
+@Suxene
+Suxene committed on 17 Mar 2020
+
+Update index.php
+
+Adding a link to the repo
+
+@Suxene
+Suxene committed on 17 Mar 2020
+
+correction bugs et encodage unicode
+@dryasredrock
+dryasredrock committed on 17 Mar 2020
+
+Merge pull request #4 from Bot-a-JDR/note
+
+adding note on footer
+
+@dryasredrock
+dryasredrock committed on 17 Mar 2020
+
+Commits on Mar 16, 2020
+
+    changing style to index.php to avoir conflict between light and dark … 
+
+…theme (pos)
+
+@tonitch
+tonitch committed on 16 Mar 2020
+
+adding note on footer
+@tonitch
+tonitch committed on 16 Mar 2020
+
+Merge pull request #3 from Bot-a-JDR/Switch-dark-/-light
+
+Switch dark / light
+
+@tonitch
+tonitch committed on 16 Mar 2020
+
+changement de couleur
+@dryasredrock
+dryasredrock committed on 16 Mar 2020
+
+modification de la couleur de la bande gauche
+@dryasredrock
+dryasredrock committed on 16 Mar 2020
+
+adapatation des emot pour ur
+@dryasredrock
+dryasredrock committed on 16 Mar 2020
+
+Standardize the thickness of the borders
+@Suxene
+Suxene committed on 16 Mar 2020
+
+Add files via upload
+@Suxene
+Suxene committed on 16 Mar 2020
+
+Commits on Mar 15, 2020
+
+    Add files via upload 
+
+Adding light / dark mode
+
+@Suxene
+Suxene committed on 15 Mar 2020
+
+Update README.md
+@dryasredrock
+dryasredrock committed on 15 Mar 2020
+
+Merge branch 'master' of https://github.com/Bot-a-JDR/PageJDR
+@dryasredrock
+dryasredrock committed on 15 Mar 2020 
