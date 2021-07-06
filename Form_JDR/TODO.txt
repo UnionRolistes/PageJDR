@@ -1,6 +1,7 @@
 Bugs :
 - Nb de joueurs qui ne s'envoit pas
 - Calendrier qui sélectionne minuit par défaut
+- Problème si l'utilisateur annule l'oauth2
 
 
 Ajouts potentiels :
