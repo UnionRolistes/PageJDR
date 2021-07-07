@@ -53,9 +53,12 @@ $emot_autre = ' :space_invader: ';
     
 <h1 class="titleCenter">Création de partie</h2>
 
-    <form method=post action="cgi-bin/create_post.py" id="URform" onsubmit="alert('Votre partie a bien été créée')">
+    <form method=post action="cgi/create_post.py" id="URform">
 
-        <!-- Connexion discord -->              
+        <!-- Connexion discord -->   
+        <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
+        <input type=hidden name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ""?>">
+        <input type=hidden name="pseudo" value="<?= isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : ""?>">           
         <label>Maître du jeu 👑</label>
         <?php
         if (isset($_SESSION['avatar_url']) and isset($_SESSION['username'])) {
@@ -76,7 +79,7 @@ $emot_autre = ' :space_invader: ';
             </label>
         </div>
             
-        <label>Nombre de joueurs</label>
+        <!--label>Nombre de joueurs</label>
             <div id="range" style="color:black !important" aria-describedby="nbTxt">
                 <script>
                     var range = document.getElementById('range');
@@ -94,7 +97,7 @@ $emot_autre = ' :space_invader: ';
                     });
                 </script>
             </div>
-        <small id="nbTxt">Moins de 5 joueurs</small>
+        <small id="nbTxt">Moins de 5 joueurs</small-->
 
 
             

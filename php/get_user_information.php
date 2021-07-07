@@ -18,7 +18,7 @@ if (
 $response = json_decode(curl_exec($ch));
 assert_curl_success($ch);
 $_SESSION['user_id'] = $response->id;
-$_SESSION['pseudo'] = $response->username . '#' . $response->discriminant;
+$_SESSION['pseudo'] = $response->username . '#' . $response->discriminator;
 $_SESSION['username'] = $response->username;
 $_SESSION['avatar_url'] = 'https://cdn.discordapp.com/avatars/' . $response->id . '/' . $response->avatar . '.png' . '?size=32';
 header('Location: /');
