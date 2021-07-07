@@ -6,9 +6,19 @@ function updateSliderText(){
             values[0] = parseInt(values[0], 10);
             values[1] = parseInt(values[1], 10);
             //console.log(values);
+
+            //On met à jour les inputs cachés qui servent à l'envoi des données :
+            document.getElementById('minJoueurs').value=values[0];
+            document.getElementById('maxJoueurs').value=values[1];
+
             if (values[0]==values[1])
             {
-                txt.innerHTML=values[0] + " joueurs";
+                if (values[0]==1){
+                    txt.innerHTML="1 joueur"; //Pour le cas où on a qu'un seul joueur 
+                }
+                else{
+                    txt.innerHTML=values[0] + " joueurs";
+                }              
             }
             else if (values[0]==1)
             {

@@ -150,15 +150,19 @@ button{
     text-align:center;
     margin-top:5vh;
     font-size:14px;
-    color:#990000;
+    color:red;
     font-family:mono;
 }
 
-#connexion{
+#connexion, #deconnexion{
     border-radius:5px;
     background-color:rgb(207, 204, 204);
     height: 27px;
 }
+#deconnexion{
+  margin-left: 4%;
+}
+
 .annotation{ /* annotations du nombre de joueurs et du saut de ligne dans une description*/
   color: gray;
   font-size: 75%;

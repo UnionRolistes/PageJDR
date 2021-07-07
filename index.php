@@ -33,7 +33,7 @@ $emot_autre = ' :space_invader: ';
     
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862019020516622377/ur.png">
 
-
+    <script src="js/saveDescription.js"></script>
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>
     <script src="js/colorModeSwitch.js"></script>
@@ -54,7 +54,7 @@ $emot_autre = ' :space_invader: ';
     
 <h1 class="titleCenter">Création de partie</h2>
 
-    <form method=post action="cgi/create_post.py" id="URform">
+    <form method=post action="cgi/create_post.py" id="URform" onsubmit="alet('Votre formulaire a bien été envoyée');">
 
         <!-- Connexion discord -->   
         <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
@@ -66,6 +66,7 @@ $emot_autre = ' :space_invader: ';
             echo '<div>';
             echo "<img src=\"" . $_SESSION['avatar_url'] . "\"/>";      
             echo $_SESSION['username'];
+            echo '<input type="button" value="Deconnexion" id="deconnexion" onclick="window.location.href=\'php/logout.php\'"/>';
             echo '</div>';
         } else
             echo '<div><input type="button" value="Me connecter" id="connexion" onclick="window.location.href=\'php/get_authorization_code.php\'"/></div>'
@@ -80,7 +81,7 @@ $emot_autre = ' :space_invader: ';
             </label>
         </div>
             
-        <!--label>Nombre de joueurs</label>
+      <!--  <label>Nombre de joueurs</label>
             <div id="range" style="color:black !important" aria-describedby="nbTxt">
                 <script>
                     var range = document.getElementById('range');
@@ -98,8 +99,11 @@ $emot_autre = ' :space_invader: ';
                     });
                 </script>
             </div>
-        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>-->
+        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>
 
+        
+        <input type="hidden" value="test" name="minJoueurs" id="minJoueurs"/>
+        <input type="hidden" value="test" name="maxJoueurs" id="maxJoueurs"/> -->
 
             
         <label>Type <span class="rouge">*</span></label>             
@@ -133,7 +137,7 @@ $emot_autre = ' :space_invader: ';
             
         <!-- Nom campagne -->         
         <label> Titre : <span class="rouge">*</span></label>
-        <input type="text" placeholder="nom de la campagne ou du scenario" autocomplete="off" name="jdr_title" id="titre" max="50" required> 									
+        <input type="text" placeholder="nom de la campagne ou du scenario" name="jdr_title" id="titre" max="50" required> 									
                 
 
         <!-- Durée -->       
@@ -141,16 +145,15 @@ $emot_autre = ' :space_invader: ';
         <select name="jdr_length" id="selectorTime" required>
             <option value="" disabled hidden selected></option>
 
-
         </select>									
                     
         <div></div> <!--Pour faire de la place entre Durée et Jdr-->
             
            
         <!-- Sélection du système jdr -->       
-        <label>JDR 🎲</label>
+        <label>JDR 🎲 <span class="rouge">*</span></label>
                
-        <select name ="jdr_system" id="system">
+        <select name ="jdr_system" id="system" required>
             <option hidden disabled selected value="">Liste des JdR proposés</option>
             <?php
                 # Generates all the options from an xml file
@@ -192,9 +195,7 @@ $emot_autre = ' :space_invader: ';
         <label>Description (optionnelle) 📄<br><br>
             <small class="annotation">Entrée pour revenir à la ligne</small>
         </label>
-  
-        
-        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;"></textarea>	
+        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;" oninput="save()" autocomplete="on"></textarea>	
 
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
