@@ -1,3 +1,9 @@
+- Changelog for v0.2.3 (2021-07-07)
+    * Fixed some code details before launching online
+    * Changed website icon
+    * Changed "PJ mineur" choices ("non recommandé" --> "non")
+    * Added a small text about line jumping in a description
+
 - Changelog for v0.2.2 (2021-07-05)
     * JDR form now prevents sending if the user is not connected to Discord
 

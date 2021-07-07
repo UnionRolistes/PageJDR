@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if (session_status() != PHP_SESSION_ACTIVE)
     session_start();
 
@@ -31,7 +31,7 @@ $emot_autre = ' :space_invader: ';
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/styleDark.css">
     
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862019020516622377/ur.png">
 
 
     <script src="js/updateSliderText.js"></script>
@@ -97,7 +97,7 @@ $emot_autre = ' :space_invader: ';
                     });
                 </script>
             </div>
-        <small id="nbTxt">Moins de 5 joueurs</small-->
+        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>-->
 
 
             
@@ -177,20 +177,21 @@ $emot_autre = ' :space_invader: ';
         </div>
 
         <!-- PJ mineurs -->       
-        <label>PJ mineur 👶</label>
+        <label>PJ mineur 👶 <span class="rouge">*</span></label>
         <div class="right">
-            <input type="radio" name="jdr_pj" required value="0" > &nbspOui <!--checked-->
+            <input type="radio" name="jdr_pj" required value="0" > &nbspOui
             <input type="radio" name="jdr_pj" value="1"> &nbspNon préférable 
-          <!--  <input type="radio" name="jdr_pj" value="2"> &nbspPréférable  -->
-          <!-- Demander à Dae si il veut les choix "non" et "préférable" séparément-->
-            <input type="radio" name="jdr_pj" value="3"> &nbspNon recommandé
+            <input type="radio" name="jdr_pj" value="2"> &nbspNon
         </div>
             
         <!-- Description -->
             
-        <label>Description (optionnelle) 📄</label>        
+        <label>Description (optionnelle) 📄<br><br>
+            <small class="annotation">Entrée pour revenir à la ligne</small>
+        </label>
+  
+        
         <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;"></textarea>	
-             
 
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
