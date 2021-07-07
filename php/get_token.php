@@ -10,7 +10,7 @@ $params = array(
     "grant_type" => "authorization_code",
     "client_id" => CLIENT_ID,
     "client_secret" => CLIENT_SECRET,
-    "redirect_uri" => 'http://93.11.4.50.nip.io/php/get_token.php',
+    "redirect_uri" => 'http://urplanning.unionrolistes.fr/php/get_token.php',
     "code" => $_GET['code']
 );
 

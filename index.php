@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if (session_status() != PHP_SESSION_ACTIVE)
     session_start();
 
@@ -31,9 +31,9 @@ $emot_autre = ' :space_invader: ';
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/styleDark.css">
     
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862019020516622377/ur.png">
 
-    <script src="js/saveDescription.js"></script>
+
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>
     <script src="js/colorModeSwitch.js"></script>
@@ -48,14 +48,18 @@ $emot_autre = ' :space_invader: ';
 
 
 </head>
-<body onload="updateSliderText();durationSelect();"> 
+<body onload="durationSelect();"> 
+
 <!--updateSliderText met à jour le texte situé sous le slider du nombre de joueur. durationSelect remplit le select des durées de parties (30m, 1h, ...) -->
     
 <h1 class="titleCenter">Création de partie</h2>
 
-    <form method=post action="cgi-bin/create_post.py" id="URform" onsubmit="alert('Votre partie a bien été créée')">
+    <form method=post action="cgi/create_post.py" id="URform">
 
-        <!-- Connexion discord -->              
+        <!-- Connexion discord -->   
+        <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
+        <input type=hidden name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ""?>">
+        <input type=hidden name="pseudo" value="<?= isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : ""?>">           
         <label>Maître du jeu 👑</label>
         <?php
         if (isset($_SESSION['avatar_url']) and isset($_SESSION['username'])) {
@@ -76,7 +80,7 @@ $emot_autre = ' :space_invader: ';
             </label>
         </div>
             
-        <label>Nombre de joueurs</label>
+        <!--label>Nombre de joueurs</label>
             <div id="range" style="color:black !important" aria-describedby="nbTxt">
                 <script>
                     var range = document.getElementById('range');
@@ -94,7 +98,7 @@ $emot_autre = ' :space_invader: ';
                     });
                 </script>
             </div>
-        <small id="nbTxt">Moins de 5 joueurs</small>
+        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>-->
 
 
             
@@ -136,6 +140,8 @@ $emot_autre = ' :space_invader: ';
         <label> Durée ⏱ <span class="rouge">*</span></label>      
         <select name="jdr_length" id="selectorTime" required>
             <option value="" disabled hidden selected></option>
+
+
         </select>									
                     
         <div></div> <!--Pour faire de la place entre Durée et Jdr-->
@@ -174,20 +180,21 @@ $emot_autre = ' :space_invader: ';
         </div>
 
         <!-- PJ mineurs -->       
-        <label>PJ mineur 👶</label>
+        <label>PJ mineur 👶 <span class="rouge">*</span></label>
         <div class="right">
-            <input type="radio" name="jdr_pj" required value="0" > &nbspOui <!--checked-->
+            <input type="radio" name="jdr_pj" required value="0" > &nbspOui
             <input type="radio" name="jdr_pj" value="1"> &nbspNon préférable 
-          <!--  <input type="radio" name="jdr_pj" value="2"> &nbspPréférable  -->
-          <!-- Demander à Dae si il veut les choix "non" et "préférable" séparément-->
-            <input type="radio" name="jdr_pj" value="3"> &nbspNon recommandé
+            <input type="radio" name="jdr_pj" value="2"> &nbspNon
         </div>
             
         <!-- Description -->
             
-        <label>Description (optionnelle) 📄</label>        
-        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;" oninput="save()"></textarea>	
-             
+        <label>Description (optionnelle) 📄<br><br>
+            <small class="annotation">Entrée pour revenir à la ligne</small>
+        </label>
+  
+        
+        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;"></textarea>	
 
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
