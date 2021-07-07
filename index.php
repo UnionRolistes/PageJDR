@@ -33,7 +33,7 @@ $emot_autre = ' :space_invader: ';
     
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
 
-    <script src="js/saveDescription.js"></script>
+
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>
     <script src="js/colorModeSwitch.js"></script>
@@ -189,7 +189,7 @@ $emot_autre = ' :space_invader: ';
         <!-- Description -->
             
         <label>Description (optionnelle) 📄</label>        
-        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;" oninput="save()"></textarea>	
+        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;"></textarea>	
              
 
         <div class="right">	
