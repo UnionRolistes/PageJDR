@@ -48,7 +48,8 @@ $emot_autre = ' :space_invader: ';
 
 
 </head>
-<body onload="updateSliderText();durationSelect();"> 
+<body onload="durationSelect();"> 
+
 <!--updateSliderText met à jour le texte situé sous le slider du nombre de joueur. durationSelect remplit le select des durées de parties (30m, 1h, ...) -->
     
 <h1 class="titleCenter">Création de partie</h2>
@@ -139,6 +140,8 @@ $emot_autre = ' :space_invader: ';
         <label> Durée ⏱ <span class="rouge">*</span></label>      
         <select name="jdr_length" id="selectorTime" required>
             <option value="" disabled hidden selected></option>
+
+
         </select>									
                     
         <div></div> <!--Pour faire de la place entre Durée et Jdr-->
