@@ -18,21 +18,21 @@ def get_payload() -> str:
 
     info, reactions = model.split("[")
     payload = info.format(
-        type=form['jdr_type'].value,
-        title=form['jdr_title'].value,
-        date="Le " + form['jdr_date'].value,
-        length=form['jdr_length'].value,
-        pseudoMJ=f"<@{form['user_id'].value}> [{form['pseudo'].value}]",
-        system=form['jdr_system'].value,
-        minors_allowed=minorsAllowed_to_str[int(form['jdr_pj'].value)],
+        type=form.getvalue('jdr_type'),
+        title=form.getvalue('jdr_title'),
+        date="Le " + form.getvalue('jdr_date'),
+        length=form.getvalue('jdr_length'),
+        pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",
+        system=form.getvalue('jdr_system'),
+        minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
-        details=form['jdr_details'].value if 'jdr_details' in form.keys() else ""
+        details=form.getvalue('jdr_details') if 'jdr_details' in form.keys() else ""
     )
 
     return payload
 
 def get_webhook_url() -> str:
-    return form['webhook_url'].value
+    return form.getvalue('webhook_url'].value
 
 
 if __name__ == '__main__':
