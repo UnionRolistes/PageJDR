@@ -1,9 +1,3 @@
-# Web_Planning
-site et bot crée pour l'association Union des roliste.
-avec la participation de @moi2985#5522 @Elonchan#5962 @Tonitch#2192 @Dae#5125 @dryas#5722 @L33tHax0rz#5798 @Lyss#4053 @Maestro#8364 (discord)
-
-utilisation non commerciale, copie/modification autorisée, merci de citer vos sources.
-
 # Web_Planning : formulaire de création de partie
 
 Le formulaire permet a un animateur (MJ) de proposer une session de JdR sur un serveur discord.
