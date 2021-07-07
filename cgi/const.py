@@ -3,16 +3,15 @@ from enum import IntEnum
 
 class MinorsAllowed(IntEnum):
     YES = 0
-    NO = 1
-    PREFFERED = 2
-    NOT_RECOMMANDED = 3
+    NOT_PREFERABLE = 1
+    NO = 2
+    
 
 
 minorsAllowed_to_str = {
     MinorsAllowed.YES: "oui",
-    MinorsAllowed.NO: "non",
-    MinorsAllowed.PREFFERED: "préférable",
-    MinorsAllowed.NOT_RECOMMANDED: "non recommandé"
+    MinorsAllowed.NOT_PREFERABLE: "non préférable",
+    MinorsAllowed.NO: "non"
 }
 
 
