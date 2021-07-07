@@ -33,7 +33,7 @@ $emot_autre = ' :space_invader: ';
     
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862019020516622377/ur.png">
 
-
+    <script src="js/saveDescription.js"></script>
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>
     <script src="js/colorModeSwitch.js"></script>
@@ -48,7 +48,7 @@ $emot_autre = ' :space_invader: ';
 
 
 </head>
-<body onload="durationSelect();"> 
+<body onload="durationSelect();updateSliderText()"> 
 
 <!--updateSliderText met à jour le texte situé sous le slider du nombre de joueur. durationSelect remplit le select des durées de parties (30m, 1h, ...) -->
     
@@ -80,7 +80,7 @@ $emot_autre = ' :space_invader: ';
             </label>
         </div>
             
-        <!--label>Nombre de joueurs</label>
+      <!--  <label>Nombre de joueurs</label>
             <div id="range" style="color:black !important" aria-describedby="nbTxt">
                 <script>
                     var range = document.getElementById('range');
@@ -98,8 +98,11 @@ $emot_autre = ' :space_invader: ';
                     });
                 </script>
             </div>
-        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>-->
+        <small id="nbTxt" class="annotation">Moins de 5 joueurs</small>
 
+        
+        <input type="hidden" value="test" name="minJoueurs" id="minJoueurs"/>
+        <input type="hidden" value="test" name="maxJoueurs" id="maxJoueurs"/> -->
 
             
         <label>Type <span class="rouge">*</span></label>             
@@ -140,7 +143,6 @@ $emot_autre = ' :space_invader: ';
         <label> Durée ⏱ <span class="rouge">*</span></label>      
         <select name="jdr_length" id="selectorTime" required>
             <option value="" disabled hidden selected></option>
-
 
         </select>									
                     
@@ -192,9 +194,7 @@ $emot_autre = ' :space_invader: ';
         <label>Description (optionnelle) 📄<br><br>
             <small class="annotation">Entrée pour revenir à la ligne</small>
         </label>
-  
-        
-        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;"></textarea>	
+        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;" oninput="save()"></textarea>	
 
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	

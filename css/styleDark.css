@@ -10,7 +10,7 @@ body {
 /*inputs et boutons : */
 
 input, button {
-  border: 1px solid white !important;
+  border: 1px solid gray !important;
   transition: 0.2s ease-in-out;
   transition-property: color, background-color, border;
 }
@@ -37,7 +37,7 @@ option {
 }
 select{
   width: 102%;
-  border: 1px solid white;
+  border: 1px solid gray;
   background-color: #2C2F33;
   color: white;
 }
