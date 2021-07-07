@@ -8,7 +8,7 @@ import cgi
 import cgitb
 
 # Logging
-cgitb.enable(display=0, logdir="d:/wamp/logs/cgi")
+cgitb.enable(display=0, logdir="/usr/local/log/cgi")
 form = cgi.FieldStorage()
 
 """ Process form data to create the webhook payload. """
