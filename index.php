@@ -206,6 +206,7 @@ $emot_autre = ' :space_invader: ';
 
         
         <span class="beta"><b>Attention cet outil est en beta-test</b><br>
+        <b>Copiez votre description avant d'envoyer</b><br>
         <a href="https://github.com/UnionRolistes/Web_Presentation" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 
     </form>
