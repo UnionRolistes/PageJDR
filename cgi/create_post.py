@@ -1,4 +1,4 @@
-#!python
+#!/opt/virtualenv/URBot/bin/python
 from discord import Webhook, RequestsWebhookAdapter
 import discord
 from discord.embeds import Embed
