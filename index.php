@@ -24,17 +24,16 @@ $emot_autre = ' :space_invader: ';
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <title> Le formulaire de partie </title>
+    <title>Planning</title>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/styleDark.css">
     
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862019020516622377/ur.png">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png">
 
-    <script src="js/saveDescription.js"></script>
-    <script src="js/updateSliderText.js"></script>
+    <!--<script src="js/updateSliderText.js"></script>-->
     <script src="js/durationSelect.js"></script>
     <script src="js/colorModeSwitch.js"></script>
 
@@ -49,12 +48,21 @@ $emot_autre = ' :space_invader: ';
 
 </head>
 <body onload="durationSelect();"> 
-
+<!-- updateSliderText();-->
 <!--updateSliderText met à jour le texte situé sous le slider du nombre de joueur. durationSelect remplit le select des durées de parties (30m, 1h, ...) -->
     
 <h1 class="titleCenter">Création de partie</h2>
 
-    <form method=post action="cgi/create_post.py" id="URform" onsubmit="alet('Votre formulaire a bien été envoyée');">
+    <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
+
+        <?php
+        if (isset($_GET['error'])){ 
+        //Affichage des erreurs. Rajouter des lignes si on rajoute d'autres codes d'erreurs (optimisable en les mettant dans un fichier si on commence à en avoir beaucoup)
+            $error=$_GET['error'];
+            if($error=='invalidData') echo '<span class="rouge">Données invalides. Veuillez vérifier le formulaire</span>'; //--> Pas encore fonctionnel côté Python
+            if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>'; //--> Pas encore fonctionnel côté Python
+        } 
+        ?>
 
         <!-- Connexion discord -->   
         <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
@@ -137,7 +145,7 @@ $emot_autre = ' :space_invader: ';
             
         <!-- Nom campagne -->         
         <label> Titre : <span class="rouge">*</span></label>
-        <input type="text" placeholder="nom de la campagne ou du scenario" name="jdr_title" id="titre" max="50" required> 									
+        <input type="text" placeholder="nom de la campagne ou du scenario" name="jdr_title" id="titre" max="70" required> 									
                 
 
         <!-- Durée -->       
@@ -151,9 +159,9 @@ $emot_autre = ' :space_invader: ';
             
            
         <!-- Sélection du système jdr -->       
-        <label>JDR 🎲 <span class="rouge">*</span></label>
+        <label>JDR 🎲</label>
                
-        <select name ="jdr_system" id="system" required>
+        <select name ="jdr_system" id="system">
             <option hidden disabled selected value="">Liste des JdR proposés</option>
             <?php
                 # Generates all the options from an xml file
@@ -195,23 +203,22 @@ $emot_autre = ' :space_invader: ';
         <label>Description (optionnelle) 📄<br><br>
             <small class="annotation">Entrée pour revenir à la ligne</small>
         </label>
-        <textarea maxlength="500" rows="5" name ="jdr_details" id="desc" style="resize: vertical;" oninput="save()" autocomplete="on"></textarea>	
+        <textarea rows="5" name ="jdr_details" id="desc" style="resize: vertical;" autocomplete="on"></textarea>	
 
         <div class="right">	
             <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
             <br><br>			
-            <button type="submit" name="submit" id="submit" <?php if (!isset($_SESSION['avatar_url']) and !isset($_SESSION['username'])){echo 'disabled ><b>Veuillez vous connecter';}else{ echo 'style="background-color:#169719;"'?>><b>Valider ✔<?php }?></b></button>					
+            <button type="submit" name="submit" id="submit" <?php if (!isset($_SESSION['avatar_url']) or !isset($_SESSION['username'])){echo 'disabled ><b>Veuillez vous connecter';}else{ echo 'style="background-color:#169719;"'?>><b>Valider ✔<?php }?></b></button>					
         <!--Bloque le bouton si on s'est pas connecté-->
         </div>
 
         
         <span class="beta"><b>Attention cet outil est en beta-test</b><br>
-        <b>Copiez votre description avant d'envoyer</b><br>
-        <a href="https://github.com/UnionRolistes/Web_Presentation" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
+        <a href="https://github.com/UnionRolistes/Web_Planning" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 
     </form>
     
-    <script src="js/record_form.js"></script>
+    <script src="js/record_form.js"></script> <!--Sauvegarde les données déjà rentrées-->
 </body>
 
 <?php 

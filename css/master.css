@@ -170,11 +170,17 @@ button{
 .rouge{
   color:red;
 }
+.vert{
+  color: rgb(25, 219, 25);
+}
 
+textarea{
+  width:100%;
+}
 
 button:disabled,
 button[disabled]{
   border: 1px solid #999999;
   background-color: #cccccc;
-  color: #666666;
+  color: white;
 }

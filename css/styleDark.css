@@ -9,7 +9,7 @@ body {
 
 /*inputs et boutons : */
 
-input, button {
+input, button, select, textarea {
   border: 1px solid gray !important;
   transition: 0.2s ease-in-out;
   transition-property: color, background-color, border;
@@ -18,26 +18,25 @@ input, button {
 input[type="text"] {
   width: 100%;
   border: 3px solid white;
-  background-color: #2C2F33;
-  color: white;
   -webkit-appearance: none;
   text-align: center;
 }
-input[type="number"]{ /*Pour l'age. On veut une disposition permettant de caser la checkbox à côté */
-  background-color: #2C2F33;
+
+button, option {
   color: white;
 }
 
-button {
-  color: white !important;
-}
-
-option {
-  color:white !important;
-}
 select{
   width: 102%;
   border: 1px solid gray;
-  background-color: #2C2F33;
+}
+
+textarea, input[type="text"], input[type="number"], select{
+  background-color: #23272A;
+  color: white;
+}
+
+textarea, input[type="text"], input[type="number"], select{
+  background-color: #23272A;
   color: white;
 }

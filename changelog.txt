@@ -1,5 +1,12 @@
-- Changelog for v0.2.3 (2021-07-07)
+- Changelog for v0.3.1 (2021-07-08)
+    * Changed input background color
+    * The description is now saved
+    * Changed website name
+    * Changed discord message logo (the right one this time)
+
+- Changelog for v0.3.0 (2021-07-07)
     * Added logout button
+    * Changed discord message logo
     * Changed beta text color
     * Description is now saved on input
     * Fixed some code details before launching online
