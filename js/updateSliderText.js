@@ -8,7 +8,10 @@ function updateSliderText(){
             //console.log(values);
 
             //On met à jour l'input caché qui sert à l'envoi des données :
-            nbJoueurs=document.getElementById("nbJoueurs");
+            //nbJoueurs=document.getElementById("nbJoueurs");
+
+            document.getElementById("minJoueurs")=values[0];
+            document.getElementById("maxJoueurs")=values[1];
 
             if (values[0]==values[1])
             {
