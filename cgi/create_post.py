@@ -21,13 +21,15 @@ def get_payload() -> str:
         type=form['jdr_type'].value,
         title=form['jdr_title'].value,
         date="Le " + form['jdr_date'].value,
+        players=form['nbJoueurs'].value, # String mis en forme par la partie Web
         length=form['jdr_length'].value,
         pseudoMJ=f"<@{form['user_id'].value}> [{form['pseudo'].value}]",
-        system=form['jdr_system'].value,
+        system=form['jdr_system'].value if form.getvalue('jdr_system') else form['jsr_system_other'].value
         minors_allowed=minorsAllowed_to_str[int(form['jdr_pj'].value)],
         platforms=" ".join(form.getlist('platform')),
         details=form['jdr_details'].value if 'jdr_details' in form.keys() else ""
     )
+    
 
     return payload
 

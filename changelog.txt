@@ -1,3 +1,8 @@
+- Changelog for v0.3.2 (2021-07-09)
+    * Checkbox to switch from the JDR select and "hors liste"
+    * Affichage du nombre de joueurs dans l'annonce de partie
+    * Responsive on mobile
+
 - Changelog for v0.3.1 (2021-07-08)
     * Changed input background color
     * The description is now saved
