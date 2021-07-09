@@ -21,6 +21,7 @@ def get_payload() -> str:
         type=form.getvalue('jdr_type'),
         title=form.getvalue('jdr_title'),
         date="Le " + form.getvalue('jdr_date'),
+        players = form.getvalue(maxJoueurs) if (form.getvalue('maxJoueurs') == form.getvalue('minJoueurs') else form.getvalue('maxJoueurs') + " (min " + form.getvalue('minJoueurs') + ")",
         length=form.getvalue('jdr_length'),
         pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",
         system=form.getvalue('jdr_system'),
@@ -28,6 +29,7 @@ def get_payload() -> str:
         platforms=" ".join(form.getlist('platform')),
         details=form.getvalue('jdr_details') if 'jdr_details' in form.keys() else ""
     )
+    
 
     return payload
 

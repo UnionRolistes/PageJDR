@@ -36,10 +36,10 @@ body{
     display: grid;
     grid-template-columns: [labels] auto [controls] 1fr;
     grid-auto-flow: row;
-    grid-gap: 1.6em 10%; /*Distance verticale puis horizontale entre les éléments*/
+    grid-gap: 1.6em 4%; /*Distance verticale puis horizontale entre les éléments*/
     padding: 1.2em;
     width: 50%; /*Taille horizontale du formulaire*/
-  
+
     border : 1px solid #000;
     margin-left: 23%; /*Distance du formulaire par rapport au bords de la fenêtre*/
     box-shadow: 5px 8px 6px black;
@@ -150,15 +150,19 @@ button{
     text-align:center;
     margin-top:5vh;
     font-size:14px;
-    color:#990000;
+    color:red;
     font-family:mono;
 }
 
-#connexion{
+#connexion, #deconnexion{
     border-radius:5px;
     background-color:rgb(207, 204, 204);
     height: 27px;
 }
+#deconnexion{
+  margin-left: 4%;
+}
+
 .annotation{ /* annotations du nombre de joueurs et du saut de ligne dans une description*/
   color: gray;
   font-size: 75%;
@@ -166,11 +170,37 @@ button{
 .rouge{
   color:red;
 }
+.vert{
+  color: rgb(25, 219, 25);
+}
 
+textarea{
+  width:100%;
+}
 
 button:disabled,
 button[disabled]{
   border: 1px solid #999999;
   background-color: #cccccc;
-  color: #666666;
+  color: white;
 }
+
+/*Pour le responsive et affichage mobile :*/
+@-ms-viewport {
+  width: device-width ;
+}
+
+
+@media screen and (max-width:1050px){
+  /* Pour les ecrans de moins de 1050 pixels de large */
+
+  #URform { /*On supprime les espaces vides autour du formulaire */
+    width: 95%; 
+
+    border : 1px solid #000;
+    box-shadow: 5px 8px 6px black;
+    margin-left: 0;
+    margin:0;
+  }
+}
+
