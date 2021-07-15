@@ -45,16 +45,19 @@ ul{
   margin: 0;
   padding: 0;
 }
-
-.calendar-container{ 
+   
+.calendar{ 
   display: grid;
   grid-template-columns: 50px auto;
   grid-template-rows: auto;
   gap: 1px 1px;
   grid-template-areas: 
-  ". header"
+  ".header"
   "timeslots-container main"; /*Definit les areas*/
 
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .weekDays,
@@ -70,7 +73,6 @@ ul{
 .header{
   background: #23272A;
   grid-area: header;
-  margin-left: 3%;
 }
 
 .timeslots-container{
@@ -93,21 +95,18 @@ ul{
   min-height: 2 em;
 }
 
-.hidden{
-  display: none;
-}
 
 
-/* Pour faire les lignes de grille :
+/* Pour faire les lignes de grille :*/
 .timeslots li::after{
   content: "";
   position: absolute;
   left: 10px;
   width: 100%;
   height: 1px;
-  background: lightgray;
+  background: 1px gray;
   z-index: 1;
-}*/
+}
 
 
 /*Pour les events (non fonctionnel)*/
@@ -115,24 +114,51 @@ ul{
 .event-container{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(36, 1fr);
+  grid-template-rows: repeat(48, 1fr); /*24 heures x 2 divisions : On veut une précision à la demie heure près. Si on voulait 1/4 quart d'heure, on fait 24 x 4*/
   grid-area: main; /*Associe à l'area main*/
   position: relative;
 }
 
 .slot{
   position:absolute;
-  background: #7289DA;
+  background: green;
   border-radius: 5px;
-  z-index: 5;
+  z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
   font-size: 12px;
+  width: 150px auto;
+  overflow: auto;
+}
+.slot a{
+  color: white;
+  text-decoration: underline;
 }
 
-.slot-1{
-  height: 60px;
-  grid-row: 17;
-  grid-column: 1;
+
+/*
+Fonctionnement :
+.slotTest{
+
+  height: 60px; 60px = 1 heure, 90 px=1h30, etc..
+  grid-row: 11; Impair = heure pile. Pair = demie heure. Pour afficher un event pour X heure pile, on fait grid-row: (X-5)*2 - 1. (X-5)*2 pour X heure et demie  (-5 car on commence à 6h)
+  grid-column: 3; De 1 à 7, correspond aux 7 jours de la semaine
+}
+*/
+
+/*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
+Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
+Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire)*/
+
+/*Pour le responsive et affichage mobile :*/
+@-ms-viewport {
+  width: device-width;
 }
 
 
+@media screen and (max-width:745px){
+  /* Pour les ecrans de moins de 745 pixels de large */
 
+  .slot{
+    width: 15% auto;
+  }
+
+}

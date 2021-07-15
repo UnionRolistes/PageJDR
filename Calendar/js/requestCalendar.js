@@ -27,7 +27,7 @@ function goTo(timeInterval) {
         'application/x-www-form-urlencoded ;charset=utf-8'
     );
 
-    xhr.send(`timeInterval=${timeInterval}`);
+    xhr.send(`timeInterval=${timeInterval}&ajax=ajax`);
 } 
 
 for (btn of document.getElementsByClassName("btn-change")) {

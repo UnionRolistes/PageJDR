@@ -2,12 +2,12 @@
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Le calendrier</title>
 
     <link rel="stylesheet" href="css/styleCalendar.css">
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
-    <script type="text/javascript" src="js/scriptDates.js"></script>
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png">
+    <script type="text/javascript" src="js/requestCalendar.js"></script>
 </head>
 <body>
     <header class="flex-horizontal">

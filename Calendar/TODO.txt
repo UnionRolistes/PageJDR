@@ -4,3 +4,5 @@ Bugs :
 Ajouts potentiels :
 -   après un clic pour changer de semaine, curseur en mode chargement jusqu'à réception de la
     nouvelle semaine
+Colonne du jour qui s'étend horizontalement quand plusieurs parties sont prévues au meme moment
+Clic sur l'inscription qui envoie directement au message d'annonce, et non juste le canal Planning jdr ?

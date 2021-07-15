@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parties>
+    <partie>
+        <titre>TEST</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-13</date>
+        <heure>12h00</heure>
+        <duree>3h00</duree>
+        <type>Campagne</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description</details>
+    </partie>
+    <partie>
+        <titre>TEST2</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>4</inscrits>
+        <date>2021-07-16</date>
+        <heure>13h30</heure>
+        <duree>3h</duree>
+        <type>Initiation</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>TEST3</titre>
+        <capacite>5</capacite>
+        <minimum>2</minimum>
+        <inscrits>2</inscrits>
+        <date>2021-07-21</date>
+        <heure>13h00</heure>
+        <duree>2h30</duree>
+        <type>One Shoot</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>TEST4</titre>
+        <capacite>6</capacite>
+        <minimum>2</minimum>
+        <inscrits>1</inscrits>
+        <date>2021-07-7</date>
+        <heure>13h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+</parties>
