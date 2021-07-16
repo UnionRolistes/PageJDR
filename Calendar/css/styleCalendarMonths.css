@@ -1,0 +1,29 @@
+@import url("styleCalendar.css"); /* --> CSS pour les éléments communs aux 2 pages */
+
+
+/*Pour la grille :*/
+
+.timeslots li{
+  min-height: 120px;
+}
+
+.slotMonth{
+  text-decoration: none;
+  color:white;
+}
+
+
+
+/*Pour le responsive et affichage mobile :*/
+@-ms-viewport {
+  width: device-width;
+}
+
+
+@media screen and (max-width:770px){
+  /* Pour les ecrans de moins de 745 pixels de large */
+
+  .slot{
+    width: 15% auto;
+  }
+}

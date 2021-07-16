@@ -1,21 +1,4 @@
-/*Pour les éléments communs aux 2 affichages*/
-
-body{
-  background-color: #23272A;
-  margin: 0;
-  padding: 0;
-  color: white;
-}
-.flex-horizontal {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.titleCenter{
-  text-align: center;
-}
-
+@import url("styleCalendar.css"); /* --> CSS pour les éléments communs aux 2 pages */
 
 /*Calendrier scrollable tout en gardant les jours à l'écran :*/
 
@@ -32,41 +15,6 @@ header, .header, .titleCenter{
 .titleCenter{
   top: 78px;
 }
-
-
-/* Designing for scroll-bar */
-::-webkit-scrollbar {
-  width: 7px;
-}
-/* Track */
-::-webkit-scrollbar-track {
-  background: gainsboro;
-  border-radius: 5px;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: black;
-  border-radius: 5px;
-}
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-
-
-/*Pour les boutons :*/
-
-.switch-container{
-  margin-left: auto; 
-  margin-right: 0;
-}
-.btn-container{
-  margin: 0 auto;
-  width: 15%; 
-}
-
-
 
 
 /*Pour la grille :*/
@@ -127,18 +75,7 @@ ul{
 
 
 
-/* Pour faire les lignes de grille :*/
-.timeslots li::after{
-  content: "";
-  position: absolute;
-  left: 10px;
-  width: 100%;
-  height: 1px;
-  background: 1px gray;
-}
-
-
-/*Pour les events (non fonctionnel)*/
+/*Pour les events*/
 
 .event-container{
   display: grid;
@@ -175,7 +112,7 @@ Fonctionnement :
 
 /*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
 Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
-Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire)*/
+Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)*/
 
 /*Pour le responsive et affichage mobile :*/
 @-ms-viewport {

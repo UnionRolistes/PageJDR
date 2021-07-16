@@ -1,129 +1,125 @@
+<!-- Génère le calendrier d'un mois -->
+
 <?php
-/*
-$today=date('d/m');
-echo $today;*/
+    if (session_status() != PHP_SESSION_ACTIVE)
+        session_start();
+        
+    $daysOfTheWeek = array('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
+    $months = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');//Tableau pour les mois francais
 
+    if (!isset($_SESSION['monday']))
+        $_SESSION['monday'] = new DateTimeImmutable('monday this week');
 
-//NON FONCTIONNEL. Pour l'instant juste copié collé de la page semaine
+    if (isset($_POST['timeInterval']))
+        if($_POST['timeInterval']=="reset")
+            $_SESSION['monday'] = new DateTimeImmutable('monday this week');
+        else
+            $_SESSION['monday'] = $_SESSION['monday']->add(date_interval_create_from_date_string($_POST['timeInterval']));
+    
 
-
-
-$week = [];//Contiendra les dates des jours de la semaine en cours, du lundi au dimanche
-
-$monday = strtotime('monday this week');
-foreach (range(0, 6) as $day) {
-    $week[] = date("d/m", (($day * 86400) + $monday));
-}
-$year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais si on veut un truc autonome faut le faire
-
+    $monday = $_SESSION['monday']; 
 ?>
 
+<h2 class="titleCenter"><?=$months[$monday->format("m")-1].' '.$monday->format("Y")?></h2>
+<section class="calendar">
+    
+    <div></div> <!--Pour la case vide en haut à gauche du calendrier -->
+    <div class="header">
+        <ul class="weekDays">
+            <?php
+                # Jours de la semaine
+                foreach ($daysOfTheWeek as $day)
+                    echo '<li>' . $day . '</li>'
+            ?>
+        </ul>
 
-<!DOCTYPE html>
-    <html lang="fr" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Le calendrier</title>
-        <link rel="stylesheet" href="css/styleCalendar.css">
+        <ul class="dayNumbers-container">     
+            <?php 
+                $lundiDebutMois=new DateTimeImmutable(date("Y-m-d", strtotime('monday this week', strtotime($monday->format('Y').'-'.$monday->format('m').'-01')))); 
+                $debutMois=new DateTimeImmutable(date("Y-m-d", strtotime($monday->format('Y').'-'.$monday->format('m').'-01')));               
 
-        <!-- <link rel="stylesheet" href="css/dark.css"> (Non réutilisable tel quel car change aussi les boutons)
-        <link rel="stylesheet" href="css/nouislider.css">
-        <link type="text/css" rel="stylesheet" href="css/tail.datetime-default.css">
-        <link rel="stylesheet" href="css/tail.datetime-harx-dark.min.css">-->
+                for ($i = 0; $i <= 6; $i++){
+                    $style="";
+                    if($lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("m") !=$debutMois->format("m")){$style="color: gray;";}
 
-        <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
-        <script type="text/javascript" src="js/scriptDates.js"></script>
+                    echo '<li style="'.$style.'">' . $lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("d/m") . '</li>';
+                }                 
+            ?>
+        </ul>
+    </div>
+   
 
-    </head>
-    <body id="body" onload="currentWeek()"> <!--Quand la page se charge, appeler currentWeek() pour afficher la semaine actuelle-->
-
-        <div class="btn-container">
-            <button id="btn_Precedent" onclick="changeWeek('previous')"><--</button>
-            <button id="btn_Today" onclick="changeWeek('today')">Aujourd'hui</button>
-            <button id="btn_Suivant" onclick="changeWeek('next')">--></button>
-        </div>
-
-        
-
-        <div class="switch-container">
-            <button id="btn_Weeks" class="btn_Switch" disabled>Semaine</button>
-            <button id="btn_Months" class="btn_Switch">Mois</button>
-        </div>
+    <div class="timeslots-containers">
+        <ul class="timeslots">
+            <?php
+                # Créneaux horaires
+                for ($i = 1; $i < 6; $i++)
+                    echo '<li>S'.$i.'</li>'
+            ?>
+        </ul>
+    </div>
 
 
-    <br>
-        <h2 class="titleCenter">Le calendrier <label id="annee"><?=$year?></label> </h2>
-    <br>
 
-        <div class="calendar">
-            <div class="header">
+    <!-- Affichage des parties -->
+    <div class="event-container">       
 
-                <ul class="weekDays">
-                    <li>Lundi</li>
-                    <li>Mardi</li>
-                    <li>Mercredi</li>
-                    <li>Jeudi</li>
-                    <li>Vendredi</li>
-                    <li>Samedi</li>
-                    <li>Dimanche</li>
-                </ul>
+        <?php 
+        $path="data/events.xml";
+        if (isset($_POST['ajax'])){$path="../data/events.xml";} //Car les liens absolus ne marchent pas, et apres un appel Ajax c'est le fichier php/calendarWeeks qui est appelé, et plus index.php
 
-                <ul class="dayNumbers-container">  <!--Les ID ne seront pt etre pas utile, à voir-->
-                    <li id="day1" class="dayNumbers"><?=$week[0]?></li>
-                    <li id="day2" class="dayNumbers"><?=$week[1]?></li>
-                    <li id="day3" class="dayNumbers"><?=$week[2]?></li>
-                    <li id="day4" class="dayNumbers"><?=$week[3]?></li>
-                    <li id="day5" class="dayNumbers"><?=$week[4]?></li>
-                    <li id="day6" class="dayNumbers"><?=$week[5]?></li>
-                    <li id="day7" class="dayNumbers"><?=$week[6]?></li>
-                </ul>
+        # Get the events from an xml file / From Discord
+        if (!file_exists($path)) {
+            exit('Echec lors de la récupération des parties');
+        }
+        $xml = simplexml_load_file($path);
 
-            </div>
-<br><br>
-            <div class="timeslots-containers">
-                <ul class="timeslots">
-                    <li>6h</li>
-                    <li>7h</li>
-                    <li>8h</li>
-                    <li>9h</li>
-                    <li>10h</li>
-                    <li>11h</li>
-                    <li>12h</li>
-                    <li>13h</li>
-                    <li>14h</li>
-                    <li>15h</li>
-                    <li>16h</li>
-                    <li>17h</li>
-                    <li>18h</li>
-                    <li>19h</li>
-                    <li>20h</li>
-                    <li>21h</li>
-                    <li>22h</li>
-                    <li>23h</li>
-                    <li>0h</li>
-                    <li>1h</li>
-                    <li>2h</li>
-                    <li>3h</li>
-                    <li>4h</li>
-                    <li>5h</li>
-                </ul>
-            </div>
 
-            <div class="event-container"> <!--Non fonctionnel-->
+        foreach ($xml->partie as $partie) {
                 
-                <div class="slot">
-                    <div class="event-status"></div>
-                    <span>Event A</span>
-                </div>
+            $date=new DateTimeImmutable($partie->date);
+
+            if ($date>=$debutMois && $date< $debutMois->add(date_interval_create_from_date_string('1 month')) ){ //Si la date est dans le mois actuellement simulé
+
+                //Jour :
+                $column=date('N', strtotime($partie->date)); //Sort l'index du jour dans sa semaine. 7 pour dimanche, 1 pour lundi, etc.
+
+                //S1 :
+                if($date>=$debutMois && $date<$debutMois->add(date_interval_create_from_date_string('next monday'))){
+                    $row=1;
+                } //S2 :
+                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('next monday')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks'))){
+                    $row=11;
+                } //S3 :
+                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks'))){
+                    $row=21;
+                } //S4 :
+                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks'))){
+                    $row=30;
+                } //S5 :
+                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('5 weeks'))){
+                    $row=40;
+                }
+
+                //row +4 si on veut en caser un 2eme. +10 si on veut changer de semaine
+
+                $heure=explode("h", "$partie->heure");
+                //Code couleur :
+                $color="green";//Par défaut, places disponibles
+
+                if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
+                if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
+                ?>
+               
+                <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 60px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
+                    <strong><?=$partie->titre?></strong><br><br>
+                    <strong>Systeme : </strong><?=$partie->systeme?><br>
+                </a>
+            <?php
+            }         
+        } ?>         
             
-            
-            </div>
-        </div>
+    </div>
 
-
-
-    </body>
-    </html>
-
-
+</section>

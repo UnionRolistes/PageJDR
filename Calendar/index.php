@@ -1,3 +1,5 @@
+<?php if ( (!isset($_GET['view'])) || ($_GET['view']!="weeks" && $_GET['view']!="months")){$_GET['view']="weeks";} //Type de vue par défaut ?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -5,34 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Le calendrier</title>
 
-    <link rel="stylesheet" href="css/styleCalendar.css">
+   <?php if ($_GET['view']=="months"){$style="Months";}
+   else{$style="Weeks";} ?>
+    <link rel="stylesheet" href="css/styleCalendar<?=$style?>.css">
     <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png">
     <script type="text/javascript" src="js/requestCalendar.js"></script>
 </head>
 <body>
     <header class="flex-horizontal">
         <nav class="flex-horizontal">
-            <button id="btn_Weeks" class="btn_Switch" disabled>Semaine</button>
-            <button id="btn_Months" class="btn_Switch">Mois</button>
+            <button id="btn_Weeks" class="btn_Switch" <?php if ($_GET['view']=="weeks"){echo "disabled";}?> onclick="window.location.href='index.php?view=weeks'">Semaine</button>
+            <button id="btn_Months" class="btn_Switch" <?php if ($_GET['view']=="months"){echo "disabled";}?> onclick="window.location.href='index.php?view=months'">Mois</button>
         </nav>
 
         <h1> Calendrier JDR <h1>
 
+        <input type="hidden" id="viewType" value=<?=$_GET['view'];?>>
         <nav>
-            <button class="btn-change btn_previous" value="-1 week"><--</button>
+            <?php if ($_GET['view']=="months"){
+                $valuePrevious="-1 month";
+                $valueNext="+1 month";
+            } else{
+                $valuePrevious="-1 week";
+                $valueNext="+1 week";
+            }?>
+            <button class="btn-change btn_previous" value="<?=$valuePrevious;?>"><--</button>
             <button class="btn-change btn_current" value="reset">Aujourd'hui</button>
-            <button class="btn-change btn_next" value="+1 week">--></button>
+            <button class="btn-change btn_next" value="<?=$valueNext;?>">--></button>              
         </nav>
     </header>
+    
     <div id="calendarFrame">
         <?php 
-            include('php/calendarWeeks.php')
+            if($_GET['view']=="months"){include('php/calendarMonths.php');}
+            else{include('php/calendarWeeks.php');}
         ?>
+        
     </div>
 
     <script src="js/requestCalendar.js"></script>
 </body>
 <?php
-    include('php/footer.php')
+    include('php/footer.php');
 ?>
 </html>
