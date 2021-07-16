@@ -113,8 +113,10 @@
                 ?>
                
                 <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 60px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
-                    <strong><?=$partie->titre?></strong><br><br>
+                    <strong><?=$partie->titre?></strong><br>
                     <strong>Systeme : </strong><?=$partie->systeme?><br>
+                    <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                    <strong>Durée : </strong><?=$partie->duree?>
                 </a>
             <?php
             }         
