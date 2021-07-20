@@ -1,88 +1,40 @@
 @import url("styleCalendar.css"); /* --> CSS pour les éléments communs aux 2 pages */
 
-/*Calendrier scrollable tout en gardant les jours à l'écran :*/
-
-header, .header, .titleCenter{
-  z-index: 6;
-  position: sticky;
-  overflow: auto;
-  top: 0;
-  background-color: #23272A;
-}
-.header{
-  top: 105px;
-}
-.titleCenter{
-  top: 78px;
-}
-
 
 /*Pour la grille :*/
-
-li{
-  list-style: none;
-}
-
-ul{
-  margin: 0;
-  padding: 0;
-}
    
 .calendar{ 
-  display: grid;
-  grid-template-columns: 50px auto;
+  grid-template-columns: 50px auto; /*max-content*/
   grid-template-rows: auto;
-  gap: 1px 1px;
-  grid-template-areas: 
-  ".header"
-  "timeslots-container main"; /*Definit les areas*/
+  position: relative;
+
+  grid-auto-flow: column;
+ /* grid-auto-flow: column;*/
+  /*grid-auto-columns: minmax(1fr, auto);*/
+  /*minmax(160px,1fr);*/
+ /* overflow-x: scroll;*/
 }
 
 .weekDays,
 .dayNumbers-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 45% 15% 15% 15%;*/
+  grid-auto-flow: column;
 }
-
-.weekDays{
-  background: #7289DA;
-}
-
-.header{
-  background: #23272A;
-  grid-area: header;
-}
-
-.timeslots-container{
-  background: lightgray;
-  grid-area: timeslots-container;
-  justify-content: left;
-}
-
-.timeslots{
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-}
-
-.timeslots li{
-  min-height: 60px;
-}
-
-.dayNumbers-container li{
-  min-height: 2 em;
-}
-
 
 
 /*Pour les events*/
 
 .event-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 45% 15% 15% 15%;*/
   grid-template-rows: repeat(48, 1fr); /*24 heures x 2 divisions : On veut une précision à la demie heure près. Si on voulait 1/4 quart d'heure, on fait 24 x 4*/
   grid-area: main; /*Associe à l'area main*/
   position: relative;
+
+  /*grid-auto-flow: column;*/
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(100px, auto);
 }
 
 .slot{
@@ -91,8 +43,12 @@ ul{
   border-radius: 5px;
   z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
   font-size: 12px;
-  width: 150px auto;
+  /*width: 150px auto;*/
   overflow: auto;
+
+
+  min-width: 170px;
+  max-width: 170px;
 }
 .slot a{
   color: white;
@@ -100,15 +56,6 @@ ul{
 }
 
 
-/*
-Fonctionnement :
-.slotTest{
-
-  height: 60px; 60px = 1 heure, 90 px=1h30, etc..
-  grid-row: 11; Impair = heure pile. Pair = demie heure. Pour afficher un event pour X heure pile, on fait grid-row: (X-5)*2 - 1. (X-5)*2 pour X heure et demie  (-5 car on commence à 6h)
-  grid-column: 3; De 1 à 7, correspond aux 7 jours de la semaine
-}
-*/
 
 /*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
 Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml

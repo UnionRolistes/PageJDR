@@ -31,7 +31,7 @@ $emot_autre = ' :space_invader: ';
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/styleDark.css">
     
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png">
+    <link rel="icon" type="image/png" href="img/ur-bl2.png">
 
     <script src="js/updateSliderText.js"></script>
     <script src="js/durationSelect.js"></script>

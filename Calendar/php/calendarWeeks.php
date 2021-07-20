@@ -52,10 +52,8 @@
     </div>
 
 
-
     <!-- Affichage des parties -->
     <div class="event-container">       
-
         <?php 
         $path="data/events.xml";
         if (isset($_POST['ajax'])){$path="../data/events.xml";} //Car les liens absolus ne marchent pas, et apres un appel Ajax c'est le fichier php/calendarWeeks qui est appelé, et plus index.php
@@ -65,8 +63,6 @@
             exit('Echec lors de la récupération des parties');
         }
         $xml = simplexml_load_file($path);
-
-        
 
         foreach ($xml->partie as $partie) {
                 
@@ -97,7 +93,7 @@
 
                 //Code couleur :
                 $color="green";//Par défaut, places disponibles
-                $inscription='<a href="#">Details et inscription</a>'; //Par défaut
+                $inscription='<a href="https://discord.com/channels/298887769793757184/410049488816701450/864963544004821022">Details et inscription</a>'; //Par défaut
 
                 if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
                 if (intval($partie->inscrits) >= intval($partie->capacite)){ $inscription="COMPLET";$color="rgb(255, 17, 17)";} //Si c'est complet
@@ -111,7 +107,8 @@
                     <strong>Mineurs : </strong><?=$partie->pjMineur?><br>
                     <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
                     <?=$partie->minimum?> joueurs minimum
-                    <br><br><?=$inscription?>
+                    <br><br>À <strong><?=$partie->heure?></strong><br>
+                    <?=$inscription?>
                 </div>
             <?php
             }         

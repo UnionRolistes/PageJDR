@@ -3,8 +3,37 @@
 
 /*Pour la grille :*/
 
+.calendar{ 
+  grid-template-columns: 50px auto;
+}
+
+.weekDays,
+.dayNumbers-container{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
 .timeslots li{
-  min-height: 120px;
+  min-height: 180px;
+}
+
+
+.slot{  /*TODO: Regler le probleme des %*/
+  position:absolute;
+  background: green;
+  border-radius: 5px;
+  z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
+  font-size: 12px;
+  overflow: auto;
+
+  min-width: 180px;
+  max-width: 180px;
+ /* min-width: 15%;
+  max-width: 15%;*/
+}
+.slot a{
+  color: white;
+  text-decoration: underline;
 }
 
 .slotMonth{
@@ -12,6 +41,14 @@
   color:white;
 }
 
+.border {
+  position: absolute;
+  left: 1fr;
+  width: 2px;
+  height: 125%;
+  background: 1px gray;
+  right: -9px
+}
 
 
 /*Pour le responsive et affichage mobile :*/
@@ -24,6 +61,7 @@
   /* Pour les ecrans de moins de 745 pixels de large */
 
   .slot{
-    width: 15% auto;
+    min-width: 20%;
+    max-width: 20%;
   }
 }

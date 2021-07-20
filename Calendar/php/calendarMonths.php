@@ -29,23 +29,25 @@
             <?php
                 # Jours de la semaine
                 foreach ($daysOfTheWeek as $day)
-                    echo '<li>' . $day . '</li>'
+                    echo '<li>' . $day . '</li>';                
             ?>
         </ul>
 
+        <?php 
+            $lundiDebutMois=new DateTimeImmutable(date("Y-m-d", strtotime('monday this week', strtotime($monday->format('Y').'-'.$monday->format('m').'-01')))); 
+            $debutMois=new DateTimeImmutable(date("Y-m-d", strtotime($monday->format('Y').'-'.$monday->format('m').'-01')));       
+        ?>
+    <!--
         <ul class="dayNumbers-container">     
-            <?php 
-                $lundiDebutMois=new DateTimeImmutable(date("Y-m-d", strtotime('monday this week', strtotime($monday->format('Y').'-'.$monday->format('m').'-01')))); 
-                $debutMois=new DateTimeImmutable(date("Y-m-d", strtotime($monday->format('Y').'-'.$monday->format('m').'-01')));               
-
-                for ($i = 0; $i <= 6; $i++){
-                    $style="";
-                    if($lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("m") !=$debutMois->format("m")){$style="color: gray;";}
-
-                    echo '<li style="'.$style.'">' . $lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("d/m") . '</li>';
-                }                 
+            <?php
+          /*  for ($i = 0; $i <= 6; $i++){
+                $style="";
+                if($lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("m") !=$debutMois->format("m")){$style="color: gray;";}
+                echo '<li style="'.$style.'">' . $lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("d/m") . '</li>';
+                }    */             
             ?>
-        </ul>
+        </ul> 
+    -->
     </div>
    
 
@@ -86,7 +88,7 @@
 
                 //S1 :
                 if($date>=$debutMois && $date<$debutMois->add(date_interval_create_from_date_string('next monday'))){
-                    $row=1;
+                    $row=2;
                 } //S2 :
                 else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('next monday')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks'))){
                     $row=11;
@@ -95,31 +97,63 @@
                     $row=21;
                 } //S4 :
                 else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks'))){
-                    $row=30;
+                    $row=31;
                 } //S5 :
                 else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('5 weeks'))){
                     $row=40;
                 }
 
-                //row +4 si on veut en caser un 2eme. +10 si on veut changer de semaine
+                //row +5 si on veut en caser un 2eme. +10 si on veut changer de semaine (a quelques exceptions près)
 
                 $heure=explode("h", "$partie->heure");
                 //Code couleur :
                 $color="green";//Par défaut, places disponibles
 
-                if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
-                if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
-                if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
-                ?>
-               
-                <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 60px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
-                    <strong><?=$partie->titre?></strong><br>
-                    <strong>Systeme : </strong><?=$partie->systeme?><br>
-                    <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
-                    <strong>Durée : </strong><?=$partie->duree?>
-                </a>
-            <?php
-            }         
+                //Si on doit afficher que le nombre de parties, et que ça a pas encore été fait :
+                $affichageMax=2; //Nombre de parties max qu'on peut afficher par jour. Au dessus de ce nombre, affichera juste "X parties prévues"
+                //$nbDates[$str_date][0] contient le nombre de parties prevues le jour $str_date
+
+                if($nbDates[$str_date][0]>$affichageMax){ 
+
+                    if ($nbDates[$str_date]['affichage']=="not done"){ ?>
+
+                        <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: green">
+                            <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
+                            le <strong><?=$date->format("d/m")?></strong>
+                        </a>  
+
+                <?php 
+                        $nbDates[$str_date]['affichage']=="done";
+                    }
+                }
+                else{
+                    //Si on a pas besoin d'afficher que le nombre, on fait l'affichage classique en mettant les vignettes cote à cote:
+            
+                    if($nbDates[$str_date][0]>1){
+                        $row=$row+($nbDates[$str_date][0]-1)*4;
+                        $nbDates[$str_date][0]--;
+                    }
+                
+
+                    $heure=explode("h", "$partie->heure");
+                    //Code couleur :
+                    $color="green";//Par défaut, places disponibles
+
+                    if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                    if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
+                    if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
+                    ?>
+                
+                    
+                    <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 70px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
+                        <strong><?=$partie->titre?></strong><br>
+                        <strong>Systeme : </strong><?=$partie->systeme?><br>
+                        <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                        <strong>Durée : </strong><?=$partie->duree?><br>
+                        Le <strong><?=$date->format("d/m")?></strong>
+                    </a>           
+        <?php   }
+            }      
         } ?>         
             
     </div>

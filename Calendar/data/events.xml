@@ -5,6 +5,37 @@
         <capacite>4</capacite>
         <minimum>2</minimum>
         <inscrits>3</inscrits>
+        <date>2021-07-2</date>
+        <heure>12h00</heure>
+        <duree>3h00</duree>
+        <type>Campagne</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description</details>
+    </partie>
+    <partie>
+        <titre>TEST</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-2</date>
+        <heure>12h00</heure>
+        <duree>3h00</duree>
+        <type>Campagne</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description</details>
+    </partie>
+
+    <partie>
+        <titre>TEST</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>3</inscrits>
         <date>2021-07-13</date>
         <heure>12h00</heure>
         <duree>3h00</duree>
@@ -16,7 +47,37 @@
         <details>Description</details>
     </partie>
     <partie>
-        <titre>TEST2</titre>
+        <titre>TEST</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-13</date>
+        <heure>12h00</heure>
+        <duree>3h00</duree>
+        <type>Campagne</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description</details>
+    </partie>
+    <partie>
+        <titre>Saignée Méditerranéenne</titre>
+        <capacite>4</capacite>
+        <minimum>2</minimum>
+        <inscrits>4</inscrits>
+        <date>2021-07-18</date>
+        <heure>13h30</heure>
+        <duree>3h</duree>
+        <type>Initiation</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Oui</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>Saignée Méditerranéenne</titre>
         <capacite>4</capacite>
         <minimum>2</minimum>
         <inscrits>4</inscrits>
@@ -61,6 +122,36 @@
         <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
     </partie>
     <partie>
+        <titre>TEST4</titre>
+        <capacite>6</capacite>
+        <minimum>2</minimum>
+        <inscrits>1</inscrits>
+        <date>2021-07-08</date>
+        <heure>14h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+     <partie>
+        <titre>Les Feux de Saint-Laurent-du-Var</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-24</date>
+        <heure>14h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
         <titre>TEST5</titre>
         <capacite>6</capacite>
         <minimum>2</minimum>
@@ -76,11 +167,26 @@
         <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
     </partie>
     <partie>
-        <titre>TEST6</titre>
+        <titre>TEST7</titre>
         <capacite>6</capacite>
         <minimum>4</minimum>
         <inscrits>3</inscrits>
-        <date>2021-07-31</date>
+        <date>2021-07-24</date>
+        <heure>16h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>TEST10</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-22</date>
         <heure>14h00</heure>
         <duree>3h30</duree>
         <type>Scénario</type>
@@ -90,4 +196,64 @@
         <plateformes>Discord</plateformes>
         <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
     </partie>
+    <partie>
+        <titre>TEST10</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-22</date>
+        <heure>15h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>TEST10</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-22</date>
+        <heure>16h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>TEST11</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-28</date>
+        <heure>16h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>
+    <partie>
+        <titre>blabla blabala blabala blabala blabala blabala blabala blabala</titre>
+        <capacite>6</capacite>
+        <minimum>4</minimum>
+        <inscrits>3</inscrits>
+        <date>2021-07-28</date>
+        <heure>16h00</heure>
+        <duree>3h30</duree>
+        <type>Scénario</type>
+        <mj>Dubant#5540</mj>
+        <systeme>FallOut</systeme>
+        <pjMineur>Non</pjMineur>
+        <plateformes>Discord</plateformes>
+        <details>Description blabala blablab a blabala blablab blabala blablab blabala blablab</details>
+    </partie>  
 </parties>

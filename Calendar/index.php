@@ -10,7 +10,7 @@
    <?php if ($_GET['view']=="months"){$style="Months";}
    else{$style="Weeks";} ?>
     <link rel="stylesheet" href="css/styleCalendar<?=$style?>.css">
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png">
+    <link rel="icon" type="image/png" href="../img/ur-bl2.png"> <!--https://cdn.discordapp.com/attachments/652207549168484352/862020088788942868/ur-bl2.png-->
     <script type="text/javascript" src="js/requestCalendar.js"></script>
 </head>
 <body>
