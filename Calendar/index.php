@@ -48,6 +48,6 @@
     <script src="js/requestCalendar.js"></script>
 </body>
 <?php
-    include('php/footer.php');
+    include('../php/footer.php');
 ?>
 </html>

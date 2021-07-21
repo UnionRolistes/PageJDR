@@ -76,6 +76,15 @@
         }
         $xml = simplexml_load_file($path);
 
+        //Xml to array
+        $tmp = json_encode($xml);
+        $arrayXml = json_decode($tmp,TRUE);
+
+        //Pour compter le nombre de parties le même jour :
+        $nbDates = array_count_values(array_column($arrayXml['partie'], 'date'));
+        //var_dump($nbDates);
+        //Sort un tableau sous la forme $nbDates['2021-07-24']=X (nombre de parties prévues cette date)
+
 
         foreach ($xml->partie as $partie) {
                 
@@ -104,6 +113,14 @@
                 }
 
                 //row +5 si on veut en caser un 2eme. +10 si on veut changer de semaine (a quelques exceptions près)
+
+                //Pour afficher plusieurs parties cote à cote, ou bien juste le nombre si on a plus de 4 parties un meme jour
+                $str_date=(string)$partie->date;
+                if (!isset($nbDates[$str_date]['affichage'])){
+                    $nbDates[$str_date]=array($nbDates[$str_date]);
+                    $nbDates[$str_date]['affichage']="not done";
+                }
+                
 
                 $heure=explode("h", "$partie->heure");
                 //Code couleur :
