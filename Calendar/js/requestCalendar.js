@@ -21,13 +21,17 @@ function goTo(timeInterval) {
         }
     }
 
-    xhr.open('POST', 'php/calendarWeeks.php', true);
+    var type = document.getElementById('viewType').value;
+
+    if(type == "months"){xhr.open('POST', 'php/calendarMonths.php', true);}
+    else{xhr.open('POST', 'php/calendarWeeks.php', true);}
+
     xhr.setRequestHeader(
         'Content-Type',
         'application/x-www-form-urlencoded ;charset=utf-8'
     );
 
-    xhr.send(`timeInterval=${timeInterval}`);
+    xhr.send(`timeInterval=${timeInterval}&ajax=ajax`);
 } 
 
 for (btn of document.getElementsByClassName("btn-change")) {

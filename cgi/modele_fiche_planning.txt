@@ -1,4 +1,3 @@
- ** Nouveau jeu de rôle ! **
 
  **Type ** {type}
 :calendar: ** Date ** Le {date}
