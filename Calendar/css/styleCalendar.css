@@ -93,7 +93,7 @@ ul{
 .weekDays,
 .dayNumbers-container{
   display: grid;
-  grid-template-columns: /*repeat(7, 1fr);*/ /*1fr 1fr 1fr 1fr 2fr 2fr 3fr ;*/ 14% 14% 14% 14% 30% 14% 14%;
+  grid-template-columns: repeat(7, 1fr); /*1fr 1fr 1fr 1fr 2fr 2fr 3fr ;*/ /*14% 14% 14% 14% 30% 14% 14%;*/
 }
 
 .weekDays{
