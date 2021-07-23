@@ -38,7 +38,7 @@
 }
 
 .slot{
-  position:absolute;
+  position:absolute; /*relative donne un rendu bizarre*/
   background: green;
   border-radius: 5px;
   z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
@@ -46,9 +46,9 @@
   /*width: 150px auto;*/
   overflow: auto;
 
-
-  min-width: 170px;
-  max-width: 170px;
+  display: inline;
+  min-width: 12vw;
+  max-width: 12vw;
 }
 .slot a{
   color: white;
@@ -57,9 +57,13 @@
 
 
 
-/*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
+/*TODO : 
 Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
-Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)*/
+Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)
+Problème : Quand 2 parties sont au meme creneau, on veut afficher ces 2 parties cote à cote, + étirer horizontalement la colonne du jour en question. 
+J'ai fait plusieurs tests : étendre une colonne n'étend pas aussi le surlignage bleu + ça décale pas les parties des jours suivants
+Les slots sont en position absolute, car relative ne les affiche pas correctement (les affiche tout en bas de la page). Arriver à la passer en relative serait déjà un progrès  
+*/
 
 /*Pour le responsive et affichage mobile :*/
 @-ms-viewport {

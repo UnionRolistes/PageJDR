@@ -26,10 +26,8 @@
   font-size: 12px;
   overflow: auto;
 
-  min-width: 180px;
-  max-width: 180px;
- /* min-width: 15%;
-  max-width: 15%;*/
+  min-width: 12vw;
+  max-width: 12vw;
 }
 .slot a{
   color: white;
@@ -57,11 +55,11 @@
 }
 
 
-@media screen and (max-width:770px){
-  /* Pour les ecrans de moins de 745 pixels de large */
+@media screen and (max-width:1430px){
+  /* Pour les ecrans de moins de 770 pixels de large */
 
-  .slot{
-    min-width: 20%;
-    max-width: 20%;
-  }
+ /* .slot{
+    min-width: 10vw;
+    max-width: 10vw;
+  }*/
 }

@@ -5,7 +5,8 @@
         session_start();
         
     $daysOfTheWeek = array('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
-    $months = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');//Tableau pour les mois francais
+    $months = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
+    //Tableau pour les mois francais
 
     if (!isset($_SESSION['monday']))
         $_SESSION['monday'] = new DateTimeImmutable('monday this week');
@@ -83,7 +84,7 @@
         //Pour compter le nombre de parties le même jour :
         $nbDates = array_count_values(array_column($arrayXml['partie'], 'date'));
         //var_dump($nbDates);
-        //Sort un tableau sous la forme $nbDates['2021-07-24']=X (nombre de parties prévues cette date)
+        //Sort un tableau sous la forme $nbDates['2021-07-24'][0]=X (nombre de parties prévues cette date). 
 
 
         foreach ($xml->partie as $partie) {
@@ -121,20 +122,23 @@
                     $nbDates[$str_date]['affichage']="not done";
                 }
                 
+                
 
                 $heure=explode("h", "$partie->heure");
                 //Code couleur :
                 $color="green";//Par défaut, places disponibles
+                if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée 
 
                 //Si on doit afficher que le nombre de parties, et que ça a pas encore été fait :
                 $affichageMax=2; //Nombre de parties max qu'on peut afficher par jour. Au dessus de ce nombre, affichera juste "X parties prévues"
                 //$nbDates[$str_date][0] contient le nombre de parties prevues le jour $str_date
 
+                //$nbDates['2021-07-24']['affichage']="done" ou "not done". Comme ça, si une des 3+ parties prévues un jour a dejà affiché "X parties prévues", les autres de la même date n'auront pas besoin de le faire
                 if($nbDates[$str_date][0]>$affichageMax){ 
 
                     if ($nbDates[$str_date]['affichage']=="not done"){ ?>
 
-                        <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: green">
+                        <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
                             <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
                             le <strong><?=$date->format("d/m")?></strong>
                         </a>  
@@ -144,7 +148,7 @@
                     }
                 }
                 else{
-                    //Si on a pas besoin d'afficher que le nombre, on fait l'affichage classique en mettant les vignettes cote à cote:
+                    //Si on a pas besoin d'afficher que le nombre parties, on fait l'affichage classique en mettant les vignettes cote à cote:
             
                     if($nbDates[$str_date][0]>1){
                         $row=$row+($nbDates[$str_date][0]-1)*4;

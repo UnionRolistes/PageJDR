@@ -1,3 +1,7 @@
+- Changelog for v0.3.4 (2021-07-23)
+    * Calendrier : Responsive sur mobile
+    * Added CC BY licence to the footer
+
 - Changelog for v0.3.3 (2021-07-16)
     * Calendrier : prototype d'affichage par semaine et par mois
 
