@@ -1,3 +1,5 @@
+Lien avec Discord à faire (récupération des vraies parties et de leur nombre d'inscrits)
+
 Bugs :
 Gerer les cas ou plusieurs parties sont au meme moment dans l'affichage par semaine
 

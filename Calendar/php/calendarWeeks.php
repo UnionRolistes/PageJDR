@@ -93,7 +93,8 @@
 
                 //Code couleur :
                 $color="green";//Par défaut, places disponibles
-                $inscription='<a href="https://discord.com/channels/298887769793757184/410049488816701450/864963544004821022">Details et inscription</a>'; //Par défaut
+                $inscription='<a href="'.$partie->lien.'">Details et inscription</a>'; 
+                //Par défaut. (Liaison avec Discord à faire)
 
                 if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
                 if (intval($partie->inscrits) >= intval($partie->capacite)){ $inscription="COMPLET";$color="rgb(255, 17, 17)";} //Si c'est complet
@@ -115,5 +116,4 @@
         } ?>         
             
     </div>
-
 </section>

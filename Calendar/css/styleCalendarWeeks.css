@@ -18,7 +18,7 @@
 .weekDays,
 .dayNumbers-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 45% 15% 15% 15%;*/
+  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 15% 15% 15% 15%;*/
   grid-auto-flow: column;
 }
 
@@ -27,7 +27,7 @@
 
 .event-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 45% 15% 15% 15%;*/
+  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 15% 15% 15% 15%;*/
   grid-template-rows: repeat(48, 1fr); /*24 heures x 2 divisions : On veut une précision à la demie heure près. Si on voulait 1/4 quart d'heure, on fait 24 x 4*/
   grid-area: main; /*Associe à l'area main*/
   position: relative;
@@ -36,25 +36,6 @@
   grid-auto-flow: column;
   grid-auto-columns: minmax(100px, auto);
 }
-
-.slot{
-  position:absolute; /*relative donne un rendu bizarre*/
-  background: green;
-  border-radius: 5px;
-  z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
-  font-size: 12px;
-  /*width: 150px auto;*/
-  overflow: auto;
-
-  display: inline;
-  min-width: 12vw;
-  max-width: 12vw;
-}
-.slot a{
-  color: white;
-  text-decoration: underline;
-}
-
 
 
 /*TODO : 
@@ -72,7 +53,7 @@ Les slots sont en position absolute, car relative ne les affiche pas correctemen
 
 
 @media screen and (max-width:770px){
-  /* Pour les ecrans de moins de 745 pixels de large */
+  /* Pour les ecrans de moins de 770 pixels de large */
 
   .slot{
     width: 15% auto;

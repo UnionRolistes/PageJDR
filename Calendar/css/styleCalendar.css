@@ -148,6 +148,25 @@ ul{
   position: relative;
 }
 
+.slot{ 
+  position:absolute; /*relative donne un rendu bizarre*/
+  background: green;
+  border-radius: 5px;
+  z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
+  font-size: 12px;
+  overflow: auto;
+
+  display: inline;
+  min-width: 12vw;
+  max-width: 12vw;
+  border: 1px solid black;
+}
+.slot a{
+  color: white;
+  text-decoration: underline;
+}
+
+
 
 /*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
 Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml

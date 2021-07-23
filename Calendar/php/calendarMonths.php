@@ -38,7 +38,7 @@
             $lundiDebutMois=new DateTimeImmutable(date("Y-m-d", strtotime('monday this week', strtotime($monday->format('Y').'-'.$monday->format('m').'-01')))); 
             $debutMois=new DateTimeImmutable(date("Y-m-d", strtotime($monday->format('Y').'-'.$monday->format('m').'-01')));       
         ?>
-    <!--
+    <!-- Si on veut afficher les dates de la 1ere semaine juste dessous de leur jours :
         <ul class="dayNumbers-container">     
             <?php
           /*  for ($i = 0; $i <= 6; $i++){
@@ -51,7 +51,6 @@
     -->
     </div>
    
-
     <div class="timeslots-containers">
         <ul class="timeslots">
             <?php
@@ -61,7 +60,6 @@
             ?>
         </ul>
     </div>
-
 
 
     <!-- Affichage des parties -->
@@ -121,8 +119,7 @@
                     $nbDates[$str_date]=array($nbDates[$str_date]);
                     $nbDates[$str_date]['affichage']="not done";
                 }
-                
-                
+                             
 
                 $heure=explode("h", "$partie->heure");
                 //Code couleur :
@@ -137,7 +134,6 @@
                 if($nbDates[$str_date][0]>$affichageMax){ 
 
                     if ($nbDates[$str_date]['affichage']=="not done"){ ?>
-
                         <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
                             <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
                             le <strong><?=$date->format("d/m")?></strong>
@@ -178,5 +174,4 @@
         } ?>         
             
     </div>
-
 </section>

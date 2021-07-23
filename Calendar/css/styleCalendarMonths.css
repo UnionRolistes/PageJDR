@@ -18,22 +18,6 @@
 }
 
 
-.slot{  /*TODO: Regler le probleme des %*/
-  position:absolute;
-  background: green;
-  border-radius: 5px;
-  z-index: 5; /*Pour afficher au 1er plan, au dessus des lignes*/
-  font-size: 12px;
-  overflow: auto;
-
-  min-width: 12vw;
-  max-width: 12vw;
-}
-.slot a{
-  color: white;
-  text-decoration: underline;
-}
-
 .slotMonth{
   text-decoration: none;
   color:white;
@@ -55,11 +39,10 @@
 }
 
 
-@media screen and (max-width:1430px){
-  /* Pour les ecrans de moins de 770 pixels de large */
+@media screen and (max-width:1330px){
+  /* Pour les ecrans de moins de 1330 pixels de large (correspond au moment où les textes des vignettes passent à la ligne de pas beaucoup */
 
- /* .slot{
-    min-width: 10vw;
-    max-width: 10vw;
-  }*/
+  .slot{
+    font-size:10px;
+  }
 }

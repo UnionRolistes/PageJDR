@@ -1,6 +1,6 @@
 <?php
 //Sert à passer des mois à la semaine d'une partie cliquée. J'ai fait un fichier externe pour ne pas avoir la date dans l'Url de index.php
-//Optimisable plus tard si on veut tout passer en Ajax (mais risque d'etre complexe)
+//Optimisable plus tard si on veut tout passer par l'Ajax (mais risque d'etre complexe)
 
 session_start();
 
@@ -17,6 +17,4 @@ else{
 }
 
 //checkdate($month, $day, $year) verfie si la date est valide, cad si année à 4 chiffres, mois entre 1 et 12, et jour entre 1 et 31 en fonction des mois (le detecte automatiquement)
-
-
 ?>
