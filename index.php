@@ -112,11 +112,11 @@ $emot_autre = ' :space_invader: ';
                 </div>
             <small id="nbTxt" name="nbJoueurs" class="annotation">Moins de 5 joueurs</small>
 
-            <input type="hidden" value="moins de 5 joueurs" name="nbJoueurs" id="nbJoueurs"/>
+           <!-- <input type="hidden" value="moins de 5 joueurs" name="nbJoueurs" id="nbJoueurs"/> -->
 
-            <!-- test de nbJoueurs. Ces 2 inputs ne sont pas utilisés actuellement
+            
             <input type="hidden" value="test" name="minJoueurs" id="minJoueurs"/>
-            <input type="hidden" value="test" name="maxJoueurs" id="maxJoueurs"/> -->
+            <input type="hidden" value="test" name="maxJoueurs" id="maxJoueurs"/>
 
                 
             <label>Type <span class="rouge">*</span></label>             
