@@ -35,7 +35,7 @@ def get_payload(form) -> str:
         players=players,
         length=form.getvalue('jdr_length'),
         pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",
-        system=form.getvalue('jdr_system'),
+        system=form.getvalue('jdr_system') + form.getvalue('jdr_system_other'),
         minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
         details=form.getvalue('jdr_details')
