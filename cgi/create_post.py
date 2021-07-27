@@ -53,13 +53,13 @@ if __name__ == '__main__':
     webhook_url = form.getvalue('webhook_url')
     if webhook_url:
         webhook = Webhook.from_url(get_webhook_url(), adapter=RequestsWebhookAdapter())
-        webhook.send(
+        msg = webhook.send(
             "",
             allowed_mentions=discord.AllowedMentions(users=True),
             embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=logo_url),
         )
         calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-        calendar.add_event(form)
+        calendar.add_event(form, msg)  # TODO maybe move webhook processing to urpy
         calendar.save()
         # Redirects to main page
         utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?webhook={get_webhook_url()}")
