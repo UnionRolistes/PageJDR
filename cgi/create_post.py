@@ -39,6 +39,7 @@ def get_payload(form) -> str:
         minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
         details=form.getvalue('jdr_details')
+
     )
 
     return payload
@@ -65,3 +66,4 @@ if __name__ == '__main__':
         utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?webhook={get_webhook_url()}")
     else:
         utils.html_header_webhook_not_supplied()
+
