@@ -78,99 +78,110 @@
         //Xml to array
         $tmp = json_encode($xml);
         $arrayXml = json_decode($tmp,TRUE);
+        //var_dump($arrayXml['partie']);
 
         //Pour compter le nombre de parties le même jour :
         $nbDates = array_count_values(array_column($arrayXml['partie'], 'date'));
+
         //var_dump($nbDates);
         //Sort un tableau sous la forme $nbDates['2021-07-24'][0]=X (nombre de parties prévues cette date). 
 
 
         foreach ($xml->partie as $partie) {
-                
-            $date=new DateTimeImmutable($partie->date);
 
-            if ($date>=$debutMois && $date< $debutMois->add(date_interval_create_from_date_string('1 month')) ){ //Si la date est dans le mois actuellement simulé
+            try{                         
+                $date=new DateTimeImmutable($partie->date);
 
-                //Jour :
-                $column=date('N', strtotime($partie->date)); //Sort l'index du jour dans sa semaine. 7 pour dimanche, 1 pour lundi, etc.
+                if ($date>=$debutMois && $date< $debutMois->add(date_interval_create_from_date_string('1 month')) ){ //Si la date est dans le mois actuellement simulé
 
-                //S1 :
-                if($date>=$debutMois && $date<$debutMois->add(date_interval_create_from_date_string('next monday'))){
-                    $row=2;
-                } //S2 :
-                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('next monday')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks'))){
-                    $row=11;
-                } //S3 :
-                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks'))){
-                    $row=21;
-                } //S4 :
-                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks'))){
-                    $row=31;
-                } //S5 :
-                else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('5 weeks'))){
-                    $row=40;
-                }
+                    //Jour :
+                    $column=date('N', strtotime($partie->date)); //Sort l'index du jour dans sa semaine. 7 pour dimanche, 1 pour lundi, etc.
 
-                //row +5 si on veut en caser un 2eme. +10 si on veut changer de semaine (a quelques exceptions près)
-
-                //Pour afficher plusieurs parties cote à cote, ou bien juste le nombre si on a plus de 4 parties un meme jour
-                $str_date=(string)$partie->date;
-                if (!isset($nbDates[$str_date]['affichage'])){
-                    $nbDates[$str_date]=array($nbDates[$str_date]);
-                    $nbDates[$str_date]['affichage']="not done";
-                }
-                             
-
-                $heure=explode("h", "$partie->heure");
-                //Code couleur :
-                $color="green";//Par défaut, places disponibles
-                if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée 
-
-                //Si on doit afficher que le nombre de parties, et que ça a pas encore été fait :
-                $affichageMax=2; //Nombre de parties max qu'on peut afficher par jour. Au dessus de ce nombre, affichera juste "X parties prévues"
-                //$nbDates[$str_date][0] contient le nombre de parties prevues le jour $str_date
-
-                //$nbDates['2021-07-24']['affichage']="done" ou "not done". Comme ça, si une des 3+ parties prévues un jour a dejà affiché "X parties prévues", les autres de la même date n'auront pas besoin de le faire
-                if($nbDates[$str_date][0]>$affichageMax){ 
-
-                    if ($nbDates[$str_date]['affichage']=="not done"){ ?>
-                        <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
-                            <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
-                            le <strong><?=$date->format("d/m")?></strong>
-                        </a>  
-
-                <?php 
-                        $nbDates[$str_date]['affichage']=="done";
+                    //S1 :
+                    if($date>=$debutMois && $date<$debutMois->add(date_interval_create_from_date_string('next monday'))){
+                        $row=2;
+                    } //S2 :
+                    else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('next monday')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks'))){
+                        $row=11;
+                    } //S3 :
+                    else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('2 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks'))){
+                        $row=21;
+                    } //S4 :
+                    else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('3 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks'))){
+                        $row=31;
+                    } //S5 :
+                    else if ($date>=$lundiDebutMois->add(date_interval_create_from_date_string('4 weeks')) && $date<$lundiDebutMois->add(date_interval_create_from_date_string('5 weeks'))){
+                        $row=40;
                     }
-                }
-                else{
-                    //Si on a pas besoin d'afficher que le nombre parties, on fait l'affichage classique en mettant les vignettes cote à cote:
-            
-                    if($nbDates[$str_date][0]>1){
-                        $row=$row+($nbDates[$str_date][0]-1)*4;
-                        $nbDates[$str_date][0]--;
+
+                    //row +5 si on veut en caser un 2eme. +10 si on veut changer de semaine (a quelques exceptions près)
+
+                    //Pour afficher plusieurs parties cote à cote, ou bien juste le nombre si on a plus de 4 parties un meme jour
+                    $str_date=(string)$partie->date;
+                    
+                    if(!isset($nbDates[$str_date])){
+                        $nbDates[$str_date]=1;
                     }
-                
+
+                    if (!isset($nbDates[$str_date]['affichage'])){
+                        $nbDates[$str_date]=array($nbDates[$str_date]);
+                        $nbDates[$str_date]['affichage']="not done";
+                    }
+                                
 
                     $heure=explode("h", "$partie->heure");
                     //Code couleur :
                     $color="green";//Par défaut, places disponibles
+                    if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée 
 
-                    if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
-                    if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
-                    if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
-                    ?>
+                    //Si on doit afficher que le nombre de parties, et que ça a pas encore été fait :
+                    $affichageMax=2; //Nombre de parties max qu'on peut afficher par jour. Au dessus de ce nombre, affichera juste "X parties prévues"
+                    //$nbDates[$str_date][0] contient le nombre de parties prevues le jour $str_date
+
+                    //$nbDates['2021-07-24']['affichage']="done" ou "not done". Comme ça, si une des 3+ parties prévues un jour a dejà affiché "X parties prévues", les autres de la même date n'auront pas besoin de le faire
+                    if($nbDates[$str_date][0]>$affichageMax){ 
+
+                        if ($nbDates[$str_date]['affichage']=="not done"){ ?>
+                            <a href="php/monthsToWeeks.php?date=<?=$str_date?>" class="slot slotMonth" style="text-align: center; height: 140px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
+                                <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
+                                le <strong><?=$date->format("d/m")?></strong>
+                            </a>  
+
+                    <?php 
+                            $nbDates[$str_date]['affichage']=="done";
+                        }
+                    }
+                    else{
+                        //Si on a pas besoin d'afficher que le nombre parties, on fait l'affichage classique en mettant les vignettes cote à cote:
                 
+                        if($nbDates[$str_date][0]>1){
+                            $row=$row+($nbDates[$str_date][0]-1)*4;
+                            $nbDates[$str_date][0]--;
+                        }
                     
-                    <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 70px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
-                        <strong><?=$partie->titre?></strong><br>
-                        <strong>Systeme : </strong><?=$partie->systeme?><br>
-                        <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
-                        <strong>Durée : </strong><?=$partie->duree?><br>
-                        Le <strong><?=$date->format("d/m")?></strong>
-                    </a>           
-        <?php   }
-            }      
+
+                        $heure=explode("h", "$partie->heure");
+                        //Code couleur :
+                        $color="green";//Par défaut, places disponibles
+
+                        if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                        if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
+                        if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
+                        ?>
+                    
+                        
+                        <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 70px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
+                            <strong><?=$partie->titre?></strong><br>
+                            <strong>Systeme : </strong><?=$partie->systeme?><br>
+                            <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                            <strong>Durée : </strong><?=$partie->duree?><br>
+                            Le <strong><?=$date->format("d/m")?></strong>
+                        </a>           
+            <?php   }
+                }
+            } catch (Exception $e) { //Si une partie a une date ou une autre info essentielle illisible, on zappe juste cette partie
+                //echo 'Debug : erreur ',  $e->getMessage(), "\n";
+            }  
         } ?>         
             
     </div>
