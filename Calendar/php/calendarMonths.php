@@ -78,9 +78,11 @@
         //Xml to array
         $tmp = json_encode($xml);
         $arrayXml = json_decode($tmp,TRUE);
+        //var_dump($arrayXml['partie']);
 
         //Pour compter le nombre de parties le même jour :
         $nbDates = array_count_values(array_column($arrayXml['partie'], 'date'));
+
         //var_dump($nbDates);
         //Sort un tableau sous la forme $nbDates['2021-07-24'][0]=X (nombre de parties prévues cette date). 
 
@@ -116,6 +118,11 @@
 
                     //Pour afficher plusieurs parties cote à cote, ou bien juste le nombre si on a plus de 4 parties un meme jour
                     $str_date=(string)$partie->date;
+                    
+                    if(!isset($nbDates[$str_date])){
+                        $nbDates[$str_date]=1;
+                    }
+
                     if (!isset($nbDates[$str_date]['affichage'])){
                         $nbDates[$str_date]=array($nbDates[$str_date]);
                         $nbDates[$str_date]['affichage']="not done";
