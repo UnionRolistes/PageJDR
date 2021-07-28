@@ -1,20 +1,69 @@
-<parties last_id="0">
-  <partie id="0">
-    <titre>Saign&#233;e M&#233;diterran&#233;enne</titre>
-    <capacite>6</capacite>
+<parties last_id="2">
+<partie id="0">
+    <titre>Memento Mori</titre>
+    <capacite>4</capacite>
     <minimum>1</minimum>
-    <inscrits>6</inscrits>
-    <date>2021-07-25</date>
-    <heure>21h00</heure>
-    <duree>3h30</duree>
+    <inscrits>4</inscrits>
+    <date>2021-07-28</date>
+    <heure>19h00</heure>
+    <duree>3h00</duree>
     <type>Campagne</type>
-    <mj>Syn#3950</mj>
-    <systeme>Vampire</systeme>
+    <mjName>Ayn#8398</mjName>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
     <pjMineur>Non</pjMineur>
     <plateformes>Discord</plateformes>
-    <details>Saison 3 - Chapitre 1 : Nouvelle donne.
+    <details>La Bucca, 28 Quartus 1668
 
-5 ans se sont écoulées, Nice est envahie par la Seconde Inquisition en raison des actions de Vivaldo. La présence importante de chasseurs de vampires a obligée les semblables à se terrer et chercher de nouvelles sources de financement. La plupart se sont tournés vers le crime organisé, créant ainsi des tensions entre les clans. Aujourd'hui, la cité est sur le point d'imploser et la découverte d'un cadavre calciné risque de la diviser complètement...</details>
-    <lien>https://discord.com/channels/298887769793757184/410049488816701450/864963544004821022</lien>
+Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu.
+Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...
+    </details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+  <partie id="1">
+    <titre>JDR en plein air</titre>
+    <capacite>50</capacite>
+    <minimum>1</minimum>
+    <inscrits>5</inscrits>
+    <date>2021-08-01</date>
+    <heure>14h00</heure>
+    <duree>4h00</duree>
+    <type>Initiation</type>
+    <mjName>Maevis#0336</mjName>
+    <mj>&lt;@Maevis&gt; [Maevis#0336]</mj>
+    <systeme>Plein air</systeme>
+    <pjMineur>Oui</pjMineur>
+    <plateformes>Autre</plateformes>
+    <details>RdV à 14h à la sortie du Métro Monceau (ligne 2 ou bus 30 arrêt Monceau). L'évènement aura lieu de 14h à 18h, mais comme indiqué plus haut, libre à vous de rester et/ou partir plus tard étant donné que nous serons dans un parc public.
+
+Je suggère que chacun ramène de quoi boire/grignoter à partager ou non, pour raisons de santé par exemple.
+    </details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+  <partie id="2">
+    <titre>[IDF] Double Anniv  soirée entre Rôlistes - Bastille</titre>
+    <capacite>50</capacite>
+    <minimum>10</minimum>
+    <inscrits>11</inscrits>
+    <date>2021-08-08</date>
+    <heure>18h30</heure>
+    <duree>5h00</duree>
+    <type>One shoot</type>
+    <mjName>Dae#5125</mjName>
+    <mj>&lt;@[FR]Dae&gt; [Dae#5125]</mj>
+    <systeme>HomeBrew</systeme>
+    <pjMineur>Oui</pjMineur>
+    <plateformes>Autre</plateformes>
+    <details>A l'occasion de l'anniv de la secrétaire de l'association (Maevis) et d'un de nos membres (keroro)
+
+Notre nouveau bar partenaire nous offre la possibilité de privatisé la totalité du bar un dimanche !.
+
+seul hic, il faut être aumoins 10.
+donc venez boire une bière, félicité Maevis pour son années en plus. et jeté quelques dés avec nous.
+
+surtout après un ans de confinement !
+BIÈRE !
+    </details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/867123780770201640</lien>
   </partie>
 </parties>

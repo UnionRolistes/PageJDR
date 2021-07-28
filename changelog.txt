@@ -1,3 +1,12 @@
+- Changelog for v0.3.6 (2021-07-27)
+    * Fix "Jdr hors liste" sending when it shouldn't
+    * Fix "Le" displaying twice on game date
+    * Minor changes
+    * Added http://unionrolistes.fr/ to a jdr game exportation
+
+- Changelog for v0.3.6 (2021-07-27)
+    * Minor bug fixs
+
 - Changelog for v0.3.5 (2021-07-27)
     * Calendar : Added popup details on click
 

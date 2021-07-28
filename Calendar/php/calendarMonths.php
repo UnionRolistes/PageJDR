@@ -38,17 +38,6 @@
             $lundiDebutMois=new DateTimeImmutable(date("Y-m-d", strtotime('monday this week', strtotime($monday->format('Y').'-'.$monday->format('m').'-01')))); 
             $debutMois=new DateTimeImmutable(date("Y-m-d", strtotime($monday->format('Y').'-'.$monday->format('m').'-01')));       
         ?>
-    <!-- Si on veut afficher les dates de la 1ere semaine juste dessous de leur jours :
-        <ul class="dayNumbers-container">     
-            <?php
-          /*  for ($i = 0; $i <= 6; $i++){
-                $style="";
-                if($lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("m") !=$debutMois->format("m")){$style="color: gray;";}
-                echo '<li style="'.$style.'">' . $lundiDebutMois->add(date_interval_create_from_date_string($i . ' days'))->format("d/m") . '</li>';
-                }    */             
-            ?>
-        </ul> 
-    -->
     </div>
    
     <div class="timeslots-containers">
@@ -164,7 +153,7 @@
                         //Code couleur :
                         $color="green";//Par défaut, places disponibles
 
-                        if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                      //  if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
                         if (intval($partie->inscrits) >= intval($partie->capacite)){$color="rgb(255, 17, 17)";} //Si c'est complet
                         if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée                   
                         ?>

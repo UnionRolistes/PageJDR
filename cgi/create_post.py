@@ -31,11 +31,11 @@ def get_payload(form) -> str:
     payload = info.format(
         type=form.getvalue('jdr_type'),
         title=form.getvalue('jdr_title'),
-        date="Le " + form.getvalue('jdr_date'),
+        date=form.getvalue('jdr_date'),
         players=players,
         length=form.getvalue('jdr_length'),
         pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",
-        system=form.getvalue('jdr_system') + form.getvalue('jdr_system_other'),
+        system=form.getvalue('jdr_system') if form.getvalue('jdr_system') else form.getvalue('jdr_system_other'), #Car dans certains cas les 2 sont envoyés (quand on saisit le hors liste puis qu'on recharge, le hors liste est sauvegardé)
         minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
         details=form.getvalue('jdr_details')

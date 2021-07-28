@@ -28,7 +28,7 @@ foreach ($xml->partie as $partie) {
         $heure=$partie->heure;
         $duree=$partie->duree;
         $type=$partie->type;
-        $MJ=$partie->mj;
+        $MJ=$partie->mjName;
         $systeme=$partie->systeme;
         $pjMineur=$partie->pjMineur;
         $plateformes=$partie->plateformes; 
@@ -132,7 +132,7 @@ if(!$trouve){
                 <?php $dateFin=$date->add(date_interval_create_from_date_string('+'.$duree[0].' hours '.$duree[1].' minutes'));//echo $dateFin->format("Y-m-d H:i");?>
                 
                 <input type="hidden" name="date_end" value="<?=$dateFin->format("Y-m-d H:i")?>">
-                <input type="hidden" name="location" value="Union des Rôlistes">
+                <input type="hidden" name="location" value="http://unionrolistes.fr/">
                 <input type="hidden" name="description" value="<?=$partie->details?>">
                 <input type="hidden" name="summary" value="<?=$partie->titre?>">
                 <input type="submit" value="Ajouter à mon agenda">
