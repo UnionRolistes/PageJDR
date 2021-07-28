@@ -4,7 +4,7 @@ function durationSelect(){ //Cette fonction permet de remplir le select de la du
 	time = document.getElementById("selectorTime");
 	hour = document.getElementById("selectorHour"); 
 	t = 0;
-	while (t <= 300)
+	while (t <= 300)/*Durée maximale qu'on veut afficher. Actuellement 5h30. Faire t+30 pour rajouter des demies heures  */
 	{
 		t = t + 30;
 		m = (t % 60).toString();

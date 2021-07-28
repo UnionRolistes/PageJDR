@@ -94,7 +94,10 @@
 
                     //Code couleur :
                     $color="green";//Par défaut, places disponibles
-                    $inscription='<a href="'.$partie->lien.'">Details et inscription</a>'; 
+                    //$inscription='<a href="pages/popupEvent.php?ID=5" target="popup" onclick=\'window.open("\'pages/popupEvent.php?ID=5\',\'name\',\'width=600,height=400")\'>Details et inscription</a><br>';
+                    
+                    $inscription='<a href="pages/popupEvent.php?ID='.$partie->attributes().'" target="_blank">Details et inscription</a><br>';
+
                     //Par défaut. (Liaison avec Discord à faire)
 
                     if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
@@ -110,7 +113,7 @@
                         <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
                         <?=$partie->minimum?> joueurs minimum
                         <br><br>À <strong><?=$partie->heure?></strong><br>
-                        <?=$inscription?>
+                        <?=$inscription?><br>
                     </div>
                 <?php
                 }
