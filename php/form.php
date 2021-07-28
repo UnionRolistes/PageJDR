@@ -55,8 +55,8 @@
             <small id="nbTxt" name="nbJoueurs" class="annotation">Moins de 5 joueurs</small>
 
             
-            <input type="hidden" value="test" name="minJoueurs" id="minJoueurs"/>
-            <input type="hidden" value="test" name="maxJoueurs" id="maxJoueurs"/>
+            <input type="text" value="1" name="minJoueurs" id="minJoueurs"/>
+            <input type="text" value="5" name="maxJoueurs" id="maxJoueurs"/>
 
                 
             <label>Type <span class="rouge">*</span></label>             

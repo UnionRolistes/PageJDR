@@ -1,7 +1,10 @@
-- Changelog for v0.3.7 (2021-07-27)
+- Changelog for v0.3.8 (2021-07-28)
+    * Fixing players display
+
+- Changelog for v0.3.7 (2021-07-28)
     * Added complete calendar exportation
 
-- Changelog for v0.3.6 (2021-07-27)
+- Changelog for v0.3.6 (2021-07-28)
     * Fix "Jdr hors liste" sending when it shouldn't
     * Fix "Le" displaying twice on game date
     * Minor changes
