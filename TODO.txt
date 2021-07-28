@@ -3,4 +3,5 @@ Bugs :
 - Problème si l'utilisateur annule l'oauth2
 - Verif Python à faire : si nombre max et min de joueurs est le meme, ne pas afficher "entre x et x joueurs"
 
+
 Ajouts potentiels :

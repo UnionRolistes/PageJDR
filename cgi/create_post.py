@@ -34,7 +34,7 @@ def get_payload(form) -> str:
         date="Le " + form.getvalue('jdr_date'),
         players=players,
         length=form.getvalue('jdr_length'),
-        pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",
+        pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",  # TODO handle server nicknames
         system=form.getvalue('jdr_system') + form.getvalue('jdr_system_other'),
         minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
