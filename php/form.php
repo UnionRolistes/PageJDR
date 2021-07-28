@@ -44,7 +44,7 @@
                             step:1,
                             range: {
                                 'min': 0,
-                                'max': 8
+                                'max': 16
                             },
                             padding:[1,1],
                             connect:true

@@ -1,3 +1,7 @@
+- Changelog for v0.3.9 (2021-07-28)
+    * Better responsive on mobile
+
+
 - Changelog for v0.3.8 (2021-07-28)
     * Fixing players display
 
