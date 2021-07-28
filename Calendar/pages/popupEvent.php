@@ -17,37 +17,39 @@ $xml = simplexml_load_file('../data/events.xml');
 $trouve=false;
 foreach ($xml->partie as $partie) {
 
-    if ($partie->attributes()==$ID){
-        $trouve=true;
+    try{  
+        if ($partie->attributes()==$ID){         
 
-        $titre=$partie->titre;
-        $capacite=$partie->capacite;
-        $minimum=$partie->minimum;
-        $inscrits=$partie->inscrits;
-        $date=new DateTime($partie->date); //On choisit DateTime face à DateTimeImmutable pour un ajout des heures plus simples
-        $heure=$partie->heure;
-        $duree=$partie->duree;
-        $type=$partie->type;
-        $MJ=$partie->mjName;
-        $systeme=$partie->systeme;
-        $pjMineur=$partie->pjMineur;
-        $plateformes=$partie->plateformes; 
-        $details=$partie->details;
-        $lienWeb=$partie->lien;
-    
-        $splitLienWeb = explode("/channels", $lienWeb); //Sépare dans un tableau la partie avant et après /channels 
-        $splitLienWeb[0]="discord://discordapp.com";//On remplace le début pour avoir un lien vers l'appli de bureau
-        $lienDesktop=$splitLienWeb[0]."/channels".$splitLienWeb[1];
+            $titre=$partie->titre;
+            $capacite=$partie->capacite;
+            $minimum=$partie->minimum;
+            $inscrits=$partie->inscrits;
+            $date=new DateTime($partie->date); //On choisit DateTime face à DateTimeImmutable pour un ajout des heures plus simples
+            $heure=$partie->heure;
+            $duree=$partie->duree;
+            $type=$partie->type;
+            $MJ=$partie->mjName;
+            $systeme=$partie->systeme;
+            $pjMineur=$partie->pjMineur;
+            $plateformes=$partie->plateformes; 
+            $details=$partie->details;
+            $lienWeb=$partie->lien;
+        
+            $splitLienWeb = explode("/channels", $lienWeb); //Sépare dans un tableau la partie avant et après /channels 
+            $splitLienWeb[0]="discord://discordapp.com";//On remplace le début pour avoir un lien vers l'appli de bureau
+            $lienDesktop=$splitLienWeb[0]."/channels".$splitLienWeb[1];
 
-        break;
-    }
+            $trouve=true;
+            break;
+        }
+    } catch (Exception $e) { //Si une partie a une date ou une autre info essentielle illisible, on zappe juste cette partie
+    //echo 'Debug : erreur ',  $e->getMessage(), "\n";
+    } 
 }
 if(!$trouve){
     echo 'Erreur, partie introuvable';
     exit;
-}
-
-?>
+} ?>
 
 
 <!--Partie affichage : -->
@@ -84,7 +86,7 @@ if(!$trouve){
         <div class="right"><?=$duree?></div>
 
         <label><strong>Capacité : </strong></label>
-        <div class="right">Entre <strong><?=$minimum?> et <?=$capacite?></strong> joueurs <!--- <=$inscrits?> joueurs inscrits --></div>
+        <div class="right">Entre <strong><?=$minimum?> et <?=$capacite?></strong> joueurs - <?=$inscrits?> joueurs inscrits </div>
 
         <label><strong>Mineurs : </strong></label>
         <div class="right"><?=$pjMineur?></div>
@@ -135,6 +137,7 @@ if(!$trouve){
                 <input type="hidden" name="location" value="http://unionrolistes.fr/">
                 <input type="hidden" name="description" value="<?=$partie->details?>">
                 <input type="hidden" name="summary" value="<?=$partie->titre?>">
+                <input type="hidden" name="lien" value="<?=$lienWeb?>">
                 <input type="submit" value="Ajouter à mon agenda">
             </form>
         </fieldset>

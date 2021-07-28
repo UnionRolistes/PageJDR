@@ -20,6 +20,10 @@
 
     $monday = $_SESSION['monday']; 
 ?>
+<form method="post" class="flex-horizontal" action="php/downloadAll-ics.php"> 
+    <input type="hidden" name="downloadAll-ics" value="OK">
+    <input type="submit" value="Exporter le calendrier">
+</form>
 
 <h2 class="titleCenter"><?=$months[$monday->format("m")-1].' '.$monday->format("Y")?></h2>
 <section class="calendar">
