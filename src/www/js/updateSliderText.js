@@ -10,28 +10,24 @@ function updateSliderText(){
             //On met à jour l'input caché qui sert à l'envoi des données :
             //nbJoueurs=document.getElementById("nbJoueurs");
 
-            document.getElementById("minJoueurs")=values[0];
-            document.getElementById("maxJoueurs")=values[1];
+            document.getElementById("minJoueurs").value=values[0];
+            document.getElementById("maxJoueurs").value=values[1];
 
             if (values[0]==values[1])
             {
                 if (values[0]==1){
                     txt.innerHTML="1 joueur"; //Pour le cas où on a qu'un seul joueur 
-                    nbJoueurs.value="1 joueur";
                 }
                 else{
                     txt.innerHTML=values[0] + " joueurs";
-                    nbJoueurs.value=values[0] + " joueurs";
                 }              
             }
             else if (values[0]==1)
             {
                 txt.innerHTML="Moins de " +values[1]+" joueurs";
-                nbJoueurs.value="Moins de " +values[1]+" joueurs";
             }
             else{
                 txt.innerHTML="Entre "+values[0]+" et "+values[1]+" joueurs";
-                nbJoueurs.value="Entre "+values[0]+" et "+values[1]+" joueurs";
             }
         })
 }

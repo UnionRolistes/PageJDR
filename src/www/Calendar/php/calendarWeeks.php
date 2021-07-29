@@ -100,7 +100,7 @@
 
                     //Par défaut. (Liaison avec Discord à faire)
 
-                    if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                  //  if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
                     if (intval($partie->inscrits) >= intval($partie->capacite)){ $inscription="COMPLET";$color="rgb(255, 17, 17)";} //Si c'est complet
                     if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray"; $inscription="TERMINÉ";} //Si la date est passée                     
                     ?>
@@ -111,7 +111,9 @@
                         <strong>Systeme : </strong><?=$partie->systeme?><br>
                         <strong>Mineurs : </strong><?=$partie->pjMineur?><br>
                         <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
-                        <?=$partie->minimum?> joueurs minimum
+
+                        <?php $s="s"; if ($partie->minimum<=1){$s="";}?>
+                        <?=$partie->minimum?> joueur<?=$s?> minimum
                         <br><br>À <strong><?=$partie->heure?></strong><br>
                         <?=$inscription?><br>
                     </div>
