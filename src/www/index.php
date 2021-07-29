@@ -56,7 +56,7 @@ $emot_autre = ' :space_invader: ';
     </header>
     <section>
 
-    <?php include('php/form.php'); ?>
+    <?php include('php/createEventForm.php'); ?>
 
     </section>
     <script src="js/record_form.js"></script> <!--Sauvegarde les données déjà rentrées-->

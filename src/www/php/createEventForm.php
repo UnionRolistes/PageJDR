@@ -107,6 +107,10 @@
             <select name ="jdr_system" id="system" required>
                 <option hidden disabled selected value="">Liste des JdR proposés</option>
                 <?php
+
+                    if (!file_exists('data/jdr_systems.xml')) {
+                        exit('Echec lors de la récupération des parties');
+                    }
                     # Generates all the options from an xml file
                     $systems = simplexml_load_file("data/jdr_systems.xml");
                     foreach ($systems as $optgroup) {

@@ -1,6 +1,6 @@
 Bugs :
 - Calendrier qui sélectionne minuit par défaut
 - Problème si l'utilisateur annule l'oauth2
-
+- lien d'image absolus dans le foote
 
 Ajouts potentiels :
