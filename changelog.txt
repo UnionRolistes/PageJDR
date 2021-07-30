@@ -1,3 +1,7 @@
+- Changelog for v0.3.11 (2021-07-30)
+    * Changed footer
+    * Minor fixes
+
 - Changelog for v0.3.11 (2021-07-29)
     * Changed footer
     * Changed "form" file name to "createEventForm"
