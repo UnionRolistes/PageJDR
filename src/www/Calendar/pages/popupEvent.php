@@ -28,7 +28,7 @@ foreach ($xml->partie as $partie) {
             $heure=$partie->heure;
             $duree=$partie->duree;
             $type=$partie->type;
-            $MJ=$partie->mjName;
+            $MJ=$partie->mj;
             $systeme=$partie->systeme;
             $pjMineur=$partie->pjMineur;
             $plateformes=$partie->plateformes; 

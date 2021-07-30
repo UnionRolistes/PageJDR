@@ -36,7 +36,7 @@ def get_payload(form) -> str:
     payload = info.format(
         type=form.getvalue('jdr_type'),
         title=form.getvalue('jdr_title'),
-        date="Le " + form.getvalue('jdr_date'),
+        date=form.getvalue('jdr_date'),
         players=players,
         length=form.getvalue('jdr_length'),
         pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",  # TODO handle server nicknames
@@ -61,7 +61,7 @@ async def main():
     await calendar.add_event(form, embed)  # TODO maybe move webhook processing to urpy
     calendar.save()
     # Redirects to main page
-    utils.html_header_relocate(f"http://babylyss.com")
+    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=isPosted")
 
 
 
@@ -74,4 +74,5 @@ try:
 except Exception as e:
     print("Content-Type: text/html")
     print()
+    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=envoi")
     raise e

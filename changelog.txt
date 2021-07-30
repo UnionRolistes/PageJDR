@@ -1,6 +1,17 @@
+- Changelog for v0.3.11 (2021-07-30)
+    * Changed footer
+    * Minor fixes
+
+- Changelog for v0.3.11 (2021-07-29)
+    * Changed footer
+    * Changed "form" file name to "createEventForm"
+    * Minor fixes
+
+- Changelog for v0.3.10 (2021-07-29)
+    * Changed folder structure for install setup
+
 - Changelog for v0.3.9 (2021-07-28)
     * Better responsive on mobile
-
 
 - Changelog for v0.3.8 (2021-07-28)
     * Fixing players display

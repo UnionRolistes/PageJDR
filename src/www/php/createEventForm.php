@@ -1,13 +1,13 @@
-        <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
+    <?php
+    if (isset($_GET['error'])){ 
+    //Affichage des erreurs. Rajouter des lignes si on rajoute d'autres codes d'erreurs (optimisable en les mettant dans un fichier si on commence à en avoir beaucoup)
+        $error=$_GET['error'];
+        if($error=='invalidData') echo '<span class="rouge">Données invalides. Veuillez vérifier le formulaire</span>'; //--> Pas encore fonctionnel côté Python
+        if($error=='envoi') echo '<span class="rouge">Erreur lors de la création de la partie. Veuillez contacter un administrateur</span>';
+        if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>';
+    } ?>
 
-            <?php
-            if (isset($_GET['error'])){ 
-            //Affichage des erreurs. Rajouter des lignes si on rajoute d'autres codes d'erreurs (optimisable en les mettant dans un fichier si on commence à en avoir beaucoup)
-                $error=$_GET['error'];
-                if($error=='invalidData') echo '<span class="rouge">Données invalides. Veuillez vérifier le formulaire</span>'; //--> Pas encore fonctionnel côté Python
-                if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>'; //--> Pas encore fonctionnel côté Python
-            } 
-            ?>
+        <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
 
             <!-- Connexion discord -->   
             <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
@@ -40,10 +40,10 @@
                         var range = document.getElementById('range');
 
                         noUiSlider.create(range, {
-                            start: [1, 5],
+                            start: [2, 7],
                             step:1,
                             range: {
-                                'min': 0,
+                                'min': 1,
                                 'max': 16
                             },
                             padding:[1,1],
@@ -53,10 +53,9 @@
                     </script>
                 </div>
             <small id="nbTxt" name="nbJoueurs" class="annotation">Moins de 5 joueurs</small>
-
-            
-            <input type="text" value="1" name="minJoueurs" id="minJoueurs"/>
-            <input type="text" value="5" name="maxJoueurs" id="maxJoueurs"/>
+         
+            <input type="hidden" value="1" name="minJoueurs" id="minJoueurs"/>
+            <input type="hidden" value="5" name="maxJoueurs" id="maxJoueurs"/>
 
                 
             <label>Type <span class="rouge">*</span></label>             
@@ -107,6 +106,10 @@
             <select name ="jdr_system" id="system" required>
                 <option hidden disabled selected value="">Liste des JdR proposés</option>
                 <?php
+
+                    if (!file_exists('data/jdr_systems.xml')) {
+                        exit('Echec lors de la récupération des parties');
+                    }
                     # Generates all the options from an xml file
                     $systems = simplexml_load_file("data/jdr_systems.xml");
                     foreach ($systems as $optgroup) {
@@ -146,7 +149,7 @@
             <textarea rows="5" name ="jdr_details" id="desc" style="resize: vertical;" autocomplete="on"></textarea>	
 
             <div class="right">	
-                <button type="reset" onclick="document.getElementById('range').noUiSlider.set([1,5]);">Réinitialiser 🔄</button>	
+                <button type="reset" onclick="document.getElementById('range').noUiSlider.set([2,7]);">Réinitialiser 🔄</button>	
                 <br><br>			
                 <button type="submit" name="submit" id="submit" <?php if (!isset($_SESSION['avatar_url']) or !isset($_SESSION['username'])){echo 'disabled ><b>Veuillez vous connecter';}else{ echo 'style="background-color:#169719;"'?>><b>Valider ✔<?php }?></b></button>					
             <!--Bloque le bouton si on s'est pas connecté-->

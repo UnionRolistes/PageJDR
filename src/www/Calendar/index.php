@@ -39,8 +39,8 @@
     
     <div id="calendarFrame">
         <?php 
-            if($_GET['view']=="months"){include('php/calendarMonths.php');}
-            else{include('php/calendarWeeks.php');}
+            if($_GET['view']=="months"){include('pages/calendarMonths.php');}
+            else{include('pages/calendarWeeks.php');}
         ?>
         
     </div>

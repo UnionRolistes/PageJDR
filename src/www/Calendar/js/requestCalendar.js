@@ -23,8 +23,8 @@ function goTo(timeInterval) {
 
     var type = document.getElementById('viewType').value;
 
-    if(type == "months"){xhr.open('POST', 'php/calendarMonths.php', true);}
-    else{xhr.open('POST', 'php/calendarWeeks.php', true);}
+    if(type == "months"){xhr.open('POST', 'pages/calendarMonths.php', true);}
+    else{xhr.open('POST', 'pages/calendarWeeks.php', true);}
 
     xhr.setRequestHeader(
         'Content-Type',
