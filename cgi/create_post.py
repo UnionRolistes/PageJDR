@@ -57,9 +57,9 @@ async def main():
     form = cgi.FieldStorage()        
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=logo_url)
 
-   # calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-   # await calendar.add_event(form, embed)  # TODO maybe move webhook processing to urpy
-   # calendar.save()
+    calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+    await calendar.add_event(form, embed)
+    calendar.save()
     # Redirects to main page
     utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=isPosted")
 
