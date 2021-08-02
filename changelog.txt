@@ -1,3 +1,6 @@
+- Changelog for v0.3.14 (2021-08-02)
+    * New files structure for easier install
+
 - Changelog for v0.3.13 (2021-08-02)
     * separated color mode button CSS for better modulability
 
