@@ -1,6 +1,7 @@
 Bugs :
 - Calendrier qui sélectionne minuit par défaut
 - Problème si l'utilisateur annule l'oauth2
-- lien d'image absolus dans le foote
+- lien d'image absolus dans le footer
 
 Ajouts potentiels :
+- Vérification des données côté serveur, comme sur Web_Presentation puis cgi/create_presentation

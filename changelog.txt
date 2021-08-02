@@ -1,3 +1,6 @@
+- Changelog for v0.3.12 (2021-08-02)
+    * Better errors display for users
+
 - Changelog for v0.3.11 (2021-07-30)
     * Changed footer
     * Minor fixes
