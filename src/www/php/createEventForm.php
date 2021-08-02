@@ -1,12 +1,3 @@
-    <?php
-    if (isset($_GET['error'])){ 
-    //Affichage des erreurs. Rajouter des lignes si on rajoute d'autres codes d'erreurs (optimisable en les mettant dans un fichier si on commence à en avoir beaucoup)
-        $error=$_GET['error'];
-        if($error=='invalidData') echo '<span class="rouge">Données invalides. Veuillez vérifier le formulaire</span>'; //--> Pas encore fonctionnel côté Python
-        if($error=='envoi') echo '<span class="rouge">Erreur lors de la création de la partie. Veuillez contacter un administrateur</span>';
-        if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>';
-    } ?>
-
         <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
 
             <!-- Connexion discord -->   
