@@ -4,6 +4,8 @@ Pour les couleurs de chaque thème, voir styleDark et styleLight*/
 /*Fonctionnement HTML : Créer un <form> d'id "URform". 
 Tous les contenu des <label> vont s'afficher automatiquement à gauche, et les input, select, textarea, button, et élements de class "right" vont être à droite*/
 
+@import url("switchButton.css"); /*CSS du bouton de changement de mode de couleur*/
+
 
 /*Police et taille d'écriture : */
 html {
@@ -96,63 +98,6 @@ input[type="radio"] {
 }
 
 
-  
-/* Switch et slider : */
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-right: 20px;
-  transition: 0.2s ease-in-out;
-  transition-property: color, background-color, border;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-.slider.round:before {
-  border-radius: 50%;
-}
-
-
 /*Other, personnalisable :*/
 
 button{
@@ -180,24 +125,16 @@ button{
     background-color:rgb(207, 204, 204);
     height: 27px;
 }
-#deconnexion{
-  margin-left: 4%;
-}
+#deconnexion{margin-left: 4%;}
 
 .annotation{ /* annotations du nombre de joueurs et du saut de ligne dans une description*/
   color: gray;
   font-size: 75%;
 }
-.rouge{
-  color:red;
-}
-.vert{
-  color: rgb(25, 219, 25);
-}
+.rouge{color:red;}
+.vert{color: rgb(25, 219, 25);}
 
-textarea{
-  width:100%;
-}
+textarea{width:100%;}
 
 button:disabled,
 button[disabled]{
@@ -206,9 +143,7 @@ button[disabled]{
   color: white;
 }
 
-a{
-  text-decoration: none;
-}
+a{text-decoration: none;}
 
 
 /*Pour le responsive et affichage mobile :*/
