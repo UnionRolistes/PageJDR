@@ -1,3 +1,24 @@
+- Changelog for v0.4.0 (2021-08-04)
+    * Calendar : displaying simultaneous events side by side in the weeks display mode
+
+- Changelog for v0.3.17 (2021-08-03)
+    * Added license file
+
+- Changelog for v0.3.16 (2021-08-03)
+    * Changed footer
+
+- Changelog for v0.3.15 (2021-08-02)
+    * Minor change
+
+- Changelog for v0.3.14 (2021-08-02)
+    * New files structure for easier install
+
+- Changelog for v0.3.13 (2021-08-02)
+    * separated color mode button CSS for better modulability
+
+- Changelog for v0.3.12 (2021-08-02)
+    * Better errors display for users
+
 - Changelog for v0.3.11 (2021-07-30)
     * Changed footer
     * Minor fixes

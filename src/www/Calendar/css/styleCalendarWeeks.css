@@ -18,7 +18,7 @@
 .weekDays,
 .dayNumbers-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 15% 15% 15% 15%;*/
+  grid-template-columns: repeat(7, 1fr);
   grid-auto-flow: column;
 }
 
@@ -27,7 +27,7 @@
 
 .event-container{
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /*15% 15% 15% 15% 15% 15% 15%;*/
+  grid-template-columns: repeat(14, 1fr);
   grid-template-rows: repeat(48, 1fr); /*24 heures x 2 divisions : On veut une précision à la demie heure près. Si on voulait 1/4 quart d'heure, on fait 24 x 4*/
   grid-area: main; /*Associe à l'area main*/
   position: relative;
@@ -37,14 +37,15 @@
   grid-auto-columns: minmax(100px, auto);
 }
 
+.slotWeek{
+  text-decoration: none;
+  color:white;
+}
+
 
 /*TODO : 
 Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
-Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)
-Problème : Quand 2 parties sont au meme creneau, on veut afficher ces 2 parties cote à cote, + étirer horizontalement la colonne du jour en question. 
-J'ai fait plusieurs tests : étendre une colonne n'étend pas aussi le surlignage bleu + ça décale pas les parties des jours suivants
-Les slots sont en position absolute, car relative ne les affiche pas correctement (les affiche tout en bas de la page). Arriver à la passer en relative serait déjà un progrès  
-*/
+Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)*/
 
 /*Pour le responsive et affichage mobile :*/
 @-ms-viewport {

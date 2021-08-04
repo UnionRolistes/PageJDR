@@ -56,7 +56,24 @@ $emot_autre = ' :space_invader: ';
     </header>
     <section>
 
-    <?php include('php/createEventForm.php'); ?>
+    <?php //Affichage des erreurs : Rajouter des lignes si on rajoute d'autres codes d'erreurs (optimisable en les mettant dans un fichier si on commence à en avoir beaucoup)
+      
+      if (isset($_GET['error'])){ 
+        $error=$_GET['error'];
+      /*  if($error=='invalidData') echo '<span class="rouge">Données invalides. Veuillez vérifier le formulaire</span>'; //--> Pas encore fonctionnel côté Python
+        //TODO : faire la même vérification de données que sur Web_Presentation puis cgi/create_presentation
+        //Voir cgi/create_post.py*/
+
+        if($error=='envoi') echo '<span class="rouge">Erreur lors de la création de la partie. Si le problème persiste, veuillez contacter un administrateur</span>';
+        //Voir cgi/create_post.py
+
+        if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>';
+        //Envoyée par cgi/create_post.py
+
+        if($error=='transmission') echo '<span class="rouge">Erreur lors de la transmission des données. Si le problème persiste, veuillez contacter un administrateur</span>';
+        //Voir php/sendToPython
+    }
+    include('php/createEventForm.php'); ?>
 
     </section>
     <script src="js/record_form.js"></script> <!--Sauvegarde les données déjà rentrées-->

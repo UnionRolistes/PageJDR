@@ -1,8 +1,7 @@
 <?php
 //Fenetre popup sur un clic d'une partie. Affiche tous les détails de la partie ainsi que 2 liens vers le message Discord et pour télécharger le Ics de l'événement
-if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){
-    header('Location:../index.php');
-}
+
+if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){header('Location:../index.php');}
 
 $ID=$_GET['ID'];
 
@@ -109,9 +108,12 @@ if(!$trouve){
                 <input type="submit" value="M'inscrire (Discord Web)">
             </form>
 
+          <!--  <a id="firstButton" href="<=$lienWeb?>">M'inscrire (Discord Web)</a>
+            <a href="<=$lienDesktop?>">M'inscrire (Discord Bureau)</a> -->
+            
             <form method="post" action="<?=$lienDesktop?>">
                 <input type="submit" value="M'inscrire (Discord Bureau)">
-            </form>
+            </form> 
             
         <?php  
             $heure=explode("h", "$partie->heure");

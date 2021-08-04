@@ -80,7 +80,7 @@
         //Sort un tableau sous la forme $nbDates['2021-07-24'][0]=X (nombre de parties prévues cette date). 
 
 
-        foreach ($xml->partie as $partie) {
+        foreach ($xml->partie as $partie) { //Parcourt tout le xml
 
             try{                         
                 $date=new DateTimeImmutable($partie->date);

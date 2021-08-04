@@ -44,7 +44,6 @@ def get_payload(form) -> str:
         minors_allowed=minorsAllowed_to_str[int(form.getvalue('jdr_pj'))],
         platforms=" ".join(form.getlist('platform')),
         details=form.getvalue('jdr_details')
-
     )
 
     return payload
@@ -58,7 +57,7 @@ async def main():
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=logo_url)
 
     calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-    await calendar.add_event(form, embed)  # TODO maybe move webhook processing to urpy
+    await calendar.add_event(form, embed)
     calendar.save()
     # Redirects to main page
     utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=isPosted")
@@ -74,5 +73,5 @@ try:
 except Exception as e:
     print("Content-Type: text/html")
     print()
-    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=envoi")
+    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=envoi") #Debug : Mettre cette ligne en commentaire pour voir le détail des erreurs
     raise e
