@@ -1,3 +1,5 @@
+Calendrier : faire vrai design de boutons dans les pages popup et eventsList (actuellement <form>)
+
 Bugs :
 - Calendrier qui sélectionne minuit par défaut
 - Problème si l'utilisateur annule l'oauth2

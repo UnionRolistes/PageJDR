@@ -56,7 +56,7 @@
     <div class="event-container">       
         <?php 
         $path="data/events.xml";
-        if (isset($_POST['ajax'])){$path="../data/events.xml";} //Car les liens absolus ne marchent pas, et apres un appel Ajax c'est le fichier php/calendarWeeks qui est appelé, et plus index.php
+        if (isset($_POST['ajax'])){$path="../data/events.xml";} //Car les liens absolus ne marchent pas, et apres un appel Ajax c'est le fichier pages/calendarWeeks qui est appelé, et plus index.php
 
         # Get the events from an xml file / From Discord
         if (!file_exists($path)) {
@@ -64,7 +64,20 @@
         }
         $xml = simplexml_load_file($path);
 
-        foreach ($xml->partie as $partie) {
+        //Systeme similaire à CalendarMonths, mais doit ici compter le nombre de parties qui se chevauchent et pas seulement le même jour
+        //Xml to array
+        $tmp = json_encode($xml);
+        $arrayXml = json_decode($tmp,TRUE);
+        //var_dump($arrayXml['partie']);
+
+        //Pour compter le nombre de parties le même jour :
+        $nbDates = array_count_values(array_column($arrayXml['partie'], 'date'));
+
+        //var_dump($nbDates);
+        //Sort un tableau sous la forme $nbDates['2021-07-24'][0]=X (nombre de parties prévues cette date).
+       
+
+        foreach ($xml->partie as $partie) { //Parcourt tout le xml
            
             try{ 
                 $date=new DateTimeImmutable($partie->date);
@@ -83,41 +96,90 @@
                     else{$demieHeure=1;}
                     if ($heure[1]==""){$heure[1]="00";}//Utilisé plus tard pour détecter si l'heure est passée
 
-                    $row=($heure[0]-5)*2-1+1*$demieHeure;
+                    $row=($heure[0]-5)*2-1+1*$demieHeure; //Formule permettant de passer de l'heure à la ligne où l'afficher dans le calendrier
                     //Permet de detecter les demies heures. 
-                    //NOTE : Ici je fais une précision à la demie heure près. Une partie comprise entre Xh00 et Xh30, ou entre Xh30 et X+1h00 sera affichée à Xh30. 
+                    //NOTE : Ici je fais une précision à la demie heure près. Une partie comprise entre Xh00 et Xh30, ou entre Xh30 et X+1h00 sera affichée à Xh30 sur le calendrier (la vraie heure sera toujours visible dans les détails). 
                     //Comme toutes les parties que j'ai vu sont à heure pile ou demies. A demander à Dae si il veut une precision au 1/4 heure près
 
                     //Jour :
-                    $column=date('N', strtotime($partie->date)); //Sort l'index du jour dans sa semaine. 7 pour dimanche, 1 pour lundi, etc.
+                    $column=(date('N', strtotime($partie->date)))*2-1; //Sort l'index du jour dans sa semaine. 7 pour dimanche, 1 pour lundi, etc. *2 car ici on sépare chaque colonne de jour en 2 sous colonnes, pour pouvoir en afficher 2 cote à cote
+
+                    //Pour afficher plusieurs parties cote à cote, ou bien juste le nombre si on a plus de 4 parties un meme jour
+                    $str_date=(string)$partie->date;
+                    
+                    if(!isset($nbDates[$str_date])){
+                        $nbDates[$str_date]=1;                  
+                    }
+                   
+                    if (!isset($nbDates[$str_date]['affichage'])){
+                        $nbDates[$str_date]=array($nbDates[$str_date]);
+                        $nbDates[$str_date]['affichage']="not done";
+                    }
+
+                    if(!isset($nbDates[$str_date]['voisin'])){
+                        $nbDates[$str_date]['voisin']=false; //Servira à savoir si on doit rétrécir les parties pour etre cote à cote
+                    }
 
 
                     //Code couleur :
                     $color="green";//Par défaut, places disponibles
-                    //$inscription='<a href="pages/popupEvent.php?ID=5" target="popup" onclick=\'window.open("\'pages/popupEvent.php?ID=5\',\'name\',\'width=600,height=400")\'>Details et inscription</a><br>';
-                    
+                   
+                    //NOTE : Une partie dans le xml ne doit avoir qu'un seul attribut, qui doit etre l'ID, sinon il faut modifier le code ci-dessous pour récupérer l'Id précisement (avec $partie->attributes()->id peut-etre ?)
                     $inscription='<a href="pages/popupEvent.php?ID='.$partie->attributes().'" target="_blank">Details et inscription</a><br>';
 
-                    //Par défaut. (Liaison avec Discord à faire)
 
-                  //  if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
+                  //if (intval($partie->inscrits) >= intval($partie->minimum)){$color="rgb(194, 194, 21)";}//Si on a le nombre de joueurs minimum    
                     if (intval($partie->inscrits) >= intval($partie->capacite)){ $inscription="COMPLET";$color="rgb(255, 17, 17)";} //Si c'est complet
                     if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray"; $inscription="TERMINÉ";} //Si la date est passée                     
+                    
+
+                    //Si on doit afficher que le nombre de parties, et que ça a pas encore été fait :
+                    //$nbDates[$str_date][0] contient le nombre de parties prevues le jour $str_date
+
+                    //$nbDates['2021-07-24']['affichage']="done" ou "not done". Comme ça, si une des 3+ parties prévues un jour a dejà affiché "X parties prévues", les autres de la même date n'auront pas besoin de le faire
+                    if($nbDates[$str_date][0]>2){ 
+
+                        if ($nbDates[$str_date]['affichage']=="not done"){ ?>
+                            <a href="pages/eventsList.php?date=<?=$str_date?>" class="slot slotWeek" style="text-align: center; height: 140px; grid-row: 19; grid-column: <?=$column?>; background: <?=$color?>">
+                                <strong><?=$nbDates[$str_date][0]?> parties prévues</strong><br>
+                                le <strong><?=$date->format("d/m")?></strong>
+                            </a>  
+
+                    <?php 
+                            $nbDates[$str_date]['affichage']=="done";
+                        }
+                    }
+                    else{
+                        //Si on a pas besoin d'afficher que le nombre parties, on fait l'affichage classique en mettant les vignettes cote à cote:
+                    
+                        $width="";
+                        
+                        if($nbDates[$str_date][0]>1){
+                            $column=$column+1;
+                            $nbDates[$str_date][0]--;            
+                            $width='min-width: 6vw; max-width: 6vw;';       
+                            $nbDates[$str_date]['voisin']=true;
+                            //Après le 1er affichage sur une date, toutes les prochaines de cette meme date devront etre aussi retrecies
+                        }
+                        if($nbDates[$str_date]['voisin']){ 
+                            $width='min-width: 6vw; max-width: 6vw;';       
+                        }
                     ?>
 
 
-                    <div class="slot" style="height: <?=$height?>px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>"><strong><?=$partie->titre?></strong><br><br>
-                        <strong>Type : </strong><?=$partie->type?><br>
-                        <strong>Systeme : </strong><?=$partie->systeme?><br>
-                        <strong>Mineurs : </strong><?=$partie->pjMineur?><br>
-                        <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                        <div class="slot" style="height: <?=$height?>px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>;<?=$width?>"><strong><?=$partie->titre?></strong><br><br>
+                            <strong>Type : </strong><?=$partie->type?><br>
+                            <strong>Systeme : </strong><?=$partie->systeme?><br>
+                            <strong>Mineurs : </strong><?=$partie->pjMineur?><br>
+                            <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
 
-                        <?php $s="s"; if ($partie->minimum<=1){$s="";}?>
-                        <?=$partie->minimum?> joueur<?=$s?> minimum
-                        <br><br>À <strong><?=$partie->heure?></strong><br>
-                        <?=$inscription?><br>
-                    </div>
+                            <?php $s="s"; if ($partie->minimum<=1){$s="";}?>
+                            <?=$partie->minimum?> joueur<?=$s?> minimum
+                            <br><br>À <strong><?=$partie->heure?></strong><br>
+                            <?=$inscription?><br>
+                        </div>
                 <?php
+                    }
                 }
             } catch (Exception $e) { //Si une partie a une date ou une autre info essentielle illisible, on zappe juste cette partie
                 //echo 'Debug : erreur ',  $e->getMessage(), "\n"; 

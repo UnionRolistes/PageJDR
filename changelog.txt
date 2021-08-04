@@ -1,3 +1,6 @@
+- Changelog for v0.4.0 (2021-08-04)
+    * Calendar : displaying simultaneous events side by side in the weeks display mode
+
 - Changelog for v0.3.17 (2021-08-03)
     * Added license file
 

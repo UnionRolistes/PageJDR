@@ -1,5 +1,6 @@
 /* Petits ajustements qui ne sont pas sur le Css de la page formulaire :*/
 
+
 body, html{
     background-color: #23272A;
 }
@@ -18,10 +19,10 @@ form{ /*Pour espacer les boutons d'inscription*/
     margin-left: 4%;
     margin-right: 4%;
 }
-#firstButton{
-    margin-left:8%;
-}
 
+#button{
+    width: 15%;
+}
 
 
 
