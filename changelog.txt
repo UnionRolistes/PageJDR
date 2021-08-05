@@ -1,3 +1,6 @@
+- Changelog for v0.4.1 (2021-08-05)
+    * Added Ynn Pryddein to the jdr list
+
 - Changelog for v0.4.0 (2021-08-04)
     * Calendar : displaying simultaneous events side by side in the weeks display mode
 
