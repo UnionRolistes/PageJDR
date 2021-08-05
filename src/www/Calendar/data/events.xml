@@ -1,4 +1,4 @@
-<parties last_id="2">
+<parties last_id="3">
 <partie id="0">
     <titre>Memento Mori</titre>
     <capacite>4</capacite>
@@ -52,5 +52,23 @@
     <details>A l'occasion de l'anniv de la secrétaire de l'association (Maevis) et d'un de nos membres (keroro)Notre nouveau bar partenaire nous offre la possibilité de privatisé la totalité du bar un dimanche !. seul hic, il faut être aumoins 10. donc venez boire une bière, félicité Maevis pour son années en plus. et jeté quelques dés avec nous. surtout après un ans de confinement ! BIÈRE !
     </details>
     <lien>https://discord.com/channels/298887769793757184/410049488816701450/867123780770201640</lien>
+  </partie>
+  <partie id="3">
+    <titre>Ynn Pryddein : la Terre des Forts</titre>
+    <capacite>6</capacite>
+    <minimum>4</minimum>
+    <inscrits>1</inscrits>
+    <date>2021-08-11</date>
+    <heure>20h00</heure>
+    <duree>3h00</duree>
+    <type>One shoot</type>
+    <mjName>Dae#5125</mjName>
+    <mj>&lt;@Chuchurv&gt; [Cuchurv#6728]</mj>
+    <systeme>Ynn Pryddein</systeme>
+    <pjMineur>Oui</pjMineur>
+    <plateformes>Discord</plateformes>
+    <details>Vocal sur Discord, tout le reste via Roll20 : https://app.roll20.net/join/8989576/IH566Q Ynn Pryddein : "la Terre des Forts" est un jeu de rôle d’heroic fantasy dont le background et les règles ont étés modelés par l’histoire et la mythologie des peuples Celtes. Dans un univers inspiré par l’histoire du Haut Moyen Age, venez jouer des aventures dignes des grandes épopées nordiques et celtiques : le roi Arthur, Les chevaliers de la Table Ronde, Cuchulainn, Beowulf, Finn Mac Cumal et les Fiannas… Serez-vous dignes de ces grands héros ? Attrapez 3D10, une fiche de perso, et lancez-vous dans l’aventure ! Le site officiel du jeu : https://ynnpryddein.com/ Synopsis de l'aventure : "Le protecteur de votre village, Reikenvald (situé dans un coin reculé des montagnes de Volsung) est parti en patrouille et nul ne sait où le trouver. Pendant ce temps là, Vos aînés ont trouvé d'étranges traces autour de Reikenvald ! Monstres ? Brigands ? Faës ? Pillards nordiques ayant réussi à franchir les montagnes ? Allez savoir ! C'est à vous qu'il revient d'éclaircir la situation. Au programme : rencontres inattendues, combat, voyage, négociation et peut être un choix moral à la clé... " Pour plus d'infos : Volsung est un royaume montagnard dont la culture à la base celtique a subi des influences scandinaves, vous jouez des jeunes gens ayant récemment atteint la majorité.
+    </details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/872546037934485585</lien>
   </partie>
 </parties>

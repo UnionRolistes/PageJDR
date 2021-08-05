@@ -9,9 +9,9 @@ body, html{
    
     grid-gap: 0.8em 10%; /*Distance verticale puis horizontale entre les éléments*/
     padding: 1.2em;
-    width: 55%; /*Taille horizontale du formulaire*/
+    width: 65%; /*Taille horizontale du formulaire*/
 
-    margin-left: 22%; /*Distance du formulaire par rapport au bords de la fenêtre*/
+    margin-left: 15%; /*Distance du formulaire par rapport au bords de la fenêtre*/
 }
 
 form{ /*Pour espacer les boutons d'inscription*/
@@ -19,10 +19,40 @@ form{ /*Pour espacer les boutons d'inscription*/
     margin-left: 4%;
     margin-right: 4%;
 }
-
 #button{
     width: 15%;
 }
+
+
+.blocProduits {
+    margin: 0 auto;
+    display: flex;
+    /*overflow-x: scroll;*/
+    overflow-wrap:normal;
+}
+
+.blocProduit {
+    padding: 1em;
+    margin: 1em;
+    width: 20%;
+    border: 1px solid white;
+    border-radius: 1em;
+    position: relative;
+}
+
+.blocProduit:hover {
+    padding-top: 1em;
+    transform: scale(1.1);
+    z-index: 2;
+    opacity: 1;
+    margin: 1em;
+    width: 25%;
+    border: 1px solid white;
+  /*  background-color: grey;*/
+    border-radius: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #00000030;
+}
+
 
 
 

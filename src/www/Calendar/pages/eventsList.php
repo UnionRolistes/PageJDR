@@ -32,10 +32,15 @@ $xml = simplexml_load_file('../data/events.xml'); ?>
         <h1 class="titleCenter">Parties prévues le <?=$dateObject->format('d/m')?></h2>
     </header>
     <section id="URform">
+    <div class="bloc">
+
+        <div class="blocProduits">
+                
+
 
 <?php
-
 $trouve=false;
+$i=0;
 foreach ($xml->partie as $partie) { 
 
     try{  
@@ -45,9 +50,14 @@ foreach ($xml->partie as $partie) {
             $heure=$partie->heure;
             $type=$partie->type;       
             $systeme=$partie->systeme;
-            $pjMineur=$partie->pjMineur; ?>
+            $pjMineur=$partie->pjMineur; 
+            
+            $color="green";//Par défaut, places disponibles
+            if (new DateTime($partie->date) < new DateTime()){$color="gray";}
+            ?>
 
-        <fieldset id="test">
+    <div class="blocProduit" onmouseover="this.style.background='<?=$color?>'" onmouseout="this.style.background='';this.style.color='';">
+
             <strong>Titre : </strong><?=$titre?><br><br>
             <strong>Type : </strong><?=$type?><br>
             <strong>Système : </strong><?=$systeme?><br>
@@ -55,21 +65,33 @@ foreach ($xml->partie as $partie) {
             <strong>Heure : </strong><?=$heure?><br><br>
 
             <input type="button" onclick="window.location.href='popupEvent.php?ID=<?=$partie->attributes()?>'" value="Détails"/>
-        </fieldset>
+        
+    </div>
 
     <?php
         $trouve=true;
+        $i++;
         }
     } catch (Exception $e) { //Si une partie a une date ou une autre info essentielle illisible, on zappe juste cette partie
     //echo 'Debug : erreur ',  $e->getMessage(), "\n";
     } 
+
+    
+    if($i%4==0){ //Correspond au nb de produits qu'on veut par ligne
+    ?>
+    </div>
+
+    <div class="blocProduits">      
+
+    <?php
+    }
 } 
 
 if(!$trouve){ //Si on a trouvé aucune partie ce jour là (cad si on triche par l'URL)
     echo '<h2 class="titleCenter">Aucune partie ce jour-ci</h2>';
 }
 ?>
-
+        </div>
     </section>
 
 </body>
