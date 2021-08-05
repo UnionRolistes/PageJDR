@@ -1,3 +1,6 @@
+- Changelog for v0.4.3 (2021-08-06)
+    * Calendar : design change in the multi-events page
+
 - Changelog for v0.4.2 (2021-08-05)
     * Deleted config.php
 
