@@ -2,6 +2,7 @@
 session_start();
 require('config.php');
 require('curl_utils.php');
+require('settings.php'); //Pour le lien du site
 
 if (!isset($_GET['code']))
     die("Perdu ? Vous n'êtes pas censé vous retrouver coincé ici. :( <small><br>(ou alors, les serveurs discord sont down)</small>");
@@ -10,7 +11,7 @@ $params = array(
     "grant_type" => "authorization_code",
     "client_id" => CLIENT_ID,
     "client_secret" => CLIENT_SECRET,
-    "redirect_uri" => 'http://urplanning.unionrolistes.fr/php/get_token.php',
+    "redirect_uri" => $siteURL.'/php/get_token.php',
     "code" => $_GET['code']
 );
 

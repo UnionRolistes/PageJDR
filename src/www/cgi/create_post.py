@@ -9,7 +9,7 @@ from os import path
 
 from discord import Webhook, RequestsWebhookAdapter, AsyncWebhookAdapter
 import discord
-from settings import logo_url
+import settings
 from const import *
 
 from urpy.xml import Calendar
@@ -54,13 +54,13 @@ def get_webhook_url(form) -> str:
 
 async def main():
     form = cgi.FieldStorage()        
-    embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=logo_url)
+    embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
     calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
     await calendar.add_event(form, embed)
     calendar.save()
     # Redirects to main page
-    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=isPosted")
+    utils.html_header_relocate(f"{settings.creation_form_url}?error=isPosted")
 
 
 
@@ -73,5 +73,5 @@ try:
 except Exception as e:
     print("Content-Type: text/html")
     print()
-    utils.html_header_relocate(f"http://urplanning.unionrolistes.fr?error=envoi") #Debug : Mettre cette ligne en commentaire pour voir le détail des erreurs
+    utils.html_header_relocate(f"{settings.creation_form_url}?error=envoi") #Debug : Mettre cette ligne en commentaire pour voir le détail des erreurs
     raise e
