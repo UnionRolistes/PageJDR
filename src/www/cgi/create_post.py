@@ -56,9 +56,19 @@ async def main():
     form = cgi.FieldStorage()        
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
-    calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-    await calendar.add_event(form, embed)
-    calendar.save()
+#Envoi sur Discord :
+    webhook = Webhook.from_url(get_webhook_url(), adapter=RequestsWebhookAdapter())
+    webhook.send(
+        "",
+        allowed_mentions=discord.AllowedMentions(users=True),
+        embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
+        )
+
+    # calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+   # await calendar.add_event(form, embed)
+   # calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
+
+
     # Redirects to main page
     utils.html_header_relocate(f"{settings.creation_form_url}?error=isPosted")
 
