@@ -57,7 +57,7 @@ async def main():
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
 #Envoi sur Discord :
-    webhook = Webhook.from_url(get_webhook_url(), adapter=RequestsWebhookAdapter())
+    webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
     webhook.send(
         "",
         allowed_mentions=discord.AllowedMentions(users=True),
