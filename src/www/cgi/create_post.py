@@ -3,6 +3,7 @@ from urpy import utils
 #utils.html_header_webhook_not_supplied()
 import cgi
 import cgitb
+import pickle
 cgitb.enable()
 
 from os import path
@@ -50,7 +51,11 @@ def get_payload(form) -> str:
 
 
 def get_webhook_url(form) -> str:
-    return form.getvalue('webhook_url')
+    with open(f'{settings.tmp_wh_location}/wh', "rb") as f:
+        array = pickle.load(f)
+        wh_url, guild_id, channel_id = array[int(form.getvalue('user_id'))]
+        return wh_url
+    #return form.getvalue('webhook_url')
 
 async def main():
     form = cgi.FieldStorage()        
@@ -64,9 +69,9 @@ async def main():
         embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
         )
 
-    # calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-   # await calendar.add_event(form, embed)
-   # calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
+    #calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+    #await calendar.add_event(form, embed)
+    #calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
 
 
     # Redirects to main page
