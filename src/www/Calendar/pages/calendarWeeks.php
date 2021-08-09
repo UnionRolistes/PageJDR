@@ -171,10 +171,18 @@
                             <strong>Type : </strong><?=$partie->type?><br>
                             <strong>Systeme : </strong><?=$partie->systeme?><br>
                             <strong>Mineurs : </strong><?=$partie->pjMineur?><br>
-                            <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                            <strong>Capacité : </strong>
+                            <?php if ((int)$partie->minimum==(int)$partie->capacite){echo $partie->minimum;}
+                            else{echo $partie->minimum.'~'.$partie->capacite.'<br>';}?>
+                            
 
-                            <?php $s="s"; if ($partie->minimum<=1){$s="";}?>
-                            <?=$partie->minimum?> joueur<?=$s?> minimum
+                            <?php 
+                            //<strong>Capacité : </strong><?=$partie->inscrits .>/<?=$partie->capacite .><br>
+                            //$s="s"; if ($partie->minimum<=1){$s="";}
+                            //echo $partie->minimum.'joueur'.$s.' minimum';
+                            //Affichage du nombre d'inscrits mis de côté car non fonctionnel côté Python ?>
+
+
                             <br><br>À <strong><?=$partie->heure?></strong><br>
                             <?=$inscription?><br>
                         </div>
