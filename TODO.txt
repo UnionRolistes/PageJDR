@@ -1,9 +1,12 @@
-Calendrier : faire vrai design de boutons dans les pages popup et eventsList (actuellement <form>)
+Pages admin : terminer les pages d'exportation Fb et de pré remplissement de formulaire pour une duplication de partie
 
 Bugs :
 - Calendrier qui sélectionne minuit par défaut
 - Problème si l'utilisateur annule l'oauth2
 - lien d'image absolus dans le footer
+- Les sauts de ligne ne sont pas reconnus à la fois dans le xml et dans l'exportation en fichier .ics. Trouver une balise compatible avec les 2 formats
 
 Ajouts potentiels :
 - Vérification des données côté serveur, comme sur Web_Presentation puis cgi/create_presentation
+- Système d'effacement de parties du xml après 1 mois par exemple
+- Récupération en temps réel du nombre d'inscrits d'une partie, et l'écrire dans le xml Calendar/data/events.xml

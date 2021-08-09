@@ -166,7 +166,12 @@
                         <a href="php/monthsToWeeks.php?date=<?=$partie->date?>" class="slot slotMonth" style="height: 70px; grid-row: <?=$row?>; grid-column: <?=$column?>; background: <?=$color?>">
                             <strong><?=$partie->titre?></strong><br>
                             <strong>Systeme : </strong><?=$partie->systeme?><br>
-                            <strong>Capacité : </strong><?=$partie->inscrits?>/<?=$partie->capacite?><br>
+                            <strong>Capacité : </strong>
+                            <?php if ((int)$partie->minimum==(int)$partie->capacite){echo $partie->minimum;}
+                            else{echo $partie->minimum.'~'.$partie->capacite.'<br>';}?>
+                            
+                            <!--Affichage du nombre d'inscrits mis de côté car non fonctionnel côté Python -->
+
                             <strong>Durée : </strong><?=$partie->duree?><br>
                             Le <strong><?=$date->format("d/m")?></strong>
                         </a>           
