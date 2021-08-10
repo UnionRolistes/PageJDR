@@ -17,7 +17,7 @@ from urpy.xml import Calendar
 from urpy import utils
 
 # Logging
-#cgitb.enable()  # , logdir="/usr/local/log/cgi")
+cgitb.enable(display= 1, logdir="/usr/local/log/cgi")
 
 
 def get_payload(form) -> str:
