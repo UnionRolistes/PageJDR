@@ -1,3 +1,6 @@
+- Changelog for v0.5.3 (2021-08-10)
+    * Minor design changes
+
 - Changelog for v0.5.2 (2021-08-10)
     * Added 3 Jdr in the list
 

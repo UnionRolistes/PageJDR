@@ -55,4 +55,9 @@
     border-radius: 34px;
     }
     
-    .slider.round:before {border-radius: 50%;}    
+    .slider.round:before {border-radius: 50%;} 
+    
+    #modeDiv{
+        text-align: center;
+        margin-bottom: 1%;
+    }

@@ -116,7 +116,7 @@ button{
     text-align:center;
     margin-top:5vh;
     font-size:14px;
-    color:red;
+    color:rgb(218, 31, 31);
     font-family:mono;
 }
 
@@ -143,8 +143,12 @@ button[disabled]{
   color: white;
 }
 
-a{text-decoration: none;}
+a{
+  text-decoration: none;
+  color: rgb(40, 40, 199);
+}
 
+#connectField{text-align: center;}
 
 /*Pour le responsive et affichage mobile :*/
 @-ms-viewport {

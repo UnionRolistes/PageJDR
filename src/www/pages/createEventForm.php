@@ -4,26 +4,20 @@
             <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
             <input type=hidden name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ""?>">
             <input type=hidden name="pseudo" value="<?= isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : ""?>">           
-            <label>Maître du jeu 👑</label>
-            <?php
-            if (isset($_SESSION['avatar_url']) and isset($_SESSION['username'])) {
-                echo '<div>';
-                echo "<img src=\"" . $_SESSION['avatar_url'] . "\"/>";      
-                echo $_SESSION['username'];
-                echo '<input type="button" value="Deconnexion" id="deconnexion" onclick="window.location.href=\'php/logout.php\'"/>';
-                echo '</div>';
-            } else
-                echo '<div><input type="button" value="Me connecter" id="connexion" onclick="window.location.href=\'php/get_authorization_code.php\'"/></div>'
-            ?>
-
-            <!-- Button for changing color mode -->
-            <label id="mode">Sombre 🌙</label>					
-            <div>
-                <label class="switch">
-                    <input type="checkbox" onclick="chgMode()">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+            
+            <fieldset id="connectField">
+                <legend>Maître du jeu 👑</legend>
+                <?php
+                if (isset($_SESSION['avatar_url']) and isset($_SESSION['username'])) {
+                    echo '<div>';
+                    echo "<img src=\"" . $_SESSION['avatar_url'] . "\"/>";      
+                    echo $_SESSION['username'];
+                    echo '<input type="button" value="Deconnexion" id="deconnexion" onclick="window.location.href=\'php/logout.php\'"/>';
+                    echo '</div>';
+                } else
+                    echo '<div><input type="button" value="Me connecter" id="connexion" onclick="window.location.href=\'php/get_authorization_code.php\'"/></div>'
+                ?>
+            </fieldset>
                 
             <label>Nombre de joueurs</label>
                 <div id="range" style="color:black !important" aria-describedby="nbTxt">
@@ -37,7 +31,7 @@
                                 'min': 1,
                                 'max': 16
                             },
-                            padding:[1,1],
+                            padding:[0,0],
                             connect:true
 
                         });
