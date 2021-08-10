@@ -68,5 +68,5 @@ foreach ($xml->partie as $partie) {
     </section>
 
 </body>
-<?php include('../../php/footer.php'); ?>
+<?php include('../../pages/footer.html'); ?>
 </html>

@@ -47,5 +47,5 @@
 
     <script src="js/requestCalendar.js"></script>
 </body>
-<?php include('../php/footer.php'); ?>
+<?php include('../pages/footer.html'); ?>
 </html>

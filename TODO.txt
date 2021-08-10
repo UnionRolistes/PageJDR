@@ -5,6 +5,7 @@ Bugs :
 - Problème si l'utilisateur annule l'oauth2
 - lien d'image absolus dans le footer
 - Les sauts de ligne ne sont pas reconnus à la fois dans le xml et dans l'exportation en fichier .ics. Trouver une balise compatible avec les 2 formats
+- Affichage mobile sur certaines pages du calendrier
 
 Ajouts potentiels :
 - Vérification des données côté serveur, comme sur Web_Presentation puis cgi/create_presentation
