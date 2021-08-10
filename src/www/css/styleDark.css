@@ -27,7 +27,7 @@ button, option {
 }
 
 select{
-  width: 102%;
+  width: 100%;
   border: 1px solid gray;
 }
 
@@ -40,3 +40,4 @@ textarea, input[type="text"], input[type="number"], select{
   background-color: #23272A;
   color: white;
 }
+#submit{background-color: gray;}
