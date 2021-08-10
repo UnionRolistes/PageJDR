@@ -73,12 +73,12 @@ $emot_autre = ' :space_invader: ';
         if($error=='transmission') echo '<span class="rouge">Erreur lors de la transmission des données. Si le problème persiste, veuillez contacter un administrateur</span>';
         //Voir php/sendToPython
     }
-    include('php/createEventForm.php'); ?>
+    include('pages/createEventForm.php'); ?>
 
     </section>
     <script src="js/record_form.js"></script> <!--Sauvegarde les données déjà rentrées-->
 </body>
 
-<?php include('php/footer.php'); ?>
+<?php include('pages/footer.html'); ?>
 
 </html>

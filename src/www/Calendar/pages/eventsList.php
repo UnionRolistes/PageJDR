@@ -95,5 +95,5 @@ if(!$trouve){ //Si on a trouvé aucune partie ce jour là (cad si on triche par 
     </section>
 
 </body>
-<?php include('../../php/footer.php'); ?>
+<?php include('../../pages/footer.html'); ?>
 </html>

@@ -146,5 +146,5 @@ if(!$trouve){
     </section>
 
 </body>
-<?php include('../../php/footer.php'); ?>
+<?php include('../../pages/footer.html'); ?>
 </html>
