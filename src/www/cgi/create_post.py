@@ -13,7 +13,7 @@ import discord
 import settings
 from const import *
 
-from urpy.xml import Calendar
+#from urpy.xml import Calendar
 from urpy import utils
 
 # Logging
