@@ -53,8 +53,7 @@ foreach ($xml->partie as $partie) {
             <strong>Système : </strong><?=$systeme?><br>
             <strong>Mineurs : </strong><?=$pjMineur?><br><br>
             <strong>Heure : </strong><?=$heure?><br><br>
-            Rajouter bouton supprimer ? Aux risques des modérateurs, car le supprimer du xml ne le supprimera pas de Discord
-
+      
             <input type="button" onclick="window.location.href='modules/gameExportation.php?ID=<?=$partie->attributes()?>'" value="Voir la mise en forme"/>
             <input type="button" onclick="window.location.href='modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>      
         </fieldset>

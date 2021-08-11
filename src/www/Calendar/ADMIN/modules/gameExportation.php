@@ -58,7 +58,7 @@ if(!$trouve){
     <link rel="stylesheet" href="../../../css/styleDark.css">
     <link rel="stylesheet" href="../../css/stylePopup.css">
 
-    <link rel="icon" type="image/png" href="../../img/ur-bl2.png">
+    <link rel="icon" type="image/png" href="../../../img/ur-bl2.png">
 </head>
 <body>
     
@@ -73,19 +73,13 @@ if(!$trouve){
             <strong>Titre : </strong><?=$titre?><br>
             <strong>Type : </strong><?=$type?><br>
             <strong>Date : </strong>Le <?=$date->format('d/m')?> à <?=$heure?><br>
-            :clapper: Titre Saignée Méditerranéenne<br>
-            :timer: Durée moyenne du scénario 3h30<br>
-            :person_standing_tone1: Nombre de joueurs 5<br>
-            :crown: MJ <@194875837277929472> [Syn#3950]<br>
-            :d10: Système Vampire<br>
-            :baby::skin-tone-1: PJ Mineur non<br>
-            :star2: Plateformes :discord:<br>
-            :grey_question: Détails<br>
-            Saison 3 - Chapitre 3 : Impasse Mexicaine<br>
-
-            La tragédie ayant frappée la Cité a regonflé la détermination de la coterie à défendre Nice. 
-            Ayant chacun obtenu des réponses et des questions à poser, ils présentent leurs résultats et leurs interrogations au Juge qui doit maintenant s'ouvrir sur son passé.
-            Mais les conséquences de leurs actions passées sont également sur le point de tomber au pire moment...<br>
+            <strong>Durée moyenne : </strong><?=$duree?><br>
+            <strong>Nombre de joueurs : </strong><?php if (intval($capacite)==intval($minimum)){echo $capacite;}else{echo $minimum.'~'.$capacite;}?> <br>
+            <strong>MJ : </strong> <?=$MJ?><br>
+            <strong>Système : </strong><?=$systeme?><br>
+            <strong>PJ mineur : </strong><?=$pjMineur?><br>
+            <strong>Plateformes : </strong><?=$plateformes?><br><br>
+            <strong>Détails : </strong><?=$details?><br>
 
 
         </fieldset>

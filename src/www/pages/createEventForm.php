@@ -86,23 +86,25 @@
             <div></div> <!--Pour faire de la place entre Durée et Jdr-->
             
             <!-- Sélection du système jdr -->       
-            <label>JDR 🎲 <span class="rouge">*</span> (Hors liste <input type="checkbox" id="checkJDR" onclick="chgJdrList()">)</label>
+            <label>JDR 🎲 <span class="rouge">*</span> (Hors liste <input type="checkbox" id="checkJDR" unchecked onclick="chgJdrList()">)</label>
                 
             <select name ="jdr_system" id="system" required>
                 <option hidden disabled selected value="">Liste des JdR proposés</option>
                 <?php
 
                     if (!file_exists('data/jdr_systems.xml')) {
-                        exit('Echec lors de la récupération des parties');
+                        echo('Echec lors de la récupération des parties');
                     }
-                    # Generates all the options from an xml file
-                    $systems = simplexml_load_file("data/jdr_systems.xml");
-                    foreach ($systems as $optgroup) {
-                        echo '<optgroup label ="' . $optgroup['label'] .'">';
-                        foreach ($optgroup as $option) {
-                            echo '<option>' . $option . '</option>'; 
+                    else{           
+                        # Generates all the options from an xml file
+                        $systems = simplexml_load_file("data/jdr_systems.xml");
+                        foreach ($systems as $optgroup) {
+                            echo '<optgroup label ="' . $optgroup['label'] .'">';
+                            foreach ($optgroup as $option) {
+                                echo '<option>' . $option . '</option>'; 
+                            }
+                            echo '</optgroup>';
                         }
-                        echo '</optgroup>';
                     }
                 ?>         
             </select>	
@@ -145,3 +147,5 @@
             <a href="https://github.com/UnionRolistes/Web_Planning" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 
         </form>
+
+<!-- TODO : La restauration de la durée ne fonctionne pas, je pense que c'est parce que le select est fait en JavaScript-->

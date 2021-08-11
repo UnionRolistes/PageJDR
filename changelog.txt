@@ -1,3 +1,7 @@
+- Changelog for v0.6.0 (2021-08-11)
+    * Admin : Pré remplissement du formulaire pour dupliquer une partie
+    * Admin : Mise en forme texte d'une partie pour exportation Facebook
+
 - Changelog for v0.5.6 (2021-08-11)
     * Writing webhook in a file instead of URL
 

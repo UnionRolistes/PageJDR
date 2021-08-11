@@ -1,4 +1,4 @@
 AuthName "Vous êtes sur une page d'administration protégée"
 AuthType Basic
-AuthUserFile "/var/www/html/Web_Planning/Calendar/ADMIN/.htpasswd"
+AuthUserFile "C:\WAMP\www\STAGE\Web_Planning\src\www\Calendar\ADMIN\.htpasswd"
 Require valid-user

@@ -6,6 +6,7 @@ Bugs :
 - lien d'image absolus dans le footer
 - Les sauts de ligne ne sont pas reconnus à la fois dans le xml et dans l'exportation en fichier .ics. Trouver une balise compatible avec les 2 formats
 - Affichage mobile sur certaines pages du calendrier
+- Formulaire partie : Sauvegarde de la durée ne fonctionne pas, je pense que c'est parce que le select est rempli en JavaScript. Idem pour le choix des plateformes.
 
 Ajouts potentiels :
 - Vérification des données côté serveur, comme sur Web_Presentation puis cgi/create_presentation

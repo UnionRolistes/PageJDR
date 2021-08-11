@@ -1,15 +1,19 @@
 <?php
 //Fenetre popup sur un clic d'une partie. Affiche tous les détails de la partie ainsi que 2 liens vers le message Discord et pour télécharger le Ics de l'événement
 
-if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){header('Location:../index.php');}
+if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){echo 'Pas de partie sélectionnée';}
+else{
+session_start();
 
 $ID=$_GET['ID'];
 
 
 //On ouvre le Xml :        
 if (!file_exists("../data/events.xml")) {
-    exit('Echec lors de la récupération des parties');
+    echo 'Echec lors de la récupération des parties';
+    exit();
 }
+
 $xml = simplexml_load_file('../data/events.xml');
 
 //(Pas trouvé de fonction "find by id" qui fonctionne bien. Et dans les 2 cas ca revient à un parcours de xml, donc on ne perd pas en optimisation)
@@ -46,7 +50,7 @@ foreach ($xml->partie as $partie) {
     } 
 }
 if(!$trouve){
-    echo 'Erreur, partie introuvable';
+    echo 'Erreur, partie introuvable. Veuillez contacter un administrateur';
     exit;
 } ?>
 
@@ -141,10 +145,22 @@ if(!$trouve){
                 <input type="hidden" name="summary" value="<?=$partie->titre?>">
                 <input type="hidden" name="lien" value="<?=$lienWeb?>">
                 <input type="submit" value="Ajouter à mon agenda">
-            </form>
+            </form><br>
+<?php
+            if(isset($_SESSION['securedURadmin'])){
+                if ($_SESSION['securedURadmin']=="securedID"){ ?>
+               
+               <input type="button" onclick="window.location.href='../ADMIN/modules/gameExportation.php?ID=<?=$partie->attributes()?>'" value="Voir la mise en forme"/>
+            <input type="button" onclick="window.location.href='../ADMIN/modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>  
+
+               <?php
+                }
+            } 
+       ?>
         </fieldset>
     </section>
 
 </body>
 <?php include('../../pages/footer.html'); ?>
 </html>
+<?php } ?>
