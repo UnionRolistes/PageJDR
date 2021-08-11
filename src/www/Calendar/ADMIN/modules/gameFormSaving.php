@@ -1,4 +1,8 @@
 <?php
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
+
 //Devra enregistrer les données dans le local storage, comme notre système actuel, puis renvoyer vers le formulaire. Les données préremplies vont alors s'afficher
 //Faire ici un formulaire aux name identique à l'original, puis appeler la fonction JS record_form
 

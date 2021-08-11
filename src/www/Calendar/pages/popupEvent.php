@@ -1,4 +1,8 @@
 <?php
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
+
 //Fenetre popup sur un clic d'une partie. Affiche tous les détails de la partie ainsi que 2 liens vers le message Discord et pour télécharger le Ics de l'événement
 
 if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){echo 'Pas de partie sélectionnée';}

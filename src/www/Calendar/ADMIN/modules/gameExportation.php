@@ -1,4 +1,9 @@
 <?php
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
+
+
 //TODO : demander les détails à Dae et terminer la page
 
 if (!isset($_GET['ID']) || !is_numeric($_GET['ID'])){header('Location:../index.php');}
