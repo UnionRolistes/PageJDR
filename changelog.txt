@@ -1,3 +1,6 @@
+- Changelog for v0.5.6 (2021-08-11)
+    * Writing webhook in a file instead of URL
+
 - Changelog for v0.5.5 (2021-08-10)
     * Enabling errors display
 

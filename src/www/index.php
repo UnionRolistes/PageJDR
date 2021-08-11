@@ -70,8 +70,6 @@ $emot_autre = ' :space_invader: ';
         if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>';
         //Envoyée par cgi/create_post.py
 
-        if($error=='transmission') echo '<span class="rouge">Erreur lors de la transmission des données. Si le problème persiste, veuillez contacter un administrateur</span>';
-        //Voir php/sendToPython
     } ?>
 
     <!-- Button for changing color mode -->
