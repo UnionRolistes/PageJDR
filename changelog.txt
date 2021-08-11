@@ -1,3 +1,6 @@
+- Changelog for v0.6.4 (2021-08-11)
+    * Fix logout script so it don't erase the webhook
+
 - Changelog for v0.6.3 (2021-08-11)
     * Syntax fix
 

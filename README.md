@@ -23,4 +23,4 @@ sudo nano /etc/apache2/sites-available/100-UR_Planning.conf --> Remplacer "serve
 
 
 Pour une mise à jour :
-"cd /usr/local/src/Bot_Base && sudo git pull && sudo bash updateBot.sh"
+"cd /usr/local/src/Bot_Base && sudo git checkout . && sudo git pull && sudo bash updateBot.sh"
