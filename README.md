@@ -19,5 +19,8 @@ Pour une 1ère installation :
 "cd /usr/local/src && sudo git clone https://github.com/UnionRolistes/Bot_Base && cd Bot_Base && sudo bash updateBot.sh"
 sudo nano /var/www/html/Web_Planning/php/config.php.default" --> Remplir ce fichier avec le Client ID, Secret ID et Redirect_URI du Bot, trouvable sur Discord developer (https://discord.com/developers/applications)
 
+sudo nano /etc/apache2/sites-available/100-UR_Planning.conf --> Remplacer "serverName planning.unionrolistes.fr" (ligne 9) par la redirection saisie sur votre hébergeur en ligne
+
+
 Pour une mise à jour :
 "cd /usr/local/src/Bot_Base && sudo git pull && sudo bash updateBot.sh"
