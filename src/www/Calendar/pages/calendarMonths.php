@@ -126,6 +126,7 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
                                 
 
                     $heure=explode("h", "$partie->heure");
+                    if ($heure[1]=="" || !isset($heure[1])){$heure[1]="00";}
                     //Code couleur :
                     $color="green";//Par défaut, places disponibles
                     if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée 
@@ -156,7 +157,6 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
                         }
                     
 
-                        $heure=explode("h", "$partie->heure");
                         //Code couleur :
                         $color="green";//Par défaut, places disponibles
 

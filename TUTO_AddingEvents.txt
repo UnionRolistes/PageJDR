@@ -1,0 +1,173 @@
+# I -- Pourquoi ajouter une partie manuellement dans la base de données ? (fichier XML)
+
+A partir d'un Xml avec toutes les infos des parties respectant certaines syntaxes (voir plus bas), le calendrier en ligne les affiche automatiquement dans le bon jour et bon créneau. (planning.unionrolistes.fr/Calendar)
+Ce Xml se remplit automatiquement lorsque qu'une partie est postée à travers le formulaire (planning.unionrolistes.fr). (Actuellement non fonctionnel le 12/08/21)
+
+Si pour une raison cette écriture ne fonctionne pas pour une partie qui a été postée sur Discord, vous pourrez éditer le fichier Xml manuellement pour l'ajouter, afin qu'elle s'affiche dans le calendrier et qu'elle bénéficie de toutes ses fonctionnalités (Exportation agenda, lien pour s'inscrire, duplication et mise en forme pour les admins)
+
+
+
+# II -- Comprendre la structure Xml
+
+Vous trouverez le fichier Xml dans /var/www/html/Web_Planning/Calendar/data/events.xml si le site a été installé sur votre serveur, ou alors sur le repo Github dans Web_Planning/src/www/Calendar/data/events.xml
+
+EXEMPLE 1 : Le fichier Xml avec une partie inscrite
+
+<parties last_id="0">
+  <partie id="0">
+    <titre>Memento Mori</titre>
+    <capacite>4</capacite>
+    <minimum>1</minimum>
+    <inscrits>4</inscrits>
+    <date>2021-07-28</date>
+    <heure>19h00</heure>
+    <duree>3h00</duree>
+    <type>Campagne</type>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
+    <pjMineur>Non</pjMineur>
+    <plateformes>Discord</plateformes>
+    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+</parties>
+
+Vous voyez ici que le fichier contient une seule partie, de titre "Memento Mori", de joueurs maximum 4, etc.
+
+
+EXEMPLE 2 : Le fichier Xml avec 2 parties inscrites
+
+<parties last_id="1">
+
+ <partie id="1">
+    <titre>Memento Mori 2</titre>
+<capacite>4</capacite>
+    <minimum>1</minimum>
+    <inscrits>4
+</inscrits>
+ <date>2021-07-28</date>
+    <heure>19h00</heure>
+    <duree>3h00</duree>
+    <type>Campagne</type>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
+    <pjMineur>Non</pjMineur>
+    <plateformes>Discord</plateformes>
+    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...
+</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+ </partie>  
+
+  <partie id="0">
+    <titre>Memento Mori</titre>
+    
+    .... Reste des informations ....
+
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+
+</parties>
+
+Ce fichier contient 2 parties et est également fonctionnel. On remarque 2 choses : 
+- L'indentation n'est pas obligatoire, mais est préférable pour des soucis de visibilité et compréhension
+- Les ID des parties peuvent être dans n'importe quel ordre, mais de même il est plus clair de les organiser par ordre croissant
+- Le "last_id" (ligne 1) doit correspondre à l'Id de partie le plus grand présent. Si vous rangez les id par ordre croissant, il suffira de l'augmenter de 1 à chaque nouvelle partie.
+
+
+
+
+# III -- Rajouter une partie et respecter la syntaxe
+
+Rajouter une partie n'est pas compliqué, mais il vous faudra respecter certaines syntaxes pour que le calendrier puisse l'intérpréter correctement.
+
+Il est préférable d'éditer le Xml présent sur le github (https://github.com/UnionRolistes/Web_Planning/blob/master/src/www/Calendar/data/events.xml) puis de pull ("cd /usr/local/src/Bot_Base && sudo git checkout . && sudo git pull && sudo bash updateBot.sh")
+Car si vous éditez directement en local, puis que vous devez faire un pull, cela risque d'écraser vos changements. (Et vous ne pouvez pas push du serveur à moins modifier 2 fois le xml, car le site se trouve dans /var/www/html/Web_Planning, alors que le repo est clone dans /usr/local/src/Web_Planning)
+
+
+Pour rajouter une partie : 
+1. Copiez coller une partie déjà présente, comme Memento Mori, afin de vous en servir comme modèle
+2. IMPORTANT : Changez l'id de la partie (ici <partie id="0">) en prenant un ID qui n'est pas déjà utilisé. Si cet ID devient le plus grand, reportez le également dans "last_id" (<parties last_id="0">) Pour en être sûr il vous suffit de prendre l'id suivant le "last_id" (<parties last_id="0">), puis de mettre à jour ce last_id avec le nouveau nombre
+3. Remplissez les informations de la nouvelle partie. Notamment le lien du message que vous devrez aller chercher sur le message posté sur Discord
+4. IMPORTANT : Vérifiez la syntaxe
+-- > 1.La date doit absolument être sous la forme Année(4 chiffres)-Mois(1 à 2 chiffres)-Jour(1 à 2 chiffres). Exemple : 2021-12-23 ou 2021-3-2
+-- > 2. L'id de partie ne doit pas être déjà pris (<partie id="0">), sinon la partie s'affichera dans le calendrier mais aura des problèmes d'affichage dans les pages de détails (quand on clique sur "détails et inscription", dans la section admin, etc.), empêchant les utilisateurs d'être redirigés vers le message Discord. 
+     
+NOTES : 
+- L'information "inscrits" n'est pas encore récupérée en temps réel (12/08/21) (TODO), et les codes associés affichant ce nombre ont donc été mis en commentaires de le code, car pas très utile si le nombre ne change jamais. Lors du rajout de partie, vous pouvez donc rentrer le nombre de personnes déjà inscrites 
+- MJ : &lt;@Ayn&gt;  -- > "&lt;" ="<" et "&gt;" = ">". Cette information ne s'affichant qu'en tant que texte dans le calendrier, une faute d'orthographe ne fait pas planter l'affichage, mais pour la cohérence il est préférable de garder la même syntaxe (&lt;@USER&gt; [USER#ID])
+- Les sauts de ligne normaux ne sont pas compris par l'affichage html (Tout le texte sera affiché d'un bloc, avec ou sans sauts de ligne), et posent un problème dans l'exportation agenda (Tout ce qui après un saut de ligne disparait) (TODO: trouver un saut de ligne compatible avec l'html et l'exportation agenda .ics)
+- Le nombre d'inscrits, de capacité et de minimum ne doivent pas contenir de lettres ou la partie ne s'affichera pas
+
+
+EXEMPLE FINAL : Xml de départ
+<parties last_id="0">
+  <partie id="0">
+    <titre>Memento Mori</titre>
+    <capacite>4</capacite>
+    <minimum>1</minimum>
+    <inscrits>4</inscrits>
+    <date>2021-07-28</date>
+    <heure>19h00</heure>
+    <duree>3h00</duree>
+    <type>Campagne</type>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
+    <pjMineur>Non</pjMineur>
+    <plateformes>Discord</plateformes>
+    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+</parties>
+
+---> Xml avec une partie ajoutée
+
+<parties last_id="1">
+  <partie id="0">
+    <titre>Memento Mori</titre>
+    <capacite>4</capacite>
+    <minimum>1</minimum>
+    <inscrits>4</inscrits>
+    <date>2021-07-28</date>
+    <heure>19h00</heure>
+    <duree>3h00</duree>
+    <type>Campagne</type>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
+    <pjMineur>Non</pjMineur>
+    <plateformes>Discord</plateformes>
+    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+  <partie id="1">
+    <titre>Memento Mori</titre>
+    <capacite>4</capacite>
+    <minimum>1</minimum>
+    <inscrits>4</inscrits>
+    <date>2021-07-28</date>
+    <heure>20h00</heure>
+    <duree>3h30</duree>
+    <type>Campagne</type>
+    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
+    <systeme>7e-mer</systeme>
+    <pjMineur>Non préférable</pjMineur>
+    <plateformes>Discord Autre Roll20</plateformes>
+    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
+  </partie>
+</parties>
+
+RESUME des syntaxes empêchant une partie de s'afficher si elles ne sont pas respectées :
+  1. La date --> aaaa-m(m)-j(j)
+  2. La capacité, le minimum --> pas de lettres
+  Les "id" doivent tous être différents (et que des nombres) sinon on ne pourra accéder à la page de détails que d'une seule d'elles (<parties last_id="0">) (<partie id="0">)
+
+
+
+
+
+# IV -- Informations supplémentaires
+- Une partie mal syntaxée n'empechera pas les autres (si elles sont bien écrites) de s'afficher sur le calendrier. Seule le(s) parties mal syntaxées ne seront pas affichées.
+- Les noms de balise présents dans le xml ("pjMineur", "mj", "capacite", etc.) ne sont jamais affichées à l'utilisateur, mais l'orthographe ne doit pas être changée, sinon la(/les) partie affectée ne seront pas affichées (ou alors l'orthographe devra être aussi changée à plusieurs endroits du code)
+- La règle par défaut en Xml est que toute balise ouverte doit être fermée, avec la même orthographe (<blabla1> = balise ouvrante, </blabla1> = balise fermante). Veillez donc à ne pas effacer un bout de balise sans faire exprès.
+- De la même manière que vous savez ajouter une partie, vous pourrez en supprimer et en modifier manuellement dans le xml. Cela n'affectera pas le message Discord (TODO)
+- Le "last_id" est utilisé par le script d'écriture dans le xml. Comme il n'est pour l'instant pas fonctionnel (12/08/21), changer le last_id n'est pas essentiel, mais il le sera si le script refonctionne. Il est donc préférable de prendre l'habitude de mettre le last_id à jour

@@ -97,7 +97,7 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
                     $heure=explode("h", "$partie->heure");
                     if ($heure[1]=="00" || $heure[1]==""){ $demieHeure=0;} 
                     else{$demieHeure=1;}
-                    if ($heure[1]==""){$heure[1]="00";}//Utilisé plus tard pour détecter si l'heure est passée
+                    if ($heure[1]=="" || !isset($heure[1])){$heure[1]="00";}//Utilisé plus tard pour détecter si l'heure est passée
 
                     $row=($heure[0]-5)*2-1+1*$demieHeure; //Formule permettant de passer de l'heure à la ligne où l'afficher dans le calendrier
                     //Permet de detecter les demies heures. 
