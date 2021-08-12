@@ -24,3 +24,17 @@ sudo nano /etc/apache2/sites-available/100-UR_Planning.conf --> Remplacer "serve
 
 Pour une mise à jour :
 "cd /usr/local/src/Bot_Base && sudo git checkout . && sudo git pull && sudo bash updateBot.sh"
+
+
+# Section ADMIN : Web_Planning/Calendar/ADMIN/index.php
+Identifiants par défaut :
+default default
+
+Pour changer les identifiants ADMIN --> Web_Planning/Calendar/ADMIN/modules/crypt.php
+1) Rentrez le login et mot de passe voulu. Le script vous retournera alors les identifiants cryptés.
+2) Copiez les dans /var/www/html/Web_Planning/Calendar/ADMIN/.htpasswd, sur une nouvelle ligne. Vous pouvez maintenant supprimer la ligne commencant par "default" afin d'oublier les identifiants par défaut
+!! Retenez bien votre mot de passe car il n'y a aucun moyen de le retrouver, à part d'en créer un autre. Si cela vous arrivait, déplacez le fichier Web_Planning/Calendar/ADMIN/modules/crypt.php vers Web_Planning/Calendar/crypt.php par exemple (pour le sortir de la zone Admin protégée), puis créez un nouveau mot de passe via la page Web_Planning/Calendar/crypt.php
+
+NOTE : Vous pouvez avoir plusieurs identifiants différents, en les mettant chacun sur une ligne. Mais il ne peut pas y avoir plusieurs login identiques.
+
+La section administrateur permet de pré remplir le formulaire à partir d'une partie choisie, afin de faciliter sa duplication, ainsi que d'accéder à la mise en forme d'une partie facilitant l'exportation Facebook via un copié-collé
