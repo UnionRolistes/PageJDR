@@ -2,9 +2,11 @@
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
 Ask a derogation at Contact.unionrolistes@gmail.com-->
         
+<!--Dépendances : tous les tags "name" ont une orthographe importante, et sont repris dans plusieurs codes python (cgi/create_post; Bot_Planning_python/.../cog.py; Bot_Base/urpy/xml.py dans la fonction add_event)  -->
+
         <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
 
-            <!-- Connexion discord -->   
+            <!-- Connexion discord. Les 3 inputs suivant seront inutiles si l'écriture du webhook dans le fichier fonctionne, car ils seront justement écrits dans le fichier (Voir Bot_Planning_python/cog_planning/cog.py fonction jdr) -->   
             <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
             <input type=hidden name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ""?>">
             <input type=hidden name="pseudo" value="<?= isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : ""?>">           

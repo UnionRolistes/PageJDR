@@ -1,3 +1,6 @@
+- Changelog for v0.6.7 (2021-08-12)
+    * Code cleanup
+
 - Changelog for v0.6.6 (2021-08-12)
     * Added manual : Add an event in the xml
 

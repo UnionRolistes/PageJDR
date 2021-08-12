@@ -67,7 +67,10 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
         }
         $xml = simplexml_load_file($path);
 
-        //Systeme similaire à CalendarMonths, mais doit ici compter le nombre de parties qui se chevauchent et pas seulement le même jour
+
+        //Systeme similaire à CalendarMonths, mais doit ici compter le nombre de parties qui se chevauchent et pas seulement le même jour 
+        //(Concession faite : 2 parties le même jour sont considérées chevauchantes. Un algorithme détectant vraiment des créneaux chevauchant serait trop complexe et pas très optimisé (parcourir le xml n^2 fois où n est le nombre de parties))
+        
         //Xml to array
         $tmp = json_encode($xml);
         $arrayXml = json_decode($tmp,TRUE);

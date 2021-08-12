@@ -38,7 +38,7 @@ $xml = simplexml_load_file('../data/events.xml'); ?>
     <section id="URform">
     <div class="bloc">
 
-        <div class="blocProduits">
+        <div class="blocParties">
                 
 
 
@@ -60,7 +60,7 @@ foreach ($xml->partie as $partie) {
             if (new DateTime($partie->date) < new DateTime()){$color="gray";}
             ?>
 
-    <div class="blocProduit" onmouseover="this.style.background='<?=$color?>'" onmouseout="this.style.background='';this.style.color='';">
+    <div class="blocPartie" onmouseover="this.style.background='<?=$color?>'" onmouseout="this.style.background='';this.style.color='';">
 
             <strong>Titre : </strong><?=$titre?><br><br>
             <strong>Type : </strong><?=$type?><br>
@@ -81,11 +81,11 @@ foreach ($xml->partie as $partie) {
     } 
 
     
-    if($i%4==0){ //Correspond au nb de produits qu'on veut par ligne
+    if($i%4==0){ //Correspond au nb de parties qu'on veut par ligne
     ?>
     </div>
 
-    <div class="blocProduits">      
+    <div class="blocParties">      
 
     <?php
     }
