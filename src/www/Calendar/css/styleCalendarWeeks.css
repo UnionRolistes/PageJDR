@@ -43,9 +43,6 @@
 }
 
 
-/*TODO : 
-Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
-Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire ?)*/
 
 /*Pour le responsive et affichage mobile :*/
 @-ms-viewport {
@@ -57,6 +54,6 @@ Demander ce qui se passe actuellement si une partie est complète (on peut encor
   /* Pour les ecrans de moins de 770 pixels de large */
 
   .slot{
-    width: 15% auto;
+    font-size:10px;
   }
 }

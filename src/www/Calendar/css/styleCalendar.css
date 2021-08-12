@@ -170,7 +170,23 @@ ul{
 }
 
 
+/*Pour le responsive et affichage mobile :*/
+@-ms-viewport {
+  width: device-width;
+}
 
-/*TODO : probleme, les events ne s'alignent pas bien avec les colonnes + Plus on est loin dans la semaine, plus la case de partie se retrecie en largeur
-Ecrire dans la doc la dépendance entre nom des types et code couleur. Optimisable en passant les types dans un xml
-Demander ce qui se passe actuellement si une partie est complète (on peut encore s'inscrire)*/
+
+@media screen and (max-width:770px){
+  /* Pour les ecrans de moins de 770 pixels de large */
+
+  .slot{
+    font-size:10px;
+  }
+
+  .header{
+    top: 155px;
+  }
+  .titleCenter{
+    top: 78px;
+  }
+}
