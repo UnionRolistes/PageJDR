@@ -1,5 +1,9 @@
 <?php //Génère la liste des parties prévues à une date donnée. Est utilisée dans le cas où plus de 2 parties sont prévues le même jour dans l'affichage par semaine
 
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
+
 if (!isset($_GET['date']) ){header('Location:../index.php');}
 $date=$_GET['date'];
 
@@ -34,7 +38,7 @@ $xml = simplexml_load_file('../data/events.xml'); ?>
     <section id="URform">
     <div class="bloc">
 
-        <div class="blocProduits">
+        <div class="blocParties">
                 
 
 
@@ -56,7 +60,7 @@ foreach ($xml->partie as $partie) {
             if (new DateTime($partie->date) < new DateTime()){$color="gray";}
             ?>
 
-    <div class="blocProduit" onmouseover="this.style.background='<?=$color?>'" onmouseout="this.style.background='';this.style.color='';">
+    <div class="blocPartie" onmouseover="this.style.background='<?=$color?>'" onmouseout="this.style.background='';this.style.color='';">
 
             <strong>Titre : </strong><?=$titre?><br><br>
             <strong>Type : </strong><?=$type?><br>
@@ -77,11 +81,11 @@ foreach ($xml->partie as $partie) {
     } 
 
     
-    if($i%4==0){ //Correspond au nb de produits qu'on veut par ligne
+    if($i%4==0){ //Correspond au nb de parties qu'on veut par ligne
     ?>
     </div>
 
-    <div class="blocProduits">      
+    <div class="blocParties">      
 
     <?php
     }

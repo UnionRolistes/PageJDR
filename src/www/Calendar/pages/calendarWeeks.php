@@ -1,4 +1,7 @@
 <!-- Génère le calendrier d'une semaine -->
+<!--UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com-->
 
 <?php
     if (session_status() != PHP_SESSION_ACTIVE){session_start();}
@@ -64,7 +67,10 @@
         }
         $xml = simplexml_load_file($path);
 
-        //Systeme similaire à CalendarMonths, mais doit ici compter le nombre de parties qui se chevauchent et pas seulement le même jour
+
+        //Systeme similaire à CalendarMonths, mais doit ici compter le nombre de parties qui se chevauchent et pas seulement le même jour 
+        //(Concession faite : 2 parties le même jour sont considérées chevauchantes. Un algorithme détectant vraiment des créneaux chevauchant serait trop complexe et pas très optimisé (parcourir le xml n^2 fois où n est le nombre de parties))
+        
         //Xml to array
         $tmp = json_encode($xml);
         $arrayXml = json_decode($tmp,TRUE);
@@ -94,7 +100,7 @@
                     $heure=explode("h", "$partie->heure");
                     if ($heure[1]=="00" || $heure[1]==""){ $demieHeure=0;} 
                     else{$demieHeure=1;}
-                    if ($heure[1]==""){$heure[1]="00";}//Utilisé plus tard pour détecter si l'heure est passée
+                    if ($heure[1]=="" || !isset($heure[1])){$heure[1]="00";}//Utilisé plus tard pour détecter si l'heure est passée
 
                     $row=($heure[0]-5)*2-1+1*$demieHeure; //Formule permettant de passer de l'heure à la ligne où l'afficher dans le calendrier
                     //Permet de detecter les demies heures. 

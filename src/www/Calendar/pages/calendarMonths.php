@@ -1,4 +1,7 @@
 <!-- Génère le calendrier d'un mois -->
+<!--UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com-->
 
 <?php
     if (session_status() != PHP_SESSION_ACTIVE)
@@ -123,6 +126,7 @@
                                 
 
                     $heure=explode("h", "$partie->heure");
+                    if ($heure[1]=="" || !isset($heure[1])){$heure[1]="00";}
                     //Code couleur :
                     $color="green";//Par défaut, places disponibles
                     if (new DateTime($partie->date.' '.$heure[0].':'.$heure[1].":00") < new DateTime()){$color="gray";} //Si la date est passée 
@@ -153,7 +157,6 @@
                         }
                     
 
-                        $heure=explode("h", "$partie->heure");
                         //Code couleur :
                         $color="green";//Par défaut, places disponibles
 

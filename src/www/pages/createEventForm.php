@@ -1,6 +1,12 @@
+<!--UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com-->
+        
+<!--Dépendances : tous les tags "name" ont une orthographe importante, et sont repris dans plusieurs codes python (cgi/create_post; Bot_Planning_python/.../cog.py; Bot_Base/urpy/xml.py dans la fonction add_event)  -->
+
         <form method=post action="cgi/create_post.py" id="URform" onsubmit="alert('Partie validée ! Envoi en cours ..');">
 
-            <!-- Connexion discord -->   
+            <!-- Connexion discord. Les 3 inputs suivant seront inutiles si l'écriture du webhook dans le fichier fonctionne, car ils seront justement écrits dans le fichier (Voir Bot_Planning_python/cog_planning/cog.py fonction jdr) -->   
             <input type=hidden name="webhook_url" value="<?= isset($_SESSION['webhook']) ? $_SESSION['webhook'] : "" ?>">
             <input type=hidden name="user_id" value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ""?>">
             <input type=hidden name="pseudo" value="<?= isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : ""?>">           
@@ -86,23 +92,25 @@
             <div></div> <!--Pour faire de la place entre Durée et Jdr-->
             
             <!-- Sélection du système jdr -->       
-            <label>JDR 🎲 <span class="rouge">*</span> (Hors liste <input type="checkbox" id="checkJDR" onclick="chgJdrList()">)</label>
+            <label>JDR 🎲 <span class="rouge">*</span> (Hors liste <input type="checkbox" id="checkJDR" unchecked onclick="chgJdrList()">)</label>
                 
             <select name ="jdr_system" id="system" required>
                 <option hidden disabled selected value="">Liste des JdR proposés</option>
                 <?php
 
                     if (!file_exists('data/jdr_systems.xml')) {
-                        exit('Echec lors de la récupération des parties');
+                        echo('Echec lors de la récupération des parties');
                     }
-                    # Generates all the options from an xml file
-                    $systems = simplexml_load_file("data/jdr_systems.xml");
-                    foreach ($systems as $optgroup) {
-                        echo '<optgroup label ="' . $optgroup['label'] .'">';
-                        foreach ($optgroup as $option) {
-                            echo '<option>' . $option . '</option>'; 
+                    else{           
+                        # Generates all the options from an xml file
+                        $systems = simplexml_load_file("data/jdr_systems.xml");
+                        foreach ($systems as $optgroup) {
+                            echo '<optgroup label ="' . $optgroup['label'] .'">';
+                            foreach ($optgroup as $option) {
+                                echo '<option>' . $option . '</option>'; 
+                            }
+                            echo '</optgroup>';
                         }
-                        echo '</optgroup>';
                     }
                 ?>         
             </select>	
@@ -145,3 +153,5 @@
             <a href="https://github.com/UnionRolistes/Web_Planning" uk-icon="icon: github; ratio:1.5">GitHub</a></span>
 
         </form>
+
+<!-- TODO : La restauration de la durée ne fonctionne pas, je pense que c'est parce que le select est fait en JavaScript-->

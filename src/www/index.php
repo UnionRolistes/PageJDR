@@ -2,6 +2,10 @@
 if (session_status() != PHP_SESSION_ACTIVE)
     session_start();
 
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
+
 # this is not to leak authotification information
 # stored in config.php when pushing to github
 if(!file_exists("php/config.php")){
@@ -70,8 +74,6 @@ $emot_autre = ' :space_invader: ';
         if($error=='isPosted') echo '<span class="vert">Votre partie a bien été postée</span>';
         //Envoyée par cgi/create_post.py
 
-        if($error=='transmission') echo '<span class="rouge">Erreur lors de la transmission des données. Si le problème persiste, veuillez contacter un administrateur</span>';
-        //Voir php/sendToPython
     } ?>
 
     <!-- Button for changing color mode -->

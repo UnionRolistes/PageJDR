@@ -1,3 +1,46 @@
+- Changelog for v0.6.10 (2021-08-12)
+    * Minor changes
+
+- Changelog for v0.6.9 (2021-08-12)
+    * Responsive fix
+
+- Changelog for v0.6.8 (2021-08-12)
+    * README for admin section
+
+- Changelog for v0.6.7 (2021-08-12)
+    * Code cleanup
+
+- Changelog for v0.6.6 (2021-08-12)
+    * Added manual : Add an event in the xml
+
+- Changelog for v0.6.5 (2021-08-12)
+    * Writing events in the xml
+
+- Changelog for v0.6.4 (2021-08-11)
+    * Fix logout script so it don't erase the webhook in some cases
+
+- Changelog for v0.6.3 (2021-08-11)
+    * Syntax fix
+
+- Changelog for v0.6.2 (2021-08-11)
+    * Updated README with install steps
+
+- Changelog for v0.6.1 (2021-08-11)
+    * Adding license text in main code files
+
+- Changelog for v0.6.0 (2021-08-11)
+    * Admin : Pré remplissement du formulaire pour dupliquer une partie
+    * Admin : Mise en forme texte d'une partie pour exportation Facebook
+
+- Changelog for v0.5.6 (2021-08-11)
+    * Writing webhook in a file instead of URL
+
+- Changelog for v0.5.5 (2021-08-10)
+    * Enabling errors display
+
+- Changelog for v0.5.4 (2021-08-10)
+    * Annulation du webhook dans le fichier car bug
+
 - Changelog for v0.5.3 (2021-08-10)
     * Minor design changes
 

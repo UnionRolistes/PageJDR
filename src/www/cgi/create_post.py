@@ -17,8 +17,11 @@ from urpy.xml import Calendar
 from urpy import utils
 
 # Logging
-#cgitb.enable()  # , logdir="/usr/local/log/cgi")
+cgitb.enable(display= 1)  # , logdir="/usr/local/log/cgi")
 
+#UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+#To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+#Ask a derogation at Contact.unionrolistes@gmail.com
 
 def get_payload(form) -> str:
     """ Process form data to create the webhook payload. """
@@ -61,17 +64,17 @@ async def main():
     form = cgi.FieldStorage()        
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
-#Envoi sur Discord :
-    webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
-    webhook.send(
-        "",
-        allowed_mentions=discord.AllowedMentions(users=True),
-        embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
-        )
+    #Envoi sur Discord :
+    #webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
+   # webhook.send(
+    #    "",
+     #   allowed_mentions=discord.AllowedMentions(users=True),
+     #   embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
+     #   )
 
-    #calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-    #await calendar.add_event(form, embed)
-    #calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
+    calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+    await calendar.add_event(form, embed)
+    calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
 
 
     # Redirects to main page

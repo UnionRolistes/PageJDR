@@ -24,14 +24,14 @@ form{ /*Pour espacer les boutons d'inscription*/
 }
 
 
-.blocProduits {
+.blocParties {
     margin: 0 auto;
     display: flex;
     /*overflow-x: scroll;*/
     overflow-wrap:normal;
 }
 
-.blocProduit {
+.blocPartie {
     padding: 1em;
     margin: 1em;
     width: 20%;
@@ -40,7 +40,7 @@ form{ /*Pour espacer les boutons d'inscription*/
     position: relative;
 }
 
-.blocProduit:hover {
+.blocPartie:hover {
     padding-top: 1em;
     transform: scale(1.1);
     z-index: 2;

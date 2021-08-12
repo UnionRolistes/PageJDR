@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+/*UR_Bot © 2020 by "Association Union des Rôlistes & co" is licensed under Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+Ask a derogation at Contact.unionrolistes@gmail.com*/
 
 //On ouvre le Xml :        
 if (!file_exists("../data/events.xml")) {
@@ -53,8 +56,7 @@ foreach ($xml->partie as $partie) {
             <strong>Système : </strong><?=$systeme?><br>
             <strong>Mineurs : </strong><?=$pjMineur?><br><br>
             <strong>Heure : </strong><?=$heure?><br><br>
-            Rajouter bouton supprimer ? Aux risques des modérateurs, car le supprimer du xml ne le supprimera pas de Discord
-
+      
             <input type="button" onclick="window.location.href='modules/gameExportation.php?ID=<?=$partie->attributes()?>'" value="Voir la mise en forme"/>
             <input type="button" onclick="window.location.href='modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>      
         </fieldset>
