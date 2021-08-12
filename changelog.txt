@@ -1,3 +1,9 @@
+- Changelog for v0.6.10 (2021-08-12)
+    * Minor changes
+
+- Changelog for v0.6.9 (2021-08-12)
+    * Responsive fix
+
 - Changelog for v0.6.8 (2021-08-12)
     * README for admin section
 
