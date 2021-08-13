@@ -65,16 +65,16 @@ async def main():
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
     #Envoi sur Discord :
-    #webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
-    #webhook.send(
-    #    "",
-    #   allowed_mentions=discord.AllowedMentions(users=True),
-    #   embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
-    #   )
+    webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
+    webhook.send(
+        "",
+       allowed_mentions=discord.AllowedMentions(users=True),
+       embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
+       )
 
-    calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-    await calendar.add_event(form, embed)
-    calendar.save()
+    #calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+    #await calendar.add_event(form, embed)
+    #calendar.save()
 
 
     # Redirects to main page
