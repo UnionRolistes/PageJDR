@@ -1,3 +1,6 @@
+- Changelog for v0.7.0 (2021-08-13)
+    * Auto writing event in the xml (worked this time)
+
 - Changelog for v0.6.11 (2021-08-12)
     * Quick fix
     * Disabling auto adding events in the xml

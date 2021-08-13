@@ -1,58 +1,5 @@
-<parties last_id="6">
-<partie id="0">
-    <titre>Memento Mori</titre>
-    <capacite>4</capacite>
-    <minimum>1</minimum>
-    <inscrits>4</inscrits>
-    <date>2021-07-28</date>
-    <heure>19h</heure>
-    <duree>3h00</duree>
-    <type>Campagne</type>
-    <mj>&lt;@Ayn&gt; [Ayn#8398]</mj>
-    <systeme>7e-mer</systeme>
-    <pjMineur>Non</pjMineur>
-    <plateformes>Discord</plateformes>
-    <details>La Bucca, 28 Quartus 1668 Plus d'un mois et demi s'est écoulé depuis les évènements de la Reina Del Mar. Les héros qui ont sauvé la ville, et Théah !,ont chacun repris la route, troublés par ce qu'ils ont vu. Ils sont bien loin de se douter que ce n'était que le début d'une grande aventure...</details>
-    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
-  </partie>
-  <partie id="1">
-    <titre>JDR en plein air</titre>
-    <capacite>50</capacite>
-    <minimum>1</minimum>
-    <inscrits>5</inscrits>
-    <date>2021-08-01</date>
-    <heure>14h00</heure>
-    <duree>4h00</duree>
-    <type>Initiation</type>
-    <mj>&lt;@Maevis&gt; [Maevis#0336]</mj>
-    <systeme>Plein air</systeme>
-    <pjMineur>Oui</pjMineur>
-    <plateformes>Autre</plateformes>
-    <details>RdV à 14h à la sortie du Métro Monceau (ligne 2 ou bus 30 arrêt Monceau). 
-    
-    L'évènement aura lieu de 14h à 18h, mais comme indiqué plus haut, libre à vous de rester et/ou partir plus tard étant donné que nous serons dans un parc public. Je suggère que chacun ramène de quoi boire/grignoter à partager ou non, pour raisons de santé par exemple.
-    </details>
-    <lien>https://discord.com/channels/298887769793757184/410049488816701450/866658336546881537</lien>
-  </partie>
-  <partie id="2">
-    <titre>[IDF] Double Anniv  soirée entre Rôlistes - Bastille</titre>
-    <capacite>50</capacite>
-    <minimum>10</minimum>
-    <inscrits>11</inscrits>
-    <date>2021-08-08</date>
-    <heure>18h30</heure>
-    <duree>5h00</duree>
-    <type>One shoot</type>
-    <mj>&lt;@[FR]Dae&gt; [Dae#5125]</mj>
-    <systeme>HomeBrew</systeme>
-    <pjMineur>Oui</pjMineur>
-    <plateformes>Autre</plateformes>
-    <details>A l'occasion de l'anniv de la secrétaire de l'association (Maevis) et d'un de nos membres (keroro)Notre nouveau bar partenaire nous offre la possibilité de privatisé la totalité du bar un dimanche !. 
-    seul hic, il faut être aumoins 10. donc venez boire une bière, félicité Maevis pour son années en plus. et jeté quelques dés avec nous. surtout après un ans de confinement ! BIÈRE !
-    </details>
-    <lien>https://discord.com/channels/298887769793757184/410049488816701450/867123780770201640</lien>
-  </partie>
-  <partie id="3">
+<parties last_id="3">
+  <partie id="0">
     <titre>Ynn Pryddein : la Terre des Forts</titre>
     <capacite>6</capacite>
     <minimum>4</minimum>
@@ -70,7 +17,7 @@
     </details>
     <lien>https://discord.com/channels/298887769793757184/410049488816701450/872546037934485585</lien>
   </partie>
-  <partie id="4">
+  <partie id="1">
     <titre>7th Sea</titre>
     <capacite>4</capacite>
     <minimum>4</minimum>
@@ -89,7 +36,7 @@
     </details>
     <lien>https://discord.com/channels/298887769793757184/410049488816701450/872901160497971222</lien>
   </partie>
-  <partie id="5">
+  <partie id="2">
     <titre>Jojo : The Crooked Man</titre>
     <capacite>5</capacite>
     <minimum>3</minimum>
@@ -107,23 +54,20 @@
     </details>
     <lien>https://discord.com/channels/298887769793757184/410049488816701450/873229162884771911</lien>
   </partie>
-  <partie id="6">
-    <titre>Saignée Méditerranéenne</titre>
-    <capacite>5</capacite>
-    <minimum>5</minimum>
-    <inscrits>4</inscrits>
-    <date>2021-08-08</date>
-    <heure>21h00</heure>
+  <partie id="3">
+    <titre>Numenéra</titre>
+    <capacite>6</capacite>
+    <minimum>2</minimum>
+    <inscrits>0</inscrits>
+    <date>2021-08-14</date>
+    <heure>14h00</heure>
     <duree>3h30</duree>
-    <type>Campagne</type>
-    <mj>&lt;@Syn&gt; [Syn#3950]</mj>
-    <systeme>Vampire</systeme>
-    <pjMineur>Non</pjMineur>
-    <plateformes>Discord</plateformes>
-    <details>Saison 3 - Chapitre 3 : Impasse Mexicaine. 
-    
-    La tragédie ayant frappée la Cité a regonflé la détermination de la coterie à défendre Nice. Ayant chacun obtenu des réponses et des questions à poser, ils présentent leurs résultats et leurs interrogations au Juge qui doit maintenant s'ouvrir sur son passé. Mais les conséquences de leurs actions passées sont également sur le point de tomber au pire moment...
-    </details>
-    <lien>https://discord.com/channels/298887769793757184/410049488816701450/873294677644824597</lien>
+    <type>One shoot</type>
+    <mj>&lt;@408969466815447061&gt; [Nevrose#8184]</mj>
+    <systeme>Numenéra</systeme>
+    <pjMineur>2</pjMineur>
+    <plateformes/>
+    <details>Rendez-vous au Parc de la Villette, sur l'espace vert situé entre la Géode et le sous-marin Nautilus.</details>
+    <lien>https://discord.com/channels/298887769793757184/410049488816701450/875723831308849193</lien>
   </partie>
 </parties>

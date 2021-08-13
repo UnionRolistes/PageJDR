@@ -25,7 +25,7 @@ $trouve=false;
 foreach ($xml->partie as $partie) {
 
     try{  
-        if ($partie->attributes()==$ID){         
+        if (intval($partie->attributes())==$ID){         
 
             $titre=$partie->titre;
             $capacite=$partie->capacite;
