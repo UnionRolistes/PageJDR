@@ -57,7 +57,7 @@ def get_webhook_url(form) -> str:
     with open(f'{settings.tmp_wh_location}/wh', "rb") as f:
         array = pickle.load(f)
         wh_url, guild_id, channel_id = array[int(form.getvalue('user_id'))]
-        return wh_url
+        return str(wh_url)
     #return form.getvalue('webhook_url')
 
 async def main():
@@ -65,16 +65,16 @@ async def main():
     embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url)
 
     #Envoi sur Discord :
-    #webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
-   # webhook.send(
-    #    "",
-     #   allowed_mentions=discord.AllowedMentions(users=True),
-     #   embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
-     #   )
+    webhook = Webhook.from_url(get_webhook_url(form), adapter=RequestsWebhookAdapter())
+    webhook.send(
+        "",
+       allowed_mentions=discord.AllowedMentions(users=True),
+       embed=discord.Embed(description=get_payload(form), type="rich").set_thumbnail(url=settings.logo_url),
+       )
 
-    calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
-    await calendar.add_event(form, embed)
-    calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
+    #calendar = Calendar(path.abspath('../Calendar/data/events.xml'))
+    #await calendar.add_event(form, embed)
+    #calendar.save() #Mise en suspens temporaire de l'écriture dans le xml car a plusieurs bugs
 
 
     # Redirects to main page
