@@ -180,7 +180,7 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
                             <strong>Capacité : </strong>
                             <?php if ((int)$partie->minimum==(int)$partie->capacite){echo $partie->minimum;}
                             else{echo $partie->minimum.'~'.$partie->capacite.'<br>';}?>
-                            
+                            <!--<strong>MJ : </strong><=$partie->mj?><br> Les infos complètes sont affichées, du type "<@Nevrose> [Nevrose#8184]". Trop long pour un affichage de cette taille, posera des problèmes de lisibilité pour les petites vignettes et mobile-->
 
                             <?php 
                             //<strong>Capacité : </strong><?=$partie->inscrits .>/<?=$partie->capacite .><br>

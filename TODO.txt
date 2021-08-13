@@ -7,6 +7,8 @@ Bugs :
 - Affichage mobile sur certaines pages du calendrier
 - Formulaire partie : Sauvegarde de la durée ne fonctionne pas, je pense que c'est parce que le select est rempli en JavaScript. Idem pour le choix des plateformes.
 - Les durées de 30 minutes ne sont pas reconnues par le calendrier, ne marche qu'avec "h" dans la durée
+- Ecriture dans le xml : pour les pj mineurs, écrit actuellement 0 ou 1 ou 2. Sur la partie web, faire une transformation auto de ces chiffres en "Oui", "Non préférable", "Non". Dépendances exactes trouvables dans Bot_Planning_python, strings.py 
+
 
 Ajouts potentiels :
 - Vérification des données côté serveur, comme sur Web_Presentation puis cgi/create_presentation
@@ -15,3 +17,4 @@ Ajouts potentiels :
 - Slider de joueurs et choix de date customisés (actuellement utilise un fichier externe, relativement lourd)
 - Sur Calendar/popupEvent.php, faire des boutons customisés
 - Formulaire : Message rouge si on prévoit une partie dans moins de 72 heures, du style "date proche, risque de ne pas avoir assez de joueurs". Faisable en JavaScript
+- Section ADMIN : Quand on pré remplit le formulaire, sauvegarder l'id discord du MJ precedent (à la demande de Dae)

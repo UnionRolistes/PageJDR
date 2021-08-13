@@ -1,3 +1,6 @@
+- Changelog for v0.8.0 (2021-08-13)
+    * New organisation for admin pages
+
 - Changelog for v0.7.0 (2021-08-13)
     * Auto writing event in the xml (worked this time)
 

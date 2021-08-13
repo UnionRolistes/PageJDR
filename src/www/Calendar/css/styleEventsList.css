@@ -4,6 +4,9 @@
 body, html{
     background-color: #23272A;
 }
+.titleCenter{
+    text-align: center;
+  }
 
 #URform { /*On baisse la distance verticale*/
    

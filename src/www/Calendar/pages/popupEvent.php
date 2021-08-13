@@ -39,6 +39,7 @@ foreach ($xml->partie as $partie) {
             $systeme=$partie->systeme;
             $pjMineur=$partie->pjMineur;
             $plateformes=$partie->plateformes; 
+            if($plateformes==""){$plateformes="Autre";}
             $details=$partie->details;
             $lienWeb=$partie->lien;
         
@@ -72,12 +73,15 @@ if(!$trouve){
     <link rel="stylesheet" href="../css/stylePopup.css">
 
     <link rel="icon" type="image/png" href="../../img/ur-bl2.png">
+
+    <script src="../js/copy.js"></script>
 </head>
 <body>
     
     <header>
-        <h1 class="titleCenter"><?=$titre?></h2>
+        <h1 class="titleCenter"><?=$titre?></h2> 
     </header>
+    <img src="../../img/secured.png" style="width: 20px; height: 20px; float: right" title="section ADMIN" onclick="location.href='../ADMIN/index.php'"/>
     <section id="URform">
    
         <label><strong>Type : </strong></label>
@@ -93,7 +97,7 @@ if(!$trouve){
         <div class="right"><?=$duree?></div>
 
         <label><strong>Capacité : </strong></label>
-        <div class="right">Entre <strong><?=$minimum?> et <?=$capacite?></strong> joueurs - <?=$inscrits?> joueurs inscrits </div>
+        <div class="right">Entre <strong><?=$minimum?> et <?=$capacite?></strong> joueurs <!--- <=$inscrits?> joueurs inscrits  Pas fonctionnel côté Python--></div>
 
         <label><strong>Mineurs : </strong></label>
         <div class="right"><?=$pjMineur?></div>
@@ -153,9 +157,36 @@ if(!$trouve){
 <?php
             if(isset($_SESSION['securedURadmin'])){
                 if ($_SESSION['securedURadmin']=="securedID"){ ?>
-               
-               <input type="button" onclick="window.location.href='../ADMIN/modules/gameExportation.php?ID=<?=$partie->attributes()?>'" value="Voir la mise en forme"/>
-            <input type="button" onclick="window.location.href='../ADMIN/modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>  
+                        
+                <input type="button" onclick="window.location.href='../ADMIN/modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>  
+                <input type="button" onclick="copyToClipboard(<?=(string)$partie->attributes()?>)" value="Copy to clipboard"/><img src="../../img/copy2.jpg" style="width: 20px; height: 20px;"/>
+
+                <?php 
+                $heure=$partie->heure;
+                $duree=$partie->duree;//On rétablit les dates sous le bon format. Notamment la heure et durée qui ont été explode
+                ?>
+
+                <textarea id="copyText<?=$partie->attributes()?>" cols="30" rows="10" hidden>
+**Titre : **<?=$titre?>
+
+**Type : **<?=$type?>
+
+**Date : **Le <?=$date->format('d/m')?> à <?=$heure?>
+
+**Durée moyenne : **<?=$duree?>
+
+**Nombre de joueurs : **<?php if (intval($capacite)==intval($minimum)){echo $capacite;}else{echo $minimum.'~'.$capacite;}?>
+
+**MJ : ** <?=$MJ?>
+
+**Système : **<?=$systeme?>
+
+**PJ mineur : **<?=$pjMineur?>
+
+**Plateformes : **<?=$plateformes?>
+
+**Détails : **<?=$details?>
+        </textarea>
 
                <?php
                 }

@@ -81,7 +81,7 @@ Ce fichier contient 2 parties et est également fonctionnel. On remarque 2 chose
 Rajouter une partie n'est pas compliqué, mais il vous faudra respecter certaines syntaxes pour que le calendrier puisse l'intérpréter correctement.
 
 Il est préférable d'éditer le Xml présent sur le github (https://github.com/UnionRolistes/Web_Planning/blob/master/src/www/Calendar/data/events.xml) puis de pull ("cd /usr/local/src/Bot_Base && sudo git checkout . && sudo git pull && sudo bash updateBot.sh")
-Car si vous éditez directement en local, puis que vous devez faire un pull, cela risque d'écraser vos changements. (Et vous ne pouvez pas push du serveur à moins modifier 2 fois le xml, car le site se trouve dans /var/www/html/Web_Planning, alors que le repo est clone dans /usr/local/src/Web_Planning)
+Car si vous éditez directement en local, puis que vous devez faire un pull, cela risque d'écraser vos changements. (Et vous ne pouvez pas push du serveur à moins modifier 2 fois le xml, car le site se trouve dans /var/www/html/Web_Planning, alors que le repo git est clone dans /usr/local/src/Web_Planning)
 
 
 Pour rajouter une partie : 
@@ -91,10 +91,11 @@ Pour rajouter une partie :
 4. IMPORTANT : Vérifiez la syntaxe
 -- > 1.La date doit absolument être sous la forme Année(4 chiffres)-Mois(1 à 2 chiffres)-Jour(1 à 2 chiffres). Exemple : 2021-12-23 ou 2021-3-2
 -- > 2. L'id de partie ne doit pas être déjà pris (<partie id="0">), sinon la partie s'affichera dans le calendrier mais aura des problèmes d'affichage dans les pages de détails (quand on clique sur "détails et inscription", dans la section admin, etc.), empêchant les utilisateurs d'être redirigés vers le message Discord. 
-     
+-- > 3. !!LE PLUS IMPORTANT !! Pour le MJ "&lt;" ="<" et "&gt;" = ">". Xml ne reconnait pas < et > dans du texte, car elles sont déjà utilisées par les balises xml. Vous devrez utiliser &lt; et &gt; à la place. Si vous écrivez < ou >, tout le xml plantera et aucune partie ne sera affichée à tous les endroits où le xml est lu 
+       (dans notre cas c'est la seule syntaxe faisant planter tout le xml, les autres feront juste que la partie en question ne s'affichera pas)
+
 NOTES : 
 - L'information "inscrits" n'est pas encore récupérée en temps réel (12/08/21) (TODO), et les codes associés affichant ce nombre ont donc été mis en commentaires de le code, car pas très utile si le nombre ne change jamais. Lors du rajout de partie, vous pouvez donc rentrer le nombre de personnes déjà inscrites 
-- MJ : &lt;@Ayn&gt;  -- > "&lt;" ="<" et "&gt;" = ">". Cette information ne s'affichant qu'en tant que texte dans le calendrier, une faute d'orthographe ne fait pas planter l'affichage, mais pour la cohérence il est préférable de garder la même syntaxe (&lt;@USER&gt; [USER#ID])
 - Les sauts de ligne normaux ne sont pas compris par l'affichage html (Tout le texte sera affiché d'un bloc, avec ou sans sauts de ligne), et posent un problème dans l'exportation agenda (Tout ce qui après un saut de ligne disparait) (TODO: trouver un saut de ligne compatible avec l'html et l'exportation agenda .ics)
 - Le nombre d'inscrits, de capacité et de minimum ne doivent pas contenir de lettres ou la partie ne s'affichera pas
 
@@ -160,7 +161,7 @@ RESUME des syntaxes empêchant une partie de s'afficher si elles ne sont pas res
   1. La date --> aaaa-m(m)-j(j)
   2. La capacité, le minimum --> pas de lettres
   Les "id" doivent tous être différents (et que des nombres) sinon on ne pourra accéder à la page de détails que d'une seule d'elles (<parties last_id="0">) (<partie id="0">)
-
+  3. !!LE PLUS IMPORTANT !! Pour le MJ, utilisez "&lt;" pour < et "&gt;" pour >. Vous pouvez aussi mettre aucune des 2. Le Mj n'est affiché qu'en tant que texte et n'est jamais affiché sur Discord à partir du xml (comme aucune autre donnée d'ailleurs), donc vous pouvez écrire "blabla" à la place de "&lt;@Ayn&gt; [Ayn#8398]", ça ne fera pas planter l'affichage
 
 
 

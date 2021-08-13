@@ -5,11 +5,11 @@ session_start();
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
 Ask a derogation at Contact.unionrolistes@gmail.com*/
 
-//On ouvre le Xml :        
-if (!file_exists("../data/events.xml")) {
-    exit('Echec lors de la récupération des parties');
-}
-$xml = simplexml_load_file('../data/events.xml'); ?>
+
+$_SESSION['securedURadmin']="securedID"; //Arbitraire. Le but est de ne pas etre facilement devinable. 
+//Doit correspondre au code dans Web_Planning/Calendar/pages/popupEvents.php
+
+?>
 
 
 <!--Partie affichage : -->
@@ -18,9 +18,9 @@ $xml = simplexml_load_file('../data/events.xml'); ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>L'agenda du rôliste - Admin</title>
+    <title>Section Administrateur</title>
 
-    <link rel="stylesheet" href="../../css/master.css">
+    <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="../../css/styleDark.css">
     <link rel="stylesheet" href="../css/styleEventsList.css">
 
@@ -29,43 +29,19 @@ $xml = simplexml_load_file('../data/events.xml'); ?>
 <body>
     
     <header>
-        <h1 class="titleCenter">Liste des parties - ADMIN</h2>
+        <h1 class="titleCenter">Section Administrateur</h1>
     </header>
     <section id="URform">
-                
+        <h2 class="titleCenter">Modules</h2><br>
+        <br>
+        Vous êtes bien connecté en tant que modérateur ! Vous pouvez maintenant accéder à de nouveaux boutons sur les descriptions de partie<br>
+        Si vous ne voyez plus ces boutons, veuillez revenir sur cette page<br>
 
-
-<?php
-$trouve=false;
-$i=0;
-foreach ($xml->partie as $partie) { 
-
-    try{  
-            $date=new DateTimeImmutable($partie->date);
-            $titre=$partie->titre;
-            $heure=$partie->heure;
-            $type=$partie->type;       
-            $systeme=$partie->systeme;
-            $pjMineur=$partie->pjMineur; 
-            ?>
-
-        <fieldset>
-            Le <?=$date->format('d/m/Y')?>, <strong><?=$titre?></strong><br><br>
-        
-            <strong>Type : </strong><?=$type?><br>
-            <strong>Système : </strong><?=$systeme?><br>
-            <strong>Mineurs : </strong><?=$pjMineur?><br><br>
-            <strong>Heure : </strong><?=$heure?><br><br>
-      
-            <input type="button" onclick="window.location.href='modules/gameExportation.php?ID=<?=$partie->attributes()?>'" value="Voir la mise en forme"/>
-            <input type="button" onclick="window.location.href='modules/gameFormSaving.php?ID=<?=$partie->attributes()?>'" value="Pré-remplir le formulaire"/>      
-        </fieldset>
-
-    <?php
-    } catch (Exception $e) { //Si une partie a une date ou une autre info essentielle illisible, on zappe juste cette partie
-    //echo 'Debug : erreur ',  $e->getMessage(), "\n";
-    }    
-} ?>
+  
+        <div class="titleCenter">
+            <input type="button" onclick="window.location.href='modules/gameList.php'" value="Liste des parties"/><br>
+            <input type="button" onclick="window.location.href='modules/crypt.php'" value="Créer un nouveau login administrateur"/>  
+        <div>
         
     </section>
 
