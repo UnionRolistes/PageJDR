@@ -77,9 +77,9 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
             </script> <!--L'attribut required force un champ à être rempli pour envoyer le formulaire-->
              
             
-            <label>Fuseau horraire 🌎 <span class="rouge">*</span></label>    
+            <label>Fuseau horaire 🌎 <span class="rouge">*</span></label>    
 
-            <select name="jdr_horraire" id="horraire" required>
+            <select name="jdr_horaire" id="horaire" required>
                 <option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
                 <option> GMT +1 </option>
                 <option> GMT -6 </option>
