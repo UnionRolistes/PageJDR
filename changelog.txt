@@ -1,4 +1,4 @@
-- Changelog for v0.8.0 (2022-05-04)
+- Changelog for v0.8.1 (2022-05-04)
     * Added time zone in form and message
 
 - Changelog for v0.8.0 (2021-08-13)
