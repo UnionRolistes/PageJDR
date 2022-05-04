@@ -75,7 +75,15 @@ Ask a derogation at Contact.unionrolistes@gmail.com-->
                     dateStart:new Date().toISOString().slice(0, 10)});
                 });
             </script> <!--L'attribut required force un champ à être rempli pour envoyer le formulaire-->
-                        
+             
+            
+            <label>Fuseau horraire 🌎 <span class="rouge">*</span></label>    
+
+            <select name="jdr_horraire" id="horraire" required>
+                <option value="" disabled hidden selected></option> <!--Cette "option" force l'utilisateur à sélectionner une option-->
+                <option> GMT +1 </option>
+                <option> GMT -6 </option>
+            </select>   
             
                 
             <!-- Nom campagne -->         

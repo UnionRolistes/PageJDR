@@ -41,6 +41,7 @@ def get_payload(form) -> str:
         type=form.getvalue('jdr_type'),
         title=form.getvalue('jdr_title'),
         date=form.getvalue('jdr_date'),
+        horraire=form.getvalue('jdr_horraire'),
         players=players,
         length=form.getvalue('jdr_length'),
         pseudoMJ=f"<@{form.getvalue('user_id')}> [{form.getvalue('pseudo')}]",  # TODO handle server nicknames

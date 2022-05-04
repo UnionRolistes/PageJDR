@@ -1,6 +1,7 @@
 
  **Type ** {type}
 :calendar: ** Date ** Le {date}
+:earth_americas: ** Fuseau horraire ** {horraire}
 :clapper: **Titre** {title}
 :timer:  ** Durée moyenne du scénario ** {length}
 :person_standing_tone1: ** Nombre de joueurs ** {players}
